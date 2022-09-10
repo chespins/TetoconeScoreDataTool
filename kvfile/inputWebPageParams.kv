@@ -1,0 +1,66 @@
+#:kivy 2.1.0
+
+<InputWebPageParamsScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: 0.3
+            orientation: 'vertical'
+            Label:
+                font_size: 18
+                text: "テトテコネクトマイページから情報取得"
+            Label:
+                font_size: 18
+                text: "本機能を利用するにはChromeがインストールされている必要があります。"
+            Label:
+                font_size: 18
+                text: "マイページのログインに必要な情報を入力してください。"
+            Label:
+                id: loginStatusMessage
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+                font_size: 18
+        BoxLayout:
+            size_hint_y: 0.1
+        BoxLayout:
+            size_hint_y: 0.2
+            orientation: 'vertical'
+            BoxLayout:
+                Label:
+                    font_size: 18
+                    text: "アクセスコード/SERIAL No."
+                TextInput:
+                    id: serialNo
+                    line_height: 1
+                    multiline: False
+                    font_size: 18
+                    hint_text: "SERIAL No."
+            BoxLayout:
+                Label:
+                    font_size: 18
+                    text: "NESiCA.netパスワード"
+                TextInput:
+                    id: password
+                    line_height: 1
+                    font_size: 18
+                    password: True
+                    multiline: False
+                    hint_text: "パスワード"
+            Label:
+                text: ""
+        BoxLayout:
+            size_hint_y: 0.1
+        BoxLayout:
+            size_hint_y: 0.2
+            orientation: 'vertical'
+            Button:
+                id: buttonLogin
+                text: "ログイン"
+                font_size: 18
+                on_press: root.bottonLoginMyPage()
+            Button:
+                id: buttonBack
+                text: '戻る'
+                font_size: 18
+                on_press: root.manager.current = 'menu'
