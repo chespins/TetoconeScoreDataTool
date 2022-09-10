@@ -11,6 +11,9 @@
 © chespins 2022
 
 本ソフトウェアで使用しているライブラリのライセンスは以下のファイルをご確認ください。
+
 kivy-LICENSE
+
 requests-LICENSE
+
 Selenium-LICENSE
