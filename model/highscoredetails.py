@@ -51,6 +51,7 @@ def makehighScoreHistoryScreenData(highscoreList):
         ScoreHash = {
             "mode": dico.MODE_NAME_DIST[str(highScoreData["mode"])],
             "highScore": str(highScoreData["highScore"]),
+            "maxCombo": str(highScoreData["maxCombo"]),
             "updateTime": util.changeTimeZone(highScoreData["updateTime"])
             }
         screenHighScore.append(ScoreHash)

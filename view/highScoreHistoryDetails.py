@@ -29,7 +29,7 @@ class HighScoreHistoryDetailsScreen(Screen):
         musicInfo = score.getMusicName(self.chartId)
         self.ids.levelName.text = musicInfo["levelName"]
         self.ids.musicName.text = musicInfo["musicName"]
-        self.highScoreHistoryRv.data = score.getHighScoreByMusic(self.chartId)
+        self.highScoreHistoryRv.data = score.getHighScoreHistoryByChartId(self.chartId)
 
     def resetScreen(self, **kwargs):
         self.highScoreHistoryRv.data = []
@@ -37,7 +37,7 @@ class HighScoreHistoryDetailsScreen(Screen):
 
     def switchScreen(self):
         if (self.allDisplayFlg):
-            self.highScoreHistoryRv.data = score.getHighScoreByMusic(
+            self.highScoreHistoryRv.data = score.getHighScoreHistoryByChartId(
                     self.chartId
                 )
 
