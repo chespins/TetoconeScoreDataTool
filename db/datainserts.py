@@ -133,7 +133,7 @@ def dbinserts(
 
         highScoreHistoryInsertSql += " (?,?,?,?,?)"
 
-        if (index != len(highScoreList) - 1):
+        if (index != len(highScoreHistoryList) - 1):
             highScoreHistoryInsertSql += ","
 
     for index, rankHistory in enumerate(rankHistoryList):
