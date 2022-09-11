@@ -16,9 +16,9 @@ Builder.load_file(util.find_data_file('.\\kvfile\\inputWebPageParams.kv'))
 class InputWebPageParamsScreen(Screen):
     text = StringProperty()
 
-    def __init__(self, **var_args):
-        super(InputWebPageParamsScreen, self).__init__(**var_args)
-        self.ids.loginStatusMessage.text = 'データ取得には1分程度時間がかかります。'
+    def __init__(self, **kwargs):
+        super(InputWebPageParamsScreen, self).__init__(**kwargs)
+        self.ids.loginStatusMessage.text = messeges.DATA_INPORT_START
         self.ids.loginStatusMessage.color = [0, 1, 0, 1]
         self.ids.serialNo.text = ''
         self.ids.password.text = ''
@@ -35,7 +35,7 @@ class InputWebPageParamsScreen(Screen):
         self.ids.buttonLogin.disabled = False
 
     def bottonLoginMyPage(self):
-        self.ids.loginStatusMessage.text = 'データ取得中。しばらくお待ちください。'
+        self.ids.loginStatusMessage.text = messeges.DATA_INPORT_PROCESS
         self.ids.loginStatusMessage.color = [0, 1, 0, 1]
         self.ids.serialNo.disabled = True
         self.ids.password.disabled = True
