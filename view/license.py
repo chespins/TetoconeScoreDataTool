@@ -5,18 +5,18 @@ from kivy.lang import Builder
 
 from util import util
 
-Builder.load_file(util.find_data_file('.\\kvfile\\license.kv'))
+Builder.load_file(util.find_data_file('./kvfile/license.kv'))
 
 
 class LicenseScreen(Screen):
 
     def __init__(self, **kwargs):
         super(LicenseScreen, self).__init__(**kwargs)
-        self.ids.Font.text = util.readFileStr('.\\FONT-LICENSE')
-        self.ids.kivylicense.text = util.readFileStr('.\\kivy-LICENSE')
-        self.ids.requests.text = util.readFileStr('.\\requests-LICENSE')
-        self.ids.Selenim.text = util.readFileStr('.\\Selenium-LICENSE')
-        self.ids.Selenim_Notice.text = util.readFileStr('.\\Selenium-NOTICE')
+        self.ids.Font.text = util.readFileStr('./FONT-LICENSE')
+        self.ids.kivylicense.text = util.readFileStr('./kivy-LICENSE')
+        self.ids.requests.text = util.readFileStr('./requests-LICENSE')
+        self.ids.Selenim.text = util.readFileStr('./Selenium-LICENSE')
+        self.ids.Selenim_Notice.text = util.readFileStr('./Selenium-NOTICE')
 
 
 if __name__ == '__main__':

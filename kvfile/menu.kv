@@ -19,11 +19,17 @@
                 font_size: 22
                 on_press: 
                     root.manager.current = 'webData'
-            Button:
-                text: "ハイスコア確認"
-                font_size: 22
-                on_press: 
-                    root.manager.current = 'highScoreSelect'
+            BoxLayout:
+                Button:
+                    text: "ハイスコア確認"
+                    font_size: 22
+                    on_press: 
+                        root.manager.current = 'highScoreSelect'
+                Button:
+                    text: "クリア状況確認"
+                    font_size: 22
+                    on_press: 
+                        root.manager.current = 'abuchment'
             BoxLayout:
                 Button:
                     text: "ライセンス"
