@@ -2,6 +2,7 @@
 
 <HighScoreHistoryDetailsScreen>:
     highScoreHistoryRv: highScoreHistoryRv
+    rankHistoryRv: rankHistoryRv
     BoxLayout:
         orientation: "vertical"
         BoxLayout:
@@ -17,27 +18,49 @@
                 id: levelName
         BoxLayout:
             size_hint_y: 0.9
-            canvas:
-                Color:
-                    rgba: 0.85, 0.85, 0.85, 1
-                Rectangle:
-                    size: self.size
-                    pos: self.pos
-            orientation: 'vertical'
-            RecycleView:
-                size_hint_y: 0.9
-                id: highScoreHistoryRv
-                scroll_type: ['bars', 'content']
-                scroll_wheel_distance: dp(56)
-                bar_width: dp(40)
-                viewclass: 'highScoreHistory'
-                RecycleBoxLayout:
-                    default_size: None, dp(56)
-                    default_size_hint: 1, None
-                    size_hint_y: None
-                    height: self.minimum_height
-                    orientation: 'vertical'
-                    spacing: dp(2)
+            BoxLayout:
+                size_hint_x: 0.7
+                canvas:
+                    Color:
+                        rgba: 0.85, 0.85, 0.85, 1
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                orientation: 'vertical'
+                RecycleView:
+                    size_hint_y: 0.9
+                    id: highScoreHistoryRv
+                    scroll_type: ['bars', 'content']
+                    scroll_wheel_distance: dp(56)
+                    bar_width: dp(40)
+                    viewclass: 'highScoreHistory'
+                    RecycleBoxLayout:
+                        default_size: None, dp(56)
+                        default_size_hint: 1, None
+                        size_hint_y: None
+                        height: self.minimum_height
+                        orientation: 'vertical'
+                        spacing: dp(2)
+            BoxLayout:
+                size_hint_x: 0.3
+                canvas:
+                    Color:
+                        rgba: 0, 0, 0, 1
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                orientation: 'vertical'
+                RecycleView:
+                    size_hint_y: 0.9
+                    id: rankHistoryRv
+                    viewclass: 'rankHistory'
+                    RecycleBoxLayout:
+                        default_size: None, dp(35)
+                        default_size_hint: 1, None
+                        size_hint_y: None
+                        height: self.minimum_height
+                        orientation: 'vertical'
+                        spacing: dp(2)
         BoxLayout:
             size_hint_y: 0.1
             Button:
@@ -58,16 +81,16 @@
         orientation: 'vertical'
         BoxLayout:
             Label:
-                size_hint_x: 0.2
+                size_hint_x: 0.15
                 text: "モード"
             Label:
-                size_hint_x: 0.1
+                size_hint_x: 0.25
                 text: root.mode
             Label:
-                size_hint_x: 0.2
+                size_hint_x: 0.15
                 text:"更新日時"
             Label:
-                size_hint_x: 0.5
+                size_hint_x: 0.45
                 text: root.updateTime
         BoxLayout:
             Label:
@@ -78,3 +101,16 @@
                 text: "最大コンボ"
             Label:
                 text: root.maxCombo
+
+<rankHistory>:
+    canvas.before:
+        Color:
+            rgba: 0.75, 0, 0.75, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        Label:
+            text: root.rank
+        Label:
+            text: root.count

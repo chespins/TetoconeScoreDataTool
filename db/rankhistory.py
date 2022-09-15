@@ -29,7 +29,7 @@ def selectMusic():
     return chartList
 
 
-def selectChartByMusicId(chartId):
+def selectChartByChartId(chartId):
     chartList = []
     with sqlite3.connect(TETOCONE_DB_NAME) as conn:
         cur = conn.cursor()

@@ -32,7 +32,7 @@ class HighScoreSelectScreen(Screen):
 
     def allMusic(self):
         serchLavelName = self.ids.LevelSpinnerId.text
-        self.musicRv.data = hsc.serchMusic("", serchLavelName, True)
+        self.musicRv.data = hsc.serchMusic("", serchLavelName, self.unplayedFlg)
         self.ids.searchMusicName.text = ""
 
     def serchMusic(self):

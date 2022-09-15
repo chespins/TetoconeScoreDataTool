@@ -1,6 +1,5 @@
--- Project Name : チE��コチE
+-- Project Name : チE��コチE
 -- Date/Time    : 2022/09/06 21:15:28
--- Author       : takah
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
 

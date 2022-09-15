@@ -8,6 +8,7 @@ from kivy.lang import Builder
 
 from variable.setappdata import AppCommonData
 from model import highscoredetails as score
+from model import rankHistory as rah
 from util import util
 
 Builder.load_file(util.find_data_file('./kvfile/highScoreHistoryDetails.kv'))
@@ -15,6 +16,7 @@ Builder.load_file(util.find_data_file('./kvfile/highScoreHistoryDetails.kv'))
 
 class HighScoreHistoryDetailsScreen(Screen):
     highScoreHistoryRv = ObjectProperty()
+    rankHistoryRv = ObjectProperty()
     chartId = StringProperty()
     allDisplayFlg = True
 
@@ -30,9 +32,11 @@ class HighScoreHistoryDetailsScreen(Screen):
         self.ids.levelName.text = musicInfo["levelName"]
         self.ids.musicName.text = musicInfo["musicName"]
         self.highScoreHistoryRv.data = score.getHighScoreHistoryByChartId(self.chartId)
+        self.rankHistoryRv.data = rah.getRankHistoryDataForChartId(self.chartId)
 
     def resetScreen(self, **kwargs):
         self.highScoreHistoryRv.data = []
+        self.rankHistoryRv.data = []
         self.chartId = ""
 
     def switchScreen(self):
@@ -47,6 +51,11 @@ class highScoreHistory(BoxLayout):
     highScore = StringProperty()
     maxCombo = StringProperty()
     updateTime = StringProperty()
+
+
+class rankHistory(BoxLayout):
+    rank = StringProperty()
+    count = StringProperty()
 
 
 if __name__ == '__main__':

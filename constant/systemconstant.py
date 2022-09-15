@@ -17,6 +17,6 @@ FULL_COMBO = "フルコンボ"
 PERFECT = "パーフェクト"
 
 ABUCHMENT_LIST = [
-        FULL_COMBO,
-        PERFECT
-]
+                FULL_COMBO,
+                PERFECT
+        ]
