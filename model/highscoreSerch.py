@@ -3,7 +3,7 @@ from db import highscore
 from constant import distConstant as dico
 
 
-def serchMusic(serchName, serchLavalName):
+def serchMusic(serchName, serchLavalName, unplayedFlg):
     serchLevelId = 0
     for levelName in dico.LEVEL_NAME_DIST.values():
         if levelName.name == serchLavalName:
@@ -19,20 +19,21 @@ def serchMusic(serchName, serchLavalName):
                 continue
         margedist[chartId] = highScoreData
 
-    return makeScreenData(margedist.values())
+    return makeScreenData(margedist.values(), unplayedFlg)
 
 
-def makeScreenData(dbHighScoreList):
+def makeScreenData(dbHighScoreList, unplayedFlg):
     screenHighScore = []
     for highScoreData in dbHighScoreList:
-        ScoreHash = {
-                "musicName": highScoreData["musicName"],
-                "levelName": dico.LEVEL_NAME_DIST[
-                        str(highScoreData["levelId"])].name,
-                "highScore": str(highScoreData["highScore"]),
-                "chartId": highScoreData["chartId"]
-            }
-        screenHighScore.append(ScoreHash)
+        if unplayedFlg or highScoreData["playCount"] > 0:
+            ScoreHash = {
+                    "musicName": highScoreData["musicName"],
+                    "levelName": dico.LEVEL_NAME_DIST[
+                            str(highScoreData["levelId"])].name,
+                    "highScore": str(highScoreData["highScore"]),
+                    "chartId": highScoreData["chartId"]
+                }
+            screenHighScore.append(ScoreHash)
 
     return screenHighScore
 

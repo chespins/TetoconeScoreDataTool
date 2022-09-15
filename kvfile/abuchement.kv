@@ -1,7 +1,7 @@
 #:kivy 2.1.0
 
-<HighScoreSelectScreen>:
-    musicRv: musicRv
+<AbuchmentScreen>:
+    abuchmentRv: abuchmentRv
     BoxLayout:
         orientation: "vertical"
         BoxLayout:
@@ -12,17 +12,17 @@
                 BoxLayout:
                     size_hint_y: 0.1
                     Label:
-                        size_hint_x: 0.1
-                        text: "詳細"
-                    Label:
                         size_hint_x: 0.5
                         text: "曲名"
                     Label:
                         size_hint_x: 0.2
                         text: "難易度"
                     Label:
-                        size_hint_x: 0.2
-                        text: "ハイスコア"
+                        size_hint_x: 0.15
+                        text: "フルコンボ"
+                    Label:
+                        size_hint_x: 0.15
+                        text: "パーフェクト"
                 BoxLayout:
                     canvas:
                         Color:
@@ -33,11 +33,11 @@
                     orientation: 'vertical'
                     RecycleView:
                         size_hint_y: 0.9
-                        id: musicRv
+                        id: abuchmentRv
                         scroll_type: ['bars', 'content']
                         scroll_wheel_distance: dp(56)
                         bar_width: dp(10)
-                        viewclass: 'SerchHighScore'
+                        viewclass: 'AbuchmentData'
                         RecycleBoxLayout:
                             default_size: None, dp(56)
                             default_size_hint: 1, None
@@ -49,51 +49,36 @@
             orientation: 'vertical'
             size_hint_y: 0.2
             BoxLayout:
-                RelativeLayout:
-                    TextInput:
-                        id: searchMusicName
-                        line_height: 1
-                        multiline: False
-                        font_size: 18
-                        hint_text: '楽曲名(部分一致)'
-                        size_hint_X: 0.7
-                        # IME対応部分・後回し
-                        # composition_window: cmp_window
-                    # CompositionLabel:
-                    #     id: cmp_window
-                    #     searchMusicName: searchMusicName
-                    #     x: searchMusicName.cursor_pos[0]
-                    #     y: searchMusicName.cursor_pos[1] - self.height
-                Button:
-                    id: buttonSerchMusic
-                    text: "検索"
+                Label:
+                    text: "表示する実績"
                     font_size: 18
-                    on_press: root.serchMusic()
+                    size_hint_x: 0.25
+                Spinner:
+                    id: abuchmentSpinner
+                    font_size: 18
+                    size_hint_x: 0.25
+                Label:
+                    text: "未達成の楽曲を表示する"
+                    font_size: 18
                     size_hint_x: 0.3
+                BoxLayout:
+                    size_hint_x: 0.2
+                    CheckBox:
+                        active: root.ungetFlg
+                        on_press: root.checkboxCheck(self)
             BoxLayout:
                 Label:
                     text: "難易度"
                     font_size: 18
-                    size_hint_x: 0.25
                 Spinner:
                     id: LevelSpinnerId
                     font_size: 18
-                    size_hint_x: 0.25
-                Label:
-                    text: "未プレイ楽曲を表示する"
-                    font_size: 18
-                    size_hint_x: 0.35
-                BoxLayout:
-                    size_hint_x: 0.15
-                    CheckBox:
-                        active: root.unplayedFlg
-                        on_press: root.checkboxCheck(self)
-            BoxLayout:
+                    pos_hint: {'center_x': .5, 'center_y': .5}
                 Button:
-                    id: buttonAllMusic
-                    text: "全曲表示"
+                    id: buttonSerchMusic
+                    text: "表示"
                     font_size: 18
-                    on_press: root.allMusic()
+                    on_press: root.serchMusic()
                 Button:
                     text: '戻る'
                     font_size: 18
@@ -101,18 +86,13 @@
                         root.resetData() 
                         root.manager.current = 'menu'
 
-<SerchHighScore>:
+<AbuchmentData>:
     canvas.before:
         Color:
             rgba: 0.5, 0.5, 0.5, 1
         Rectangle:
             size: self.size
             pos: self.pos
-    Button:
-        size_hint_x: 0.1
-        on_release: 
-            app.showHighScore(root.chartId)
-        text: "詳細"
     Label:
         size_hint_x: 0.5
         text_size: self.size
@@ -123,18 +103,8 @@
         size_hint_x: 0.2
         text: root.levelName
     Label:
-        size_hint_x: 0.2
-        text: root.highScore
-<CompositionLabel>:
-    size_hint_x: None
-    size_hint_y: None
-    width: self.font_size * (len(self.text)-7)
-    height: self.font_size
-    color: 0,0,0,1
-    markup: True
-    canvas.before:
-        Color:
-            rgba: 1,1,1,len(self.text)-7
-        Rectangle:
-            pos: self.pos
-            size: self.size
+        size_hint_x: 0.15
+        text: root.fullComboCount
+    Label:
+        size_hint_x: 0.15
+        text: root.perfectCount

@@ -10,7 +10,7 @@ from variable.setappdata import AppCommonData
 from model import highscoredetails as dataSet
 from util import util
 
-Builder.load_file(util.find_data_file('.\\kvfile\\highScoreDetails.kv'))
+Builder.load_file(util.find_data_file('./kvfile/highScoreDetails.kv'))
 
 
 class HighScoreDetailsScreen(Screen):

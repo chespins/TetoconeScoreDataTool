@@ -18,15 +18,17 @@ SELECT_ID_SQL = """
 """
 
 SELECT_MUSIC_LEVEL_NAME_SQL = """
-    SELECT mu.name, ch.level_id, sc.mode, sc.high_score, sc.chart_id
-        FROM "high_score" AS sc
-            INNER JOIN music AS mu on mu.id = sc.music_id
-            INNER JOIN chart_constitution AS ch on ch.chart_id = sc.chart_id
-        WHERE mu.name like '%' || ? || '%'
+    SELECT mu.name, ch.level_id, ifnull(sc.mode, 0), ifnull(sc.high_score, 0),
+        ch.chart_id, ifnull(sc.full_combo_count, 0), ifnull(sc.perfect_count, 0),
+        ifnull(sc.play_count, 0), ifnull(sc.cleared_count, 0)
+    FROM chart_constitution AS ch
+        LEFT JOIN high_score AS sc on ch.chart_id = sc.chart_id
+        INNER JOIN music AS mu on mu.id = ch.music_id
+    WHERE mu.name like '%' || ? || '%'
 """
 
 SELECT_MUSIC_LEVEL_NAME_ORDER_SQL = """
-    ORDER BY sc.music_id, sc.chart_id, sc.mode
+    ORDER BY mu.genre_id, ch.music_id, sc.chart_id, sc.mode
 """
 
 
@@ -94,7 +96,11 @@ def selectHighScore(musicName, levelId=0):
                     "levelId": row[1],
                     "mode": row[2],
                     "highScore": row[3],
-                    "chartId": row[4]
+                    "chartId": row[4],
+                    "fullComboCount": row[5],
+                    "perfectCount": row[6],
+                    "playCount": row[7],
+                    "clearedCount": row[8],
                 })
 
     return highScoreList
