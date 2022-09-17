@@ -57,13 +57,7 @@
                         font_size: 18
                         hint_text: '楽曲名(部分一致)'
                         size_hint_X: 0.7
-                        # IME対応部分・後回し
-                        # composition_window: cmp_window
-                    # CompositionLabel:
-                    #     id: cmp_window
-                    #     searchMusicName: searchMusicName
-                    #     x: searchMusicName.cursor_pos[0]
-                    #     y: searchMusicName.cursor_pos[1] - self.height
+                        text_type: "text"
                 Button:
                     id: buttonSerchMusic
                     text: "検索"
@@ -125,16 +119,3 @@
     Label:
         size_hint_x: 0.2
         text: root.highScore
-<CompositionLabel>:
-    size_hint_x: None
-    size_hint_y: None
-    width: self.font_size * (len(self.text)-7)
-    height: self.font_size
-    color: 0,0,0,1
-    markup: True
-    canvas.before:
-        Color:
-            rgba: 1,1,1,len(self.text)-7
-        Rectangle:
-            pos: self.pos
-            size: self.size

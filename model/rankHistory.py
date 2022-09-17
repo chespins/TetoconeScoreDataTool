@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from db import rankhistory as rah
-from constant.distConstant import RANK_LIST
+from constant.distConstant import RANK_DIST
 
 def getRankHistoryDataForChartId(chartId):
     margeRankHistoryDist = {}
@@ -13,17 +13,16 @@ def getRankHistoryDataForChartId(chartId):
         rank = rankHistory["rank"]
         if rankHistory["rank"] in margeRankHistoryDist.keys():
             count += margeRankHistoryDist[rank]["count"]
-        
+
         margeRankHistoryDist[rank] = {
                 "rank": rankHistory["rank"],
                 "count": count
             }
 
-
-    for rank in RANK_LIST:
+    for rank in RANK_DIST.keys():
         if rank in margeRankHistoryDist.keys():
             screenRankHistoryList.append({
-                    "rank": rank,
+                    "rank": RANK_DIST[rank],
                     "count": str(
                             margeRankHistoryDist[rank]["count"]
                         ) + "回"

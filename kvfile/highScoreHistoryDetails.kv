@@ -42,25 +42,34 @@
                         orientation: 'vertical'
                         spacing: dp(2)
             BoxLayout:
+                orientation:'vertical'
                 size_hint_x: 0.3
-                canvas:
-                    Color:
-                        rgba: 0, 0, 0, 1
-                    Rectangle:
-                        size: self.size
-                        pos: self.pos
-                orientation: 'vertical'
-                RecycleView:
+                BoxLayout:
+                    size_hint_y: 0.1
+                    Label:
+                        text: 'ランク'
+                    Label:
+                        text: '達成回数'
+                BoxLayout:
                     size_hint_y: 0.9
-                    id: rankHistoryRv
-                    viewclass: 'rankHistory'
-                    RecycleBoxLayout:
-                        default_size: None, dp(35)
-                        default_size_hint: 1, None
-                        size_hint_y: None
-                        height: self.minimum_height
-                        orientation: 'vertical'
-                        spacing: dp(2)
+                    canvas:
+                        Color:
+                            rgba: 0, 0, 0, 1
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    orientation: 'vertical'
+                    RecycleView:
+                        size_hint_y: 0.9
+                        id: rankHistoryRv
+                        viewclass: 'rankHistory'
+                        RecycleBoxLayout:
+                            default_size: None, dp(35)
+                            default_size_hint: 1, None
+                            size_hint_y: None
+                            height: self.minimum_height
+                            orientation: 'vertical'
+                            spacing: dp(2)
         BoxLayout:
             size_hint_y: 0.1
             Button:

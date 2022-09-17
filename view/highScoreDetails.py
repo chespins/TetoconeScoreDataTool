@@ -24,16 +24,18 @@ class HighScoreDetailsScreen(Screen):
     def on_pre_enter(self, **kwargs):
         if self.chartId == "":
             self.chartId = self.commonData.getDisplayChartId()
-
-        musicInfo = dataSet.getMusicName(self.chartId)
-        self.ids.levelName.text = musicInfo["levelName"]
-        self.ids.musicName.text = musicInfo["musicName"]
-        self.highScoreRv.data = dataSet.getHighScoreByMusic(self.chartId)
+            musicInfo = dataSet.getMusicName(self.chartId)
+            self.ids.levelName.text = musicInfo["levelName"]
+            self.ids.musicName.text = musicInfo["musicName"]
+            self.highScoreRv.data = dataSet.getHighScoreByMusic(self.chartId)
+            if len(self.highScoreRv.data) == 0 :
+                self.ids.historyButton.disabled = True
 
     def resetScreen(self, **kwargs):
         self.chartId = ""
         self.commonData.setDisplayChartId("")
         self.highScoreRv.data = []
+        self.ids.historyButton.disabled = False
 
 
 class highScore(BoxLayout):

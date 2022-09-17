@@ -32,17 +32,17 @@ MODE_NAME_DIST = {
     "6": "対戦プレイ(4人)",
 }
 
-RANK_LIST = [
-        "SS+",
-        "SS",
-        "S",
-        "AA+",
-        "AA",
-        "A",
-        "BB+",
-        "BB",
-        "B",
-        "C",
-        "D",
-        "E"
-]
+RANK_DIST = {
+        "SSS": "SS+",
+        "SS": "SS",
+        "S": "S",
+        "AAA": "AA+",
+        "AA": "AA",
+        "A": "A",
+        "BBB": "BB+",
+        "BB": "BB",
+        "B": "B",
+        "C": "C",
+        "D": "D",
+        "E": "E"
+}

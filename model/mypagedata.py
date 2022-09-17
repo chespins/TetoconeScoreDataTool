@@ -24,14 +24,13 @@ def getConnectPageData(cardId, password):
     session.headers["Content-Length"] = str(len(login_request_data))
     login = session.post(cons.API_LOGIN_URL, login_request_data)
     if login.status_code != 200:
-        raise LoginError("ログイン失敗")
+        raise LoginError()
 
     sleep(5)
     session.headers.pop("Content-Length")
     session.headers["Referer"] = cons.WEB_LOGINED_URL
     result = session.get(cons.DATA_GET_URL)
-    data = json.loads(result.text)
-    return data
+    return json.loads(result.text)
 
 
 if __name__ == '__main__':
