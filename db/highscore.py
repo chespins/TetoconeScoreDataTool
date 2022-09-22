@@ -28,7 +28,7 @@ SELECT_MUSIC_LEVEL_NAME_SQL = """
 """
 
 SELECT_MUSIC_LEVEL_NAME_ORDER_SQL = """
-    ORDER BY mu.genre_id, ch.music_id, sc.chart_id, sc.mode
+    ORDER BY mu.genre_id, ch.music_id, ch.chart_id, sc.mode
 """
 
 
