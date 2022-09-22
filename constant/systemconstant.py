@@ -20,3 +20,6 @@ ABUCHMENT_LIST = [
                 FULL_COMBO,
                 PERFECT
         ]
+
+# DBのバージョン
+CURRENT_DB_VERSION = "v0.5"

@@ -12,6 +12,7 @@ from view import highScoreHistoryDetails as his
 from view import abuchement as abu
 from view import license
 from view import menu as mu
+from view import makeDbFile as mkd
 from variable.setappdata import AppCommonData
 from util import util
 
@@ -26,8 +27,19 @@ class TetoconeScoreApp(App):
     def build(self):
         self.appCommonData = AppCommonData()
         self.sm = ScreenManager()
+        if self.appCommonData.checkDbresult != 0:
+            self.sm.add_widget(
+                    mkd.makeDbFileScreen(
+                            comonData=self.appCommonData,
+                            name='dbFile'
+                        )
+
+                )
         self.sm.add_widget(
-                mu.MenuScreen(name='menu')
+                mu.MenuScreen(
+                        comonData=self.appCommonData,
+                        name='menu'
+                    )
             )
         self.sm.add_widget(
                 hss.HighScoreSelectScreen(

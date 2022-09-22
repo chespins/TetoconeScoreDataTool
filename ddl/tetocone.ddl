@@ -1,4 +1,3 @@
--- Project Name : チE��コチE
 -- Date/Time    : 2022/09/06 21:15:28
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
