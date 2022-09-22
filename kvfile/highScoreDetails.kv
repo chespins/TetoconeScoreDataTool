@@ -44,12 +44,12 @@
                 id: historyButton
                 text: 'ハイスコア履歴'
                 font_size: 18
-                on_press: 
+                on_release: 
                     root.manager.current = 'history'
             Button:
                 text: '戻る'
                 font_size: 18
-                on_press: 
+                on_release: 
                     root.resetScreen()
                     root.manager.current = 'highScoreSelect'
 

@@ -18,26 +18,26 @@
                 id: webData
                 text: "マイページからデータ取得"
                 font_size: 22
-                on_press: 
+                on_release: 
                     root.manager.current = 'webData'
             BoxLayout:
                 Button:
                     text: "ハイスコア確認"
                     font_size: 22
-                    on_press: 
+                    on_release: 
                         root.manager.current = 'highScoreSelect'
                 Button:
                     text: "達成状況確認"
                     font_size: 22
-                    on_press: 
+                    on_release: 
                         root.manager.current = 'abuchment'
             BoxLayout:
                 Button:
                     text: "ライセンス"
                     font_size: 22
-                    on_press: 
+                    on_release: 
                         root.manager.current = 'license'
                 Button:
                     text: "ツール終了"
                     font_size: 22
-                    on_press: app.stop()
+                    on_release: app.stop()
