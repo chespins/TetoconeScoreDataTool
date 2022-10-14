@@ -22,7 +22,7 @@ def checkDbVersion():
         else:
             return DB_ERROR_UNKNOWN_FILE
 
-    except DBVersionError:
+    except:
         return DB_ERROR_FILE_BREAK
 
 

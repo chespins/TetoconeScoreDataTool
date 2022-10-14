@@ -27,7 +27,7 @@ class makeDbFileScreen(Screen):
             self.ids.yesBtn.disabled = True
 
     def reCreateDbFile(self):
-        if self.commonData.checkDbresult == DB_ERROR_UNKNOWN_FILE:
+        if self.commonData.checkDbresult == DB_ERROR_FILE_BREAK:
             crd.makeDataFile()
 
     def readOnlyOpen(self):
