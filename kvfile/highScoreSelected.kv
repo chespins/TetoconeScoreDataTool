@@ -62,7 +62,7 @@
                     id: buttonSerchMusic
                     text: "検索"
                     font_size: 18
-                    on_press: root.serchMusic()
+                    on_release: root.serchMusic()
                     size_hint_x: 0.3
             BoxLayout:
                 Label:
@@ -87,11 +87,11 @@
                     id: buttonAllMusic
                     text: "全曲表示"
                     font_size: 18
-                    on_press: root.allMusic()
+                    on_release: root.allMusic()
                 Button:
                     text: '戻る'
                     font_size: 18
-                    on_press:
+                    on_release:
                         root.resetData() 
                         root.manager.current = 'menu'
 

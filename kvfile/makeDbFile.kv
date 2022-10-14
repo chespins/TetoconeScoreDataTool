@@ -1,0 +1,45 @@
+#:kivy 2.1.0
+<makeDbFileScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: 0.8
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: 0.3
+            Label:
+                id: message
+                font_size: 18
+                size_hint: (1, None)
+                height: self.texture_size[1]
+                halign: 'left'
+            BoxLayout:
+                size_hint_y: 0.2
+                Label:
+                    text: "ファイル名:"
+                Label:
+                    id: fileName
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: 0.3
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: 0.2
+            Button:
+                id: yesBtn
+                text: "はい"
+                font_size: 22
+                on_release: 
+                    root.reCreateDbFile()
+                    root.manager.current = 'menu'
+            Button:
+                text: "読み取り専用で開く"
+                font_size: 22
+                on_release: 
+                    root.readOnlyOpen()
+                    root.manager.current = 'menu'
+            Button:
+                text: "いいえ（ツールを終了する）"
+                font_size: 22
+                on_release: app.stop()
