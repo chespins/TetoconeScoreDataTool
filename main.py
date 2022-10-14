@@ -33,7 +33,6 @@ class TetoconeScoreApp(App):
                             comonData=self.appCommonData,
                             name='dbFile'
                         )
-
                 )
         self.sm.add_widget(
                 mu.MenuScreen(

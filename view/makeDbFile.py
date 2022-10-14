@@ -7,6 +7,8 @@ from util import util
 from model import createDataFile as crd
 from variable.setappdata import AppCommonData
 from constant.systemconstant import TETOCONE_DB_NAME
+from constant.systemconstant import DB_ERROR_FILE_BREAK
+from constant.systemconstant import DB_ERROR_UNKNOWN_FILE
 from constant.messeges import DATA_FILE_ERROR
 from constant.messeges import DATA_FILE_VERSION_ERROR
 
@@ -18,14 +20,14 @@ class makeDbFileScreen(Screen):
         super(makeDbFileScreen, self).__init__(**kwargs)
         self.commonData = comonData
         self.ids.fileName.text = TETOCONE_DB_NAME
-        if self.commonData.checkDbresult == -1:
+        if self.commonData.checkDbresult == DB_ERROR_FILE_BREAK:
             self.ids.message.text = DATA_FILE_ERROR
-        elif self.commonData.checkDbresult == -2:
+        elif self.commonData.checkDbresult == DB_ERROR_UNKNOWN_FILE:
             self.ids.message.text = DATA_FILE_VERSION_ERROR
             self.ids.yesBtn.disabled = True
 
     def reCreateDbFile(self):
-        if self.commonData.checkDbresult == -1:
+        if self.commonData.checkDbresult == DB_ERROR_UNKNOWN_FILE:
             crd.makeDataFile()
 
     def readOnlyOpen(self):

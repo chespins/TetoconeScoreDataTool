@@ -3,7 +3,6 @@ from kivy.uix.screenmanager import Screen
 from kivy.properties import StringProperty
 from kivy.properties import ObjectProperty
 from kivy.properties import BooleanProperty
-from kivy.properties import NumericProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
 
