@@ -15,11 +15,14 @@
                         size_hint_x: 0.1
                         text: "詳細"
                     Label:
-                        size_hint_x: 0.5
+                        size_hint_x: 0.4
                         text: "曲名"
                     Label:
                         size_hint_x: 0.2
                         text: "難易度"
+                    Label:
+                        size_hint_x: 0.1
+                        text: "プレイ回数"
                     Label:
                         size_hint_x: 0.2
                         text: "ハイスコア"
@@ -50,7 +53,7 @@
             size_hint_y: 0.2
             BoxLayout:
                 RelativeLayout:
-                    TextInput:
+                    TextInput_JA:
                         id: searchMusicName
                         line_height: 1
                         multiline: False
@@ -108,7 +111,7 @@
             app.showHighScore(root.chartId)
         text: "詳細"
     Label:
-        size_hint_x: 0.5
+        size_hint_x: 0.4
         text_size: self.size
         halign: 'center'
         valign: 'middle'
@@ -116,6 +119,9 @@
     Label:
         size_hint_x: 0.2
         text: root.levelName
+    Label:
+        size_hint_x: 0.1
+        text: root.playCount
     Label:
         size_hint_x: 0.2
         text: root.highScore
