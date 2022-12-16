@@ -16,7 +16,11 @@ def serchMusic(serchName, serchLavalName, unplayedFlg):
         chartId = highScoreData["chartId"]
         if chartId in margedist:
             if margedist[chartId]["highScore"] > highScoreData["highScore"]:
+                margedist[chartId]["playCount"] += highScoreData["playCount"]
                 continue
+            
+            highScoreData["playCount"] += margedist[chartId]["playCount"]
+        
         margedist[chartId] = highScoreData
 
     return makeScreenData(margedist.values(), unplayedFlg)
@@ -31,7 +35,8 @@ def makeScreenData(dbHighScoreList, unplayedFlg):
                     "levelName": dico.LEVEL_NAME_DIST[
                             str(highScoreData["levelId"])].name,
                     "highScore": str(highScoreData["highScore"]),
-                    "chartId": highScoreData["chartId"]
+                    "playCount": str(highScoreData["playCount"]),
+                    "chartId": highScoreData["chartId"],
                 }
             screenHighScore.append(ScoreHash)
 

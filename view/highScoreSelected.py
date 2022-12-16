@@ -51,6 +51,7 @@ class SerchHighScore(BoxLayout):
     musicName = StringProperty()
     levelName = StringProperty()
     highScore = StringProperty()
+    playCount = StringProperty()
     chartId = StringProperty()
 
 
