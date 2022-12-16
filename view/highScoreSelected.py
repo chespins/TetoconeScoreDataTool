@@ -8,7 +8,6 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
 
 from model import highscoreSerch as hsc
-from widget import textinput4ja
 from variable.setappdata import AppCommonData
 from util import util
 

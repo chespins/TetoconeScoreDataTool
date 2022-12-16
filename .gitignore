@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # local Data File
-.tetocone.db
+tetocone.db
