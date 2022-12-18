@@ -24,32 +24,47 @@
             size_hint_y: 0.2
             orientation: 'vertical'
             BoxLayout:
+                height: dp(35)
+                size_hint: 1,None
                 Label:
+                    size_hint: 0.5,1
                     font_size: 18
                     text: "アクセスコード/SERIAL No."
-                TextInput:
-                    id: serialNo
-                    line_height: 1
-                    multiline: False
-                    font_size: 18
-                    hint_text: "SERIAL No."
+                BoxLayout:
+                    size_hint: 0.5,1
+                    TextInput:
+                        id: serialNo
+                        size_hint: None,1
+                        width: dp(320)
+                        line_height: 1
+                        multiline: False
+                        font_size: 18
+                        hint_text: "SERIAL No."
             BoxLayout:
+                height: dp(35)
+                size_hint: 1,None
                 Label:
+                    size_hint: 0.5,1
                     font_size: 18
                     text: "NESiCA.netパスワード"
-                TextInput:
-                    id: password
-                    line_height: 1
-                    font_size: 18
-                    password: True
-                    multiline: False
-                    hint_text: "パスワード"
+                BoxLayout:
+                    size_hint: 0.5,1
+                    TextInput:
+                        id: password
+                        size_hint: None,1
+                        width: dp(320)
+                        line_height: 1
+                        font_size: 18
+                        password: True
+                        multiline: False
+                        hint_text: "パスワード"
             Label:
                 text: ""
         BoxLayout:
             size_hint_y: 0.1
         BoxLayout:
-            size_hint_y: 0.2
+            height: dp(80)
+            size_hint: 1,None
             orientation: 'vertical'
             Button:
                 id: buttonLogin

@@ -3,13 +3,21 @@ from db import highscore
 from constant import distConstant as dico
 
 
-def serchMusic(serchName, serchLavalName, unplayedFlg):
-    serchLevelId = 0
+def searchMusic(searchName, searchLavalName, searchGenreName, unplayedFlg):
+    searchLevelId = 0
+    searchGenreId = ""
     for levelName in dico.LEVEL_NAME_DIST.values():
-        if levelName.name == serchLavalName:
-            serchLevelId = levelName.id
+        if levelName.name == searchLavalName:
+            searchLevelId = levelName.id
+            break
 
-    dbHighScoreList = highscore.selectHighScore(serchName, serchLevelId)
+    for genreId in dico.GANRU_NAME_DIST.keys():
+        if dico.GANRU_NAME_DIST[genreId] == searchGenreName:
+            searchGenreId = genreId
+            break
+
+
+    dbHighScoreList = highscore.selectHighScore(searchName, searchLevelId, searchGenreId)
     margedist = {}
 
     for highScoreData in dbHighScoreList:
@@ -50,6 +58,12 @@ def makeLavalNamePulldown():
 
     return pulldownList
 
+def makeGenreNamePulldown():
+    pulldownList = [""]
+    for genreName in dico.GANRU_NAME_DIST.values():
+        pulldownList.append(genreName)
+
+    return pulldownList
 
 if __name__ == '__main__':
     pass

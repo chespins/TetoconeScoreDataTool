@@ -7,7 +7,7 @@ from kivy.properties import BooleanProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
 
-from model import highscoreSerch as hsc
+from model import highscoreSearch as hsc
 from variable.setappdata import AppCommonData
 from util import util
 
@@ -22,23 +22,28 @@ class HighScoreSelectScreen(Screen):
         super(HighScoreSelectScreen, self).__init__(**kwargs)
         self.ids.LevelSpinnerId.values = hsc.makeLavalNamePulldown()
         self.ids.LevelSpinnerId.text = ""
+        self.ids.genreSpinnerId.values = hsc.makeGenreNamePulldown()
+        self.ids.genreSpinnerId.text = ""
         self.commonData = comonData
 
     def resetData(self):
         self.musicRv.data = []
         self.ids.searchMusicName.text = ""
         self.ids.LevelSpinnerId.text = ""
+        self.ids.genreSpinnerId.text = ""
         self.unplayedFlg = False
 
     def allMusic(self):
-        serchLavelName = self.ids.LevelSpinnerId.text
-        self.musicRv.data = hsc.serchMusic("", serchLavelName, self.unplayedFlg)
+        searchLavelName = self.ids.LevelSpinnerId.text
+        searchGenreName = self.ids.genreSpinnerId.text
+        self.musicRv.data = hsc.searchMusic("", searchLavelName, searchGenreName, self.unplayedFlg)
         self.ids.searchMusicName.text = ""
 
-    def serchMusic(self):
-        serchMusicName = self.ids.searchMusicName.text
-        serchLavelName = self.ids.LevelSpinnerId.text
-        self.musicRv.data = hsc.serchMusic(serchMusicName, serchLavelName, self.unplayedFlg)
+    def searchMusic(self):
+        searchMusicName = self.ids.searchMusicName.text
+        searchLavelName = self.ids.LevelSpinnerId.text
+        searchGenreName = self.ids.genreSpinnerId.text
+        self.musicRv.data = hsc.searchMusic(searchMusicName, searchLavelName, searchGenreName, self.unplayedFlg)
 
     def setChartId(self, chartId):
         self.commonData.setDisplayChartId(chartId)
@@ -47,7 +52,7 @@ class HighScoreSelectScreen(Screen):
         self.unplayedFlg = checkbox.active
 
 
-class SerchHighScore(BoxLayout):
+class SearchHighScore(BoxLayout):
     musicName = StringProperty()
     levelName = StringProperty()
     highScore = StringProperty()

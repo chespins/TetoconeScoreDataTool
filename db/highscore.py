@@ -76,14 +76,19 @@ def selectHighScoreByChartId(chartId):
     return highScoreList
 
 
-def selectHighScore(musicName, levelId=0):
+def selectHighScore(musicName, levelId=0, searchGenreId=""):
     highScoreList = []
     LEVEL_NAME_SQL = " AND ch.level_id = ? "
+    GENRE_NAME_SQL = " AND mu.genre_id = ? "
     paramList = [musicName]
     SQL = SELECT_MUSIC_LEVEL_NAME_SQL
     if levelId != 0:
         SQL += LEVEL_NAME_SQL
         paramList.append(levelId)
+
+    if searchGenreId != "":
+        SQL += GENRE_NAME_SQL
+        paramList.append(searchGenreId)
 
     SQL += SELECT_MUSIC_LEVEL_NAME_ORDER_SQL
 
