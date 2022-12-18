@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from kivy.app import App
-from kivy.core.text import LabelBase, DEFAULT_FONT
+from kivy.core.text import LabelBase
+from kivy.core.text import DEFAULT_FONT
 from kivy.resources import resource_add_path
 from kivy.uix.screenmanager import ScreenManager
 from kivy.config import Config
@@ -15,13 +16,14 @@ from view import menu as mu
 from view import makeDbFile as mkd
 from variable.setappdata import AppCommonData
 from util import util
+from constant.systemconstant import FONT_DIR
+from constant.systemconstant import FONT_FILE_NAME
 
 Config.set('graphics', 'width', '640')
 Config.set('graphics', 'height', '480')
 
-resource_add_path(util.find_data_file('./fonts'))
-LabelBase.register(DEFAULT_FONT, 'Corporate-Mincho-ver2.otf')
-
+resource_add_path(util.find_data_file(FONT_DIR))
+LabelBase.register(DEFAULT_FONT, FONT_FILE_NAME)
 
 class TetoconeScoreApp(App):
     def build(self):
