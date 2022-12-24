@@ -44,6 +44,7 @@ def makeScreenData(dbHighScoreList, unplayedFlg):
                             str(highScoreData["levelId"])].name,
                     "highScore": str(highScoreData["highScore"]),
                     "playCount": str(highScoreData["playCount"]),
+                    "detailsFlg": highScoreData["playCount"] <= 0,
                     "chartId": highScoreData["chartId"],
                 }
             screenHighScore.append(ScoreHash)
