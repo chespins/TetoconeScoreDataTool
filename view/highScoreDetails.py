@@ -4,17 +4,17 @@ from kivy.uix.screenmanager import Screen
 from kivy.properties import StringProperty
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
 from kivy.lang import Builder
 from variable.setappdata import AppCommonData
 
-from model import highscoredetails as dataSet
+from model.highscoredetails import HighScoreFormusic as dataSet
 from util import util
 
 Builder.load_file(util.find_data_file('./kvfile/highScoreDetails.kv'))
 
 
 class HighScoreDetailsScreen(Screen):
-    highScoreRv = ObjectProperty()
     chartId = StringProperty()
 
     def __init__(self, comonData: AppCommonData, **kwargs):
@@ -24,30 +24,45 @@ class HighScoreDetailsScreen(Screen):
     def on_pre_enter(self, **kwargs):
         if self.chartId == "":
             self.chartId = self.commonData.getDisplayChartId()
-            musicInfo = dataSet.getMusicName(self.chartId)
-            self.ids.levelName.text = musicInfo["levelName"]
-            self.ids.musicName.text = musicInfo["musicName"]
-            self.highScoreRv.data = dataSet.getHighScoreByMusic(self.chartId)
-            if len(self.highScoreRv.data) == 0 :
-                self.ids.historyButton.disabled = True
+            self.setMusicDate()
+            modePulldownData = dataSet.makeModeNamePulldown(self.chartId)
+            multiPlayFlg = len(modePulldownData) == 1
+            self.ids.modeSpinnerId.values = modePulldownData
+            self.ids.modeSpinnerId.text = modePulldownData[0]
+            self.ids.modeSpinnerId.disabled = multiPlayFlg
+            self.ids.changeModeBtn.disabled = multiPlayFlg
+            self.setHighScoreData(modePulldownData[0])
 
-    def resetScreen(self, **kwargs):
+    
+    def resetScreen(self, **kwargs) :
         self.chartId = ""
         self.commonData.setDisplayChartId("")
-        self.highScoreRv.data = []
         self.ids.historyButton.disabled = False
 
+    def changeMode(self, **kwargs) :
+        displayedMode = self.ids.modeSpinnerId.text
+        self.setHighScoreData(displayedMode)
 
-class highScore(BoxLayout):
-    mode = StringProperty()
-    highScore = StringProperty()
-    maxCombo = StringProperty()
-    playCount = StringProperty()
-    clearedCount = StringProperty()
-    fullComboCount = StringProperty()
-    perfectCount = StringProperty()
-    updateTime = StringProperty()
+    def setMusicDate(self):
+        musicInfo = dataSet.getMusicName(self.chartId)
+        self.ids.levelName.text = musicInfo["levelName"]
+        self.ids.levelName.color = musicInfo["levelColor"]
+        self.ids.musicName.text = musicInfo["musicName"]
+        self.ids.genreName.text = musicInfo["genreName"]
 
+    def setHighScoreData(self, displayedMode):
+        highScoreData = dataSet.getHighScoreByMusic(self.chartId, displayedMode)
+        self.ids.highScore.text = highScoreData["highScore"]
+        self.ids.maxCombo.text = highScoreData["maxCombo"]
+        self.ids.playCount.text = highScoreData["playCount"]
+        self.ids.clearedCount.text = highScoreData["clearedCount"]
+        self.ids.fullComboCount.text = highScoreData["fullComboCount"]
+        self.ids.perfectCount.text = highScoreData["perfectCount"]
+
+
+
+class CharBlackLabel(Label):
+    pass
 
 if __name__ == '__main__':
     pass

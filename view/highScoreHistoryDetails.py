@@ -7,7 +7,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
 
 from variable.setappdata import AppCommonData
-from model import highscoredetails as score
+from model.highScoreHistory import HighScoreHistory as score
 from model import rankHistory as rah
 from util import util
 

@@ -7,7 +7,7 @@ from kivy.properties import BooleanProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
 
-from model import highscoreSearch as hsc
+from model.highscoreSearch import HighScoreSearch as hsc
 from variable.setappdata import AppCommonData
 from util import util
 
@@ -36,14 +36,16 @@ class HighScoreSelectScreen(Screen):
     def allMusic(self):
         searchLavelName = self.ids.LevelSpinnerId.text
         searchGenreName = self.ids.genreSpinnerId.text
-        self.musicRv.data = hsc.searchMusic("", searchLavelName, searchGenreName, self.unplayedFlg)
+        unplayedFlg = self.unplayedFlg
+        self.musicRv.data = hsc.searchMusic("", searchLavelName, searchGenreName, unplayedFlg)
         self.ids.searchMusicName.text = ""
 
     def searchMusic(self):
         searchMusicName = self.ids.searchMusicName.text
         searchLavelName = self.ids.LevelSpinnerId.text
         searchGenreName = self.ids.genreSpinnerId.text
-        self.musicRv.data = hsc.searchMusic(searchMusicName, searchLavelName, searchGenreName, self.unplayedFlg)
+        unplayedFlg = self.unplayedFlg
+        self.musicRv.data = hsc.searchMusic(searchMusicName, searchLavelName, searchGenreName, unplayedFlg)
 
     def setChartId(self, chartId):
         self.commonData.setDisplayChartId(chartId)
@@ -58,6 +60,7 @@ class SearchHighScore(BoxLayout):
     highScore = StringProperty()
     playCount = StringProperty()
     chartId = StringProperty()
+    detailsFlg = BooleanProperty()
 
 
 if __name__ == '__main__':

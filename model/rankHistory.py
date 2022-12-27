@@ -22,7 +22,7 @@ def getRankHistoryDataForChartId(chartId):
     for rank in RANK_DIST.keys():
         if rank in margeRankHistoryDist.keys():
             screenRankHistoryList.append({
-                    "rank": RANK_DIST[rank],
+                    "rank": RANK_DIST[rank].gameLank,
                     "count": str(
                             margeRankHistoryDist[rank]["count"]
                         ) + "回"
