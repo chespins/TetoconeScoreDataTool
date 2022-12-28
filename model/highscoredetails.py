@@ -1,17 +1,46 @@
 # -*- coding: utf-8 -*-
-from db import highscore
+from db import highscore as dbhs
+from db import rankhistory as rah
 from constant import distConstant as dico
 from model.basemodel import BaseModel
 from util import util
 
 
 class HighScoreFormusic(BaseModel):
+
+    def getRankHistoryDataForChartId(chartId):
+        margeRankHistoryDist = {}
+        screenRankHistoryList = []
+        rankHistoryList = rah.selectChartByChartId(chartId)
+
+        for rankHistory in rankHistoryList:
+            count = rankHistory["count"]
+            rank = rankHistory["rank"]
+            if rankHistory["rank"] in margeRankHistoryDist.keys():
+                count += margeRankHistoryDist[rank]["count"]
+
+            margeRankHistoryDist[rank] = {
+                    "rank": rankHistory["rank"],
+                    "count": count
+                }
+
+        for rank in dico.RANK_DIST.keys():
+            if rank in margeRankHistoryDist.keys():
+                screenRankHistoryList.append({
+                        "rank": dico.RANK_DIST[rank].gameLank,
+                        "count": str(
+                                margeRankHistoryDist[rank]["count"]
+                            ) + "回"
+                })
+
+        return screenRankHistoryList
+
     def getHighScoreByMusic(chartId, displayedMode):
         modeList = dico.DISPLAYED_MODE_DIST[displayedMode].searchedMode
         score = highScoreData()
 
         for mode in modeList:
-            dbresult = highscore.selectHighScoreByAllKey(chartId, mode)
+            dbresult = dbhs.selectHighScoreByAllKey(chartId, mode)
             if len(dbresult) == 1:
                 score.setHighScore(dbresult[0])
 
@@ -20,7 +49,7 @@ class HighScoreFormusic(BaseModel):
     def makeModeNamePulldown(chartId):
         pulldownList = []
         dataedMode = []
-        dbDataList = highscore.selectHighScoreByChartId(chartId)
+        dbDataList = dbhs.selectHighScoreByChartId(chartId)
 
         for dbData in dbDataList:
             dataedMode.append(dbData["mode"])

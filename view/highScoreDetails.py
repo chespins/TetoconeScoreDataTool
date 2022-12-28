@@ -16,6 +16,7 @@ Builder.load_file(util.find_data_file('./kvfile/highScoreDetails.kv'))
 
 class HighScoreDetailsScreen(Screen):
     chartId = StringProperty()
+    rankHistoryRv = ObjectProperty()
 
     def __init__(self, comonData: AppCommonData, **kwargs):
         super(HighScoreDetailsScreen, self).__init__(**kwargs)
@@ -32,10 +33,10 @@ class HighScoreDetailsScreen(Screen):
             self.ids.modeSpinnerId.disabled = multiPlayFlg
             self.ids.changeModeBtn.disabled = multiPlayFlg
             self.setHighScoreData(modePulldownData[0])
-
     
     def resetScreen(self, **kwargs) :
         self.chartId = ""
+        self.rankHistoryRv.data = []
         self.commonData.setDisplayChartId("")
         self.ids.historyButton.disabled = False
 
@@ -58,8 +59,12 @@ class HighScoreDetailsScreen(Screen):
         self.ids.clearedCount.text = highScoreData["clearedCount"]
         self.ids.fullComboCount.text = highScoreData["fullComboCount"]
         self.ids.perfectCount.text = highScoreData["perfectCount"]
+        self.rankHistoryRv.data = dataSet.getRankHistoryDataForChartId(self.chartId)
 
 
+class rankHistory(BoxLayout):
+    rank = StringProperty()
+    count = StringProperty()
 
 class CharBlackLabel(Label):
     pass

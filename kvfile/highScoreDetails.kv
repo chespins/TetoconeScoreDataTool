@@ -1,10 +1,11 @@
 #:kivy 2.1.0
 
 <HighScoreDetailsScreen>:
+    rankHistoryRv: rankHistoryRv
     BoxLayout:
         orientation: "vertical"
         BoxLayout:
-            canvas.before:
+            canvas:
                 Color:
                     rgba: 0, 0, 0, 0
                 Rectangle:
@@ -26,78 +27,133 @@
                 size_hint_x: 0.3
                 id: levelName
         BoxLayout:
-            orientation: "vertical"
-            canvas.before:
-                Color:
-                    rgba: 0.85, 0.85, 0.85, 1
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
             BoxLayout:
-                size_hint_y: 0.2
-                CharBlackLabel:
-                    text: 'ハイスコア'
-                CharBlackLabel:
-                    id: highScore
-                CharBlackLabel:
-                    text: '最大コンボ数'
-                CharBlackLabel:
-                    id: maxCombo
+                orientation: "vertical"
+                canvas.before:
+                    Color:
+                        rgba: 0.85, 0.85, 0.85, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                BoxLayout:
+                    size_hint_y: 0.2
+                    CharBlackLabel:
+                        text: 'ハイスコア'
+                    CharBlackLabel:
+                        id: highScore
+                    CharBlackLabel:
+                        text: '最大コンボ数'
+                    CharBlackLabel:
+                        id: maxCombo
+                BoxLayout:
+                    size_hint_y: 0.2
+                    CharBlackLabel:
+                        text: 'プレイ回数'
+                    CharBlackLabel:
+                        id: playCount
+                    CharBlackLabel:
+                        text: 'クリア回数'
+                    CharBlackLabel:
+                        id: clearedCount
+                BoxLayout:
+                    size_hint_y: 0.2
+                    CharBlackLabel:
+                        text: 'フルコンボ回数'
+                    CharBlackLabel:
+                        id: fullComboCount
+                    CharBlackLabel:
+                        text: 'パーフェクト回数'
+                    CharBlackLabel:
+                        id: perfectCount
+                BoxLayout:
+                    size_hint_y: 0.4
             BoxLayout:
-                size_hint_y: 0.2
-                CharBlackLabel:
-                    text: 'プレイ回数'
-                CharBlackLabel:
-                    id: playCount
-                CharBlackLabel:
-                    text: 'クリア回数'
-                CharBlackLabel:
-                    id: clearedCount
-            BoxLayout:
-                size_hint_y: 0.2
-                CharBlackLabel:
-                    text: 'フルコンボ回数'
-                CharBlackLabel:
-                    id: fullComboCount
-                CharBlackLabel:
-                    text: 'パーフェクト回数'
-                CharBlackLabel:
-                    id: perfectCount
-            BoxLayout:
-                size_hint_y: 0.4
+                orientation:'vertical'
+                size_hint_x: 0.3
+                canvas:
+                    Color:
+                        rgba: 0.5, 0.5, 0.5, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                BoxLayout:
+                    height: dp(35)
+                    size_hint_y: None
+                    Label:
+                        text: 'ランク'
+                    Label:
+                        text: '達成回数'
+                BoxLayout:
+                    canvas:
+                        Color:
+                            rgba: 0.75, 0, 0.75, 1
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    orientation: 'vertical'
+                    RecycleView:
+                        id: rankHistoryRv
+                        size_hint_y: 0.9
+                        viewclass: 'rankHistory'
+                        RecycleBoxLayout:
+                            default_size: None, dp(30)
+                            default_size_hint: 1, None
+                            size_hint_y: None
+                            height: self.minimum_height
+                            orientation: 'vertical'
+                            spacing: dp(2)
+    BoxLayout:
+        size_hint_y: None
+        height: dp(80)
+        orientation: "vertical"
+        canvas:
+            Color:
+                rgba: 0, 0, 0, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
         BoxLayout:
-            size_hint_y: None
-            height: dp(80)
-            orientation: "vertical"
-            BoxLayout:
-                Label:
-                    text: 'モード'
-                    font_size: 18
-                    size_hint_x: 0.25
-                Spinner:
-                    id: modeSpinnerId
-                    font_size: 18
-                    size_hint_x: 0.25
-                Button:
-                    id: changeModeBtn
-                    text: '表示を切り替える'
-                    font_size: 18
-                    size_hint_x: 0.25
-                    on_release: 
-                        root.changeMode()
-            BoxLayout:
-                Button:
-                    id: historyButton
-                    text: 'ハイスコア履歴'
-                    font_size: 18
-                    on_release: 
-                        root.manager.current = 'history'
-                Button:
-                    text: '戻る'
-                    font_size: 18
-                    on_release: 
-                        root.resetScreen()
-                        root.manager.current = 'highScoreSelect'
+            Label:
+                text: 'モード'
+                font_size: 18
+                size_hint_x: 0.25
+            Spinner:
+                id: modeSpinnerId
+                font_size: 18
+                size_hint_x: 0.25
+            Button:
+                id: changeModeBtn
+                text: '表示を切り替える'
+                font_size: 18
+                size_hint_x: 0.25
+                on_release: 
+                    root.changeMode()
+        BoxLayout:
+            Button:
+                id: historyButton
+                text: 'ハイスコア履歴'
+                font_size: 18
+                on_release: 
+                    root.manager.current = 'history'
+            Button:
+                text: '戻る'
+                font_size: 18
+                on_release: 
+                    root.resetScreen()
+                    root.manager.current = 'highScoreSelect'
 
 <CharBlackLabel>:
     color: [0, 0, 0, 1]
+
+<rankHistory>:
+    canvas.before:
+        Color:
+            rgba: 0.75, 0, 0.75, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        Label:
+            text: root.rank
+        Label:
+            text: root.count
