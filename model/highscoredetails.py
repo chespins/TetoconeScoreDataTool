@@ -8,10 +8,12 @@ from util import util
 
 class HighScoreFormusic(BaseModel):
 
-    def getRankHistoryDataForChartId(chartId):
+    def getRankHistoryDataForChartId(chartId, displayedMode):
         margeRankHistoryDist = {}
         screenRankHistoryList = []
-        rankHistoryList = rah.selectChartByChartId(chartId)
+        modeList = dico.DISPLAYED_MODE_DIST[displayedMode].searchedMode 
+
+        rankHistoryList = rah.selectChartByChartIdMode(chartId, modeList)
 
         for rankHistory in rankHistoryList:
             count = rankHistory["count"]

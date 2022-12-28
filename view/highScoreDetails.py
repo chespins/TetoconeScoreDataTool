@@ -59,7 +59,7 @@ class HighScoreDetailsScreen(Screen):
         self.ids.clearedCount.text = highScoreData["clearedCount"]
         self.ids.fullComboCount.text = highScoreData["fullComboCount"]
         self.ids.perfectCount.text = highScoreData["perfectCount"]
-        self.rankHistoryRv.data = dataSet.getRankHistoryDataForChartId(self.chartId)
+        self.rankHistoryRv.data = dataSet.getRankHistoryDataForChartId(self.chartId, displayedMode)
 
 
 class rankHistory(BoxLayout):
