@@ -6,7 +6,7 @@ from kivy.properties import BooleanProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
 
-from model import abuchement as abu
+from model.abuchement import abuchmentModel as abu
 from variable.setappdata import AppCommonData
 from util import util
 from constant.systemconstant import ABUCHMENT_LIST
