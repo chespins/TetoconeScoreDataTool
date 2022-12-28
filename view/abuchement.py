@@ -42,6 +42,7 @@ class AbuchmentScreen(Screen):
 class AbuchmentData(BoxLayout):
     musicName = StringProperty()
     levelName = StringProperty()
+    playCount = StringProperty()
     perfectCount = StringProperty()
     fullComboCount = StringProperty()
 

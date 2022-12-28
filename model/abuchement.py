@@ -19,8 +19,9 @@ def serchMusic(displaydAbuchment, serchLavalName, ungetFlg):
                     "musicName": abuchment["musicName"],
                     "levelName": dico.LEVEL_NAME_DIST[
                         str(abuchment["levelId"])].name,
+                    "playCount": str(abuchment["playCount"]) + "回",
                     "perfectCount": str(abuchment["perfectCount"]) + "回",
-                    "fullComboCount": str(abuchment["fullComboCount"]) + "回"
+                    "fullComboCount": str(abuchment["fullComboCount"]) + "回",
             })
 
     return screenDataList
@@ -62,16 +63,19 @@ def makeAbuchmentData(abuchmentList):
     for abuchment in abuchmentList:
         perfectCount = abuchment["perfectCount"]
         fullComboCount = abuchment["fullComboCount"]
+        playCount = abuchment["playCount"]
         chartId = abuchment["chartId"]
         if chartId in screenDataDist.keys():
             perfectCount += screenDataDist[chartId]["perfectCount"]
             fullComboCount += screenDataDist[chartId]["fullComboCount"]
+            playCount += abuchment["playCount"]
 
         screenDataDist[chartId] = {
                 "musicName": abuchment["musicName"],
                 "levelId": abuchment["levelId"],
                 "perfectCount": perfectCount,
-                "fullComboCount": fullComboCount
+                "fullComboCount": fullComboCount,
+                "playCount": playCount,
             }
 
     return screenDataDist
