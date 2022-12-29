@@ -85,7 +85,7 @@
                         pos: self.pos
                         size: self.size
                 BoxLayout:
-                    height: dp(35)
+                    height: dp(30)
                     size_hint_y: None
                     Label:
                         text: 'ランク'
@@ -94,7 +94,7 @@
                 BoxLayout:
                     canvas:
                         Color:
-                            rgba: 0.75, 0, 0.75, 1
+                            rgba: 0, 0, 0, 1
                         Rectangle:
                             size: self.size
                             pos: self.pos
@@ -110,45 +110,39 @@
                             height: self.minimum_height
                             orientation: 'vertical'
                             spacing: dp(2)
-    BoxLayout:
-        size_hint_y: None
-        height: dp(80)
-        orientation: "vertical"
-        canvas:
-            Color:
-                rgba: 0, 0, 0, 1
-            Rectangle:
-                size: self.size
-                pos: self.pos
         BoxLayout:
-            Label:
-                text: 'モード'
-                font_size: 18
-                size_hint_x: 0.25
-            Spinner:
-                id: modeSpinnerId
-                font_size: 18
-                size_hint_x: 0.25
-            Button:
-                id: changeModeBtn
-                text: '表示を切り替える'
-                font_size: 18
-                size_hint_x: 0.25
-                on_release: 
-                    root.changeMode()
-        BoxLayout:
-            Button:
-                id: historyButton
-                text: 'ハイスコア履歴'
-                font_size: 18
-                on_release: 
-                    root.manager.current = 'history'
-            Button:
-                text: '戻る'
-                font_size: 18
-                on_release: 
-                    root.resetScreen()
-                    root.manager.current = 'highScoreSelect'
+            size_hint_y: None
+            height: dp(80)
+            orientation: "vertical"
+            canvas:
+                Color:
+                    rgba: 0, 0, 0, 1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            BoxLayout:
+                Label:
+                    text: 'モード'
+                    font_size: 18
+                    size_hint_x: 0.25
+                Spinner:
+                    id: modeSpinnerId
+                    font_size: 18
+                    size_hint_x: 0.25
+                    on_text: root.setHighScoreData(self.text)
+            BoxLayout:
+                Button:
+                    id: historyButton
+                    text: 'ハイスコア履歴'
+                    font_size: 18
+                    on_release: 
+                        root.manager.current = 'history'
+                Button:
+                    text: '戻る'
+                    font_size: 18
+                    on_release: 
+                        root.resetScreen()
+                        root.manager.current = 'highScoreSelect'
 
 <CharBlackLabel>:
     color: [0, 0, 0, 1]

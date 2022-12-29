@@ -27,22 +27,15 @@ class HighScoreDetailsScreen(Screen):
             self.chartId = self.commonData.getDisplayChartId()
             self.setMusicDate()
             modePulldownData = dataSet.makeModeNamePulldown(self.chartId)
-            multiPlayFlg = len(modePulldownData) == 1
             self.ids.modeSpinnerId.values = modePulldownData
             self.ids.modeSpinnerId.text = modePulldownData[0]
-            self.ids.modeSpinnerId.disabled = multiPlayFlg
-            self.ids.changeModeBtn.disabled = multiPlayFlg
-            self.setHighScoreData(modePulldownData[0])
+            self.ids.modeSpinnerId.disabled = len(modePulldownData) == 1
+            self.rankHistoryRv.data = dataSet.getRankHistoryDataForChartId(self.chartId,  modePulldownData[0])
     
     def resetScreen(self, **kwargs) :
         self.chartId = ""
         self.rankHistoryRv.data = []
         self.commonData.setDisplayChartId("")
-        self.ids.historyButton.disabled = False
-
-    def changeMode(self, **kwargs) :
-        displayedMode = self.ids.modeSpinnerId.text
-        self.setHighScoreData(displayedMode)
 
     def setMusicDate(self):
         musicInfo = dataSet.getMusicName(self.chartId)

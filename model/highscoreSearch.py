@@ -38,7 +38,7 @@ class HighScoreSearch(BaseModel):
                         "levelName": dico.LEVEL_NAME_DIST[
                                 str(highScoreData["levelId"])].name,
                         "highScore": str(highScoreData["highScore"]),
-                        "playCount": str(highScoreData["playCount"]),
+                        "playCount": str(highScoreData["playCount"]) + "回",
                         "detailsFlg": highScoreData["playCount"] <= 0,
                         "chartId": highScoreData["chartId"],
                     }
