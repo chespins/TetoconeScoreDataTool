@@ -1,62 +1,108 @@
 # -*- coding: utf-8 -*-
-from db import chartconstitution, highscore
-from db import highscorehistory as dbh
+from db import highscore as dbhs
+from db import rankhistory as rah
 from constant import distConstant as dico
+from model.basemodel import BaseModel
 from util import util
 
 
-def getMusicName(chartId):
-    musicInfo = chartconstitution.selectChartByChartId(chartId)
-    displayMusicInfo = {
-            "musicName": musicInfo[0]["musicName"],
-            "levelName": dico.LEVEL_NAME_DIST[
-                    str(musicInfo[0]["levelId"])
-                ].name,
-        }
-    return displayMusicInfo
+class HighScoreFormusic(BaseModel):
+
+    def getRankHistoryDataForChartId(chartId, displayedMode):
+        margeRankHistoryDist = {}
+        screenRankHistoryList = []
+        modeList = dico.DISPLAYED_MODE_DIST[displayedMode].searchedMode 
+
+        rankHistoryList = rah.selectChartByChartIdMode(chartId, modeList)
+
+        for rankHistory in rankHistoryList:
+            count = rankHistory["count"]
+            rank = rankHistory["rank"]
+            if rankHistory["rank"] in margeRankHistoryDist.keys():
+                count += margeRankHistoryDist[rank]["count"]
+
+            margeRankHistoryDist[rank] = {
+                    "rank": rankHistory["rank"],
+                    "count": count
+                }
+
+        for rank in dico.RANK_DIST.keys():
+            if rank in margeRankHistoryDist.keys():
+                screenRankHistoryList.append({
+                        "rank": dico.RANK_DIST[rank].gameLank,
+                        "count": str(
+                                margeRankHistoryDist[rank]["count"]
+                            ) + "回"
+                })
+
+        return screenRankHistoryList
+
+    def getHighScoreByMusic(chartId, displayedMode):
+        modeList = dico.DISPLAYED_MODE_DIST[displayedMode].searchedMode
+        score = highScoreData()
+
+        for mode in modeList:
+            dbresult = dbhs.selectHighScoreByAllKey(chartId, mode)
+            if len(dbresult) == 1:
+                score.setHighScore(dbresult[0])
+
+        return score.makeViewData()
+
+    def makeModeNamePulldown(chartId):
+        pulldownList = []
+        dataedMode = []
+        dbDataList = dbhs.selectHighScoreByChartId(chartId)
+
+        for dbData in dbDataList:
+            dataedMode.append(dbData["mode"])
+
+        if len(dataedMode) == 1:
+            pulldownList.append(dico.MODE_NAME_DIST[str(dataedMode[0])])
+        
+        else:
+            for modeData in dico.DISPLAYED_MODE_DIST.values():
+                modeIntersection = set(dataedMode) & modeData.searchedMode
+                if len(modeIntersection) > 0:
+                    pulldownList.append(modeData.name)
+
+        return pulldownList
 
 
-def getHighScoreByMusic(chartId):
-    results = highscore.selectHighScoreByChartId(chartId)
-    screenHighScore = []
-    for highScoreData in results:
-        ScoreHash = {
-                "mode": dico.MODE_NAME_DIST[str(highScoreData["mode"])],
-                "highScore": str(highScoreData["highScore"]),
-                "maxCombo": str(highScoreData["maxCombo"]),
-                "playCount": str(highScoreData["playCount"]),
-                "clearedCount": str(highScoreData["clearedCount"]),
-                "fullComboCount": str(highScoreData["fullComboCount"]),
-                "perfectCount": str(highScoreData["perfectCount"]),
-                "updateTime": util.changeTimeZone(highScoreData["updateTime"])
+class highScoreData():
+    def __init__(self):
+        self.highscore = 0
+        self.maxCombo = 0
+        self.playCount = 0
+        self.clearedCount = 0
+        self.fullComboCount = 0
+        self.perfectCount = 0
+        self.updateTime = util.minDateTime()
+
+    def setHighScore(self, highScoreData):
+        if highScoreData["highScore"] >= self.highscore:
+            self.highscore = highScoreData["highScore"]
+            self.maxCombo = highScoreData["maxCombo"]
+
+        if util.diffDate(self.updateTime, highScoreData["updateTime"]):
+            self.updateTime = highScoreData["updateTime"]
+        
+        self.playCount += highScoreData["playCount"]
+        self.clearedCount += highScoreData["clearedCount"]
+        self.fullComboCount += highScoreData["fullComboCount"]
+        self.perfectCount += highScoreData["perfectCount"]
+
+    def makeViewData(self):
+        viewHash = {
+                "highScore": str(self.highscore),
+                "maxCombo":  str(self.maxCombo),
+                "playCount": str(self.playCount) + "回",
+                "clearedCount": str(self.clearedCount) + "回",
+                "fullComboCount": str(self.fullComboCount) + "回",
+                "perfectCount": str(self.perfectCount) + "回",
+                "lastUpdateTime": util.changeTimeZone(self.updateTime)
             }
-        screenHighScore.append(ScoreHash)
-
-    return screenHighScore
-
-
-def getHighScoreHistoryByChartId(chartId):
-    results = dbh.selectHighScoreHistoryBychartId(chartId)
-    return makehighScoreHistoryScreenData(results)
-
-
-def getHighScoreHistoryBySingleMode(chartId):
-    results = dbh.selectHighScoreHistoryByMode(chartId, 1)
-    return makehighScoreHistoryScreenData(results)
-
-
-def makehighScoreHistoryScreenData(highscoreList):
-    screenHighScore = []
-    for highScoreData in highscoreList:
-        ScoreHash = {
-            "mode": dico.MODE_NAME_DIST[str(highScoreData["mode"])],
-            "highScore": str(highScoreData["highScore"]),
-            "maxCombo": str(highScoreData["maxCombo"]),
-            "updateTime": util.changeTimeZone(highScoreData["updateTime"])
-            }
-        screenHighScore.append(ScoreHash)
-
-    return screenHighScore
+        
+        return viewHash
 
 
 if __name__ == '__main__':

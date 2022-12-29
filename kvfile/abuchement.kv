@@ -12,11 +12,14 @@
                 BoxLayout:
                     size_hint_y: 0.1
                     Label:
-                        size_hint_x: 0.5
+                        size_hint_x: 0.4
                         text: "曲名"
                     Label:
-                        size_hint_x: 0.2
+                        size_hint_x: 0.15
                         text: "難易度"
+                    Label:
+                        size_hint_x: 0.15
+                        text: "プレイ回数"
                     Label:
                         size_hint_x: 0.15
                         text: "フルコンボ"
@@ -94,14 +97,17 @@
             size: self.size
             pos: self.pos
     Label:
-        size_hint_x: 0.5
+        size_hint_x: 0.4
         text_size: self.size
         halign: 'center'
         valign: 'middle'
         text: root.musicName
     Label:
-        size_hint_x: 0.2
+        size_hint_x: 0.15
         text: root.levelName
+    Label:
+        size_hint_x: 0.15
+        text: root.playCount
     Label:
         size_hint_x: 0.15
         text: root.fullComboCount

@@ -2,16 +2,26 @@
 
 <HighScoreHistoryDetailsScreen>:
     highScoreHistoryRv: highScoreHistoryRv
-    rankHistoryRv: rankHistoryRv
     BoxLayout:
         orientation: "vertical"
         BoxLayout:
-            size_hint_y: 0.05
+            canvas:
+                Color:
+                    rgba: 0, 0, 0, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            size_hint_y: None
+            height: dp(30)
+            Label:
+                id: genreName
+                font_size: 18
+                size_hint_x: 0.2
             Label:
                 text_size: self.size
                 halign: 'center'
                 valign: 'middle'
-                size_hint_x: 0.7
+                size_hint_x: 0.5
                 id: musicName
             Label:
                 size_hint_x: 0.3
@@ -41,35 +51,6 @@
                         height: self.minimum_height
                         orientation: 'vertical'
                         spacing: dp(2)
-            BoxLayout:
-                orientation:'vertical'
-                size_hint_x: 0.3
-                BoxLayout:
-                    size_hint_y: 0.1
-                    Label:
-                        text: 'ランク'
-                    Label:
-                        text: '達成回数'
-                BoxLayout:
-                    size_hint_y: 0.9
-                    canvas:
-                        Color:
-                            rgba: 0, 0, 0, 1
-                        Rectangle:
-                            size: self.size
-                            pos: self.pos
-                    orientation: 'vertical'
-                    RecycleView:
-                        size_hint_y: 0.9
-                        id: rankHistoryRv
-                        viewclass: 'rankHistory'
-                        RecycleBoxLayout:
-                            default_size: None, dp(35)
-                            default_size_hint: 1, None
-                            size_hint_y: None
-                            height: self.minimum_height
-                            orientation: 'vertical'
-                            spacing: dp(2)
         BoxLayout:
             size_hint_y: 0.1
             Button:
@@ -110,16 +91,3 @@
                 text: "最大コンボ"
             Label:
                 text: root.maxCombo
-
-<rankHistory>:
-    canvas.before:
-        Color:
-            rgba: 0.75, 0, 0.75, 1
-        Rectangle:
-            size: self.size
-            pos: self.pos
-    BoxLayout:
-        Label:
-            text: root.rank
-        Label:
-            text: root.count

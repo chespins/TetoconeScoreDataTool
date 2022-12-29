@@ -14,7 +14,7 @@ SELECT_ID_SQL = """
 """
 
 SELECT_NAME_ID_SQL = """
-    SELECT ch."chart_id",ch."music_id",ch."level_id",mu."name"
+    SELECT ch."chart_id",ch."music_id",ch."level_id",mu."name",mu."genre_id"
         FROM "chart_constitution" ch
             INNER JOIN music AS mu on mu."id" = ch."music_id"
         WHERE ch.chart_id = ?
@@ -57,7 +57,8 @@ def selectChartByChartId(chartId):
                     "chartId": row[0],
                     "musicId": row[1],
                     "levelId": row[2],
-                    "musicName": row[3]
+                    "musicName": row[3],
+                    "genreId": row[4],
                 })
 
     return chartList

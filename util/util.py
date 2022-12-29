@@ -28,5 +28,15 @@ def changeTimeZone(strTime):
     return JstTime.format("年", "月", "日", )
 
 
+def diffDate(strTime1, strTime2):
+    datetime1 =  datetime.datetime.fromisoformat(strTime1)
+    datetime2 =  datetime.datetime.fromisoformat(strTime2)
+    return datetime1 <= datetime2
+
+
+def minDateTime():
+    return "2000-01-01T00:00:00+00:00"
+
+
 if __name__ == '__main__':
     pass

@@ -9,7 +9,11 @@ SELECT_SQL = """
 
 SELECT_ID_SQL = """
         SELECT "chart_id","mode","rank","count" FROM "rank_history"
-        WHERE "chart_id" = ? ORDER BY "rank", "mode"
+        WHERE "chart_id" = ? AND "mode" IN
+"""
+
+ORDER_BY_SQL = """
+        ORDER BY "rank", "mode"
 """
 
 
@@ -29,11 +33,24 @@ def selectMusic():
     return chartList
 
 
-def selectChartByChartId(chartId):
+def selectChartByChartIdMode(chartId, modeList):
     chartList = []
+    paramList = [chartId]
+    selectWhereModeSQL = SELECT_ID_SQL + " ("
+
+    for index, mode in enumerate(modeList):
+        paramList.append(mode)
+        selectWhereModeSQL += "?"
+
+        if (index != len(modeList) - 1):
+            selectWhereModeSQL += ","
+        else:
+            selectWhereModeSQL += ") "
+
+
     with sqlite3.connect(TETOCONE_DB_NAME) as conn:
         cur = conn.cursor()
-        cur.execute(SELECT_ID_SQL, (chartId,))
+        cur.execute(selectWhereModeSQL, paramList)
         for row in cur:
             chartList.append({
                     "chartId": row[0],

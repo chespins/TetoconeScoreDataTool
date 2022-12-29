@@ -19,7 +19,7 @@ def dbinserts(
         """
 
     chartConDeleteSql = """
-            DELETE FROM "chart_constitution" WHERE "music_id" IN
+            DELETE FROM "chart_constitution" WHERE "chart_id" IN
         """
 
     chartConInsertSql = """
@@ -47,7 +47,7 @@ def dbinserts(
     """
 
     rankHistoryDeleteSql = """
-        DELETE FROM "rank_history" WHERE "chart_id" IN
+        DELETE FROM "rank_history" WHERE ("chart_id","mode") IN
     """
 
     rankHistoryInsertSql = """
@@ -147,9 +147,9 @@ def dbinserts(
             rankHistoryInsertSql += ","
 
     musicDeleteSql += deleteWhereMusicId
-    chartConDeleteSql += deleteWhereMusicId
+    chartConDeleteSql += deleteWhereChartId
     highScoreDeleteSql += deleteWhereChartMode
-    rankHistoryDeleteSql += deleteWhereChartId
+    rankHistoryDeleteSql += deleteWhereChartMode
 
     # 1トランザクションでDB更新を実行
     with sqlite3.connect(TETOCONE_DB_NAME) as conn:
@@ -157,7 +157,7 @@ def dbinserts(
         try:
             conn.execute(musicDeleteSql, list(musicDist.keys()))
             conn.execute(musicInsertSql, musicInsertParams)
-            conn.execute(chartConDeleteSql, list(musicDist.keys()))
+            conn.execute(chartConDeleteSql, list(chartDist.keys()))
             conn.execute(chartConInsertSql, chartInsertParams)
             conn.execute(highScoreDeleteSql, chartModeDeleteParams)
             conn.execute(highScoreInsertSql, highScoreInsertParams)
@@ -165,7 +165,7 @@ def dbinserts(
             if len(highScoreHistoryList) != 0:
                 conn.execute(highScoreHistoryInsertSql, highScoreHistoryParams)
 
-            conn.execute(rankHistoryDeleteSql, list(chartDist.keys()))
+            conn.execute(rankHistoryDeleteSql, chartModeDeleteParams)
             conn.execute(rankHistoryInsertSql, rankhistoryParams)
 
             conn.commit()
