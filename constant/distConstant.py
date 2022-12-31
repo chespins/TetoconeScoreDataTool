@@ -10,7 +10,7 @@ class LevelName():
 LEVEL_NAME_DIST = {
     "1": LevelName(1, "STANDARD", "chartIdEasy", [0.212, 0.51, 0.894, 1]),
     "2": LevelName(2, "EXPERT", "chartIdNormal", [0.925, 0.271, 0.271, 1]),
-    "3": LevelName(3, "ULTIMATE", "chartIdHard", [0.627, 0.204, 0.997, 1]),
+    "3": LevelName(3, "ULTIMATE", "chartIdHard", [0.612, 0.239, 0.8, 1]),
     "4": LevelName(4, "MANIAC", "chartIdManiac", [0.29, 0.804, 0.627, 1]),
     "5": LevelName(5, "CONNECT", "chartIdConnect", [1, 0.706, 0.859, 1]),
 }
