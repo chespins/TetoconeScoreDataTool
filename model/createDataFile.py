@@ -5,9 +5,11 @@ from db import dbversion as dbv
 from exception.dbversionError import DBVersionError
 from constant.systemconstant import TETOCONE_DB_NAME
 from constant.systemconstant import CURRENT_DB_VERSION
+from constant.systemconstant import DB_VERSION_05
 from constant.systemconstant import DB_SUCCESS
 from constant.systemconstant import DB_ERROR_FILE_BREAK
 from constant.systemconstant import DB_ERROR_UNKNOWN_FILE
+from constant.systemconstant import DB_UPDATE
 
 
 def checkDbVersion():
@@ -19,6 +21,8 @@ def checkDbVersion():
         readDbVersion = dbv.getDbVersion()
         if CURRENT_DB_VERSION == readDbVersion:
             return DB_SUCCESS
+        # elif DB_VERSION_05 == readDbVersion:
+        #     return DB_UPDATE
         else:
             return DB_ERROR_UNKNOWN_FILE
 
@@ -29,6 +33,11 @@ def checkDbVersion():
 def makeDataFile():
     os.remove(TETOCONE_DB_NAME)
     dbv.ddlInsert()
+    return dbUpdateFrom05()
+
+
+def dbUpdateFrom05():
+    dbv.dbUpdate_06()
     return True
 
 
