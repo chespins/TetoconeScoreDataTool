@@ -5,14 +5,28 @@ import json
 
 from exception.loginerror import LoginError
 from constant import systemconstant as cons
+from util import util
 
 
-def getConnectPageData(cardId, password):
+def getRankingData(session, musicId, chartId, genreId):
+    session.headers["Referer"] = cons.RANKING_PAGE_URL.format(musicId, chartId, genreId)
+    result = session.get(cons.RANKING_GET_URL.format(musicId, chartId))
+    rankig = rankingDate(json.loads(result.text))
+    return rankig
+
+
+def getConnectPageData(session):
+    session.headers["Referer"] = cons.WEB_LOGINED_URL
+    result = session.get(cons.DATA_GET_URL)
+    return json.loads(result.text)
+
+
+def loginMyPage(cardId, password):
     session = requests.session()
     session.headers["user-agent"] = cons.USER_AGENT
     session.headers["Accept-Language"] = cons.ACCEPT_LANGUAGE
     loginPage = session.get(cons.WEB_LOGIN_URL)
-    sleep(10)
+    sleep(5)
     login_request_data = json.dumps({
             "card_id": cardId,
             "password": password
@@ -26,11 +40,14 @@ def getConnectPageData(cardId, password):
     if login.status_code != 200:
         raise LoginError()
 
-    sleep(5)
     session.headers.pop("Content-Length")
-    session.headers["Referer"] = cons.WEB_LOGINED_URL
-    result = session.get(cons.DATA_GET_URL)
-    return json.loads(result.text)
+    return session
+
+
+class rankingDate():
+    def __init__(self, response):
+        self.getDate = util.getDateTimeNow()
+        self.response = response        
 
 
 if __name__ == '__main__':

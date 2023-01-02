@@ -21,8 +21,8 @@ def checkDbVersion():
         readDbVersion = dbv.getDbVersion()
         if CURRENT_DB_VERSION == readDbVersion:
             return DB_SUCCESS
-        # elif DB_VERSION_05 == readDbVersion:
-        #     return DB_UPDATE
+        elif DB_VERSION_05 == readDbVersion:
+            return DB_UPDATE
         else:
             return DB_ERROR_UNKNOWN_FILE
 
@@ -37,7 +37,7 @@ def makeDataFile():
 
 
 def dbUpdateFrom05():
-    dbv.dbUpdate_06()
+    dbv.dbUpdateFrom05()
     return True
 
 
