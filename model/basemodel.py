@@ -37,3 +37,8 @@ class BaseModel():
             }
         return displayMusicInfo
 
+    def isSinglePlay(modeString):
+        if not dico.MODE_NAME_DIST["1"]:
+            return False
+
+        return modeString == dico.MODE_NAME_DIST["1"]

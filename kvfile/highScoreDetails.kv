@@ -75,6 +75,18 @@
                         id: lastPlayDate
                 BoxLayout:
                     size_hint_y: 0.2
+                    CharBlackLabel:
+                        id: rankingLabel
+                        size_hint_x: 0.2
+                    CharBlackLabel:
+                        size_hint_x: 0.2
+                        id: rankingData
+                    CharBlackLabel:
+                        size_hint_x: 0.4
+                        id: rankingGetDate
+                        font_size: 12
+                    BoxLayout:
+                        size_hint_x: 0.2
             BoxLayout:
                 orientation:'vertical'
                 size_hint_x: 0.3
@@ -146,6 +158,7 @@
 
 <CharBlackLabel>:
     color: [0, 0, 0, 1]
+    font_size: 16
 
 <rankHistory>:
     canvas.before:
