@@ -1,0 +1,83 @@
+#:kivy 2.1.0
+
+<RankingDataGetScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: 0.4
+            orientation: 'vertical'
+            Label:
+                font_size: 18
+                text: "テトテコネクトマイページからランキングデータ取得"
+            Label:
+                font_size: 18
+                text: "マイページのログインに必要な情報を入力してください。"
+            Label:
+                id: loginStatusMessage
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+                font_size: 18
+        BoxLayout:
+            size_hint_y: 0.05
+        BoxLayout:
+            size_hint_y: 0.2
+            orientation: 'vertical'
+            BoxLayout:
+                height: dp(35)
+                size_hint: 1,None
+                Label:
+                    size_hint: 0.5,1
+                    font_size: 18
+                    text: "アクセスコード/SERIAL No."
+                BoxLayout:
+                    size_hint: 0.5,1
+                    TextInput:
+                        id: serialNo
+                        size_hint: None,1
+                        width: dp(320)
+                        line_height: 1
+                        multiline: False
+                        font_size: 18
+                        hint_text: "SERIAL No."
+            BoxLayout:
+                height: dp(35)
+                size_hint: 1,None
+                Label:
+                    size_hint: 0.5,1
+                    font_size: 18
+                    text: "NESiCA.netパスワード"
+                BoxLayout:
+                    size_hint: 0.5,1
+                    TextInput:
+                        id: password
+                        size_hint: None,1
+                        width: dp(320)
+                        line_height: 1
+                        font_size: 18
+                        password: True
+                        multiline: False
+                        hint_text: "パスワード"
+            Label:
+                text: ""
+        BoxLayout:
+            size_hint_y: 0.1
+            Label:
+                text: "この画面から取得できるのは選択した楽曲・難易度の順位のみです。\nその他の情報や他の曲の順位も同時に取得したい場合は\nメインメニューから「マイページからデータ取得」を選択し情報を取得してください。"
+                font_size: 18  
+        BoxLayout:
+            size_hint_y: 0.05
+        BoxLayout:
+            height: dp(80)
+            size_hint: 1,None
+            orientation: 'vertical'
+            Button:
+                id: buttonLogin
+                text: "ログイン"
+                font_size: 18
+                on_release: root.bottonLoginMyPage()
+            Button:
+                id: buttonBack
+                text: '戻る'
+                font_size: 18
+                on_release: root.manager.current = 'details'

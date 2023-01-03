@@ -53,19 +53,18 @@ def getLoginPageData(cardId, password, scoreGetFlg, rankingGetFlg,
             if connectGetFlg:
                 levelList += [5]
 
-            chartList = cha.selectedLevelId(levelList)
+            chartList = cha.selectedSingleChart(levelList=levelList)
 
             for chart in chartList:
-                sleep(2)
+                sleep(1)
                 ranking = myPage.getRankingData(session, chart["musicId"], chart["chartId"], chart["genreId"])
                 rank = ranking.response["response"]["rank"]
                 if ranking.response["response"]["score"] == chart["highScore"]:
                     ra.updateranking(chart["chartId"], rank, ranking.getDate)
                 else:
-                    dataunmatchFlg = True
-                    
+                    dataUnmatchFlg = True                    
 
-        if dataunmatchFlg: 
+        if dataUnmatchFlg: 
             return messeges.DATA_IMPORT_DATA_UNMATCH
         
         return messeges.DATA_INPORT_SUCCESS

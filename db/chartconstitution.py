@@ -25,7 +25,7 @@ SELECT_LEVEL_SQL = """
         FROM "chart_constitution" ch
             INNER JOIN music AS mu ON mu."id" = ch."music_id"
             INNER JOIN high_score AS hs ON ch."chart_id" = hs."chart_id"
-        WHERE hs."mode" = 1 AND ch.level_id IN 
+        WHERE hs."mode" = 1
 """
 
 
@@ -72,23 +72,32 @@ def selectChartByChartId(chartId):
     return chartList
 
 
-def selectedLevelId(levelIdList):
+def selectedSingleChart(levelIdList=[], chartId=""):
     paramList = []
     chartList = []
-    selectWherelevelIdSQL = SELECT_LEVEL_SQL + " ("
+    whereLevelIdSql = " AND ch.level_id IN ("
+    whereChartIdSql = " AND ch.chart_id = ? "
+    selectSql = SELECT_LEVEL_SQL
 
     for index, levelId in enumerate(levelIdList):
+        if index == 0:
+            selectSql += whereLevelIdSql
         paramList.append(levelId)
-        selectWherelevelIdSQL += "?"
+        selectSql += "?"
 
         if (index != len(levelIdList) - 1):
-            selectWherelevelIdSQL += ","
+            selectSql += ","
         else:
-            selectWherelevelIdSQL += ") "
+            selectSql += ") "
+    
+    if chartId != "":
+        selectSql += whereChartIdSql
+        paramList.append(chartId)
+
 
     with sqlite3.connect(TETOCONE_DB_NAME) as conn:
         cur = conn.cursor()
-        cur.execute(selectWherelevelIdSQL, paramList)
+        cur.execute(selectSql, paramList)
         for row in cur:
             chartList.append({
                     "chartId": row[0],

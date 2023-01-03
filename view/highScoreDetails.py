@@ -31,6 +31,8 @@ class HighScoreDetailsScreen(Screen):
             self.ids.modeSpinnerId.text = modePulldownData[0]
             self.ids.modeSpinnerId.disabled = len(modePulldownData) == 1
             self.setHighScoreData(modePulldownData[0])
+        else:
+            self.updateRankingData(self.ids.modeSpinnerId.text)
     
     def resetScreen(self, **kwargs) :
         self.chartId = ""
@@ -54,15 +56,21 @@ class HighScoreDetailsScreen(Screen):
         self.ids.perfectCount.text = highScoreData["perfectCount"]
         self.ids.lastPlayDate.text = highScoreData["lastUpdateTime"]
         self.rankHistoryRv.data = dataSet.getRankHistoryDataForChartId(self.chartId, displayedMode)
+        self.updateRankingData(displayedMode)
+
+
+    def updateRankingData(self, displayedMode):
         if dataSet.isSinglePlay(displayedMode):
             ranking = dataSet.makeRankingData(self.chartId)
             self.ids.rankingLabel.text = "ランキング"
             self.ids.rankingData.text = ranking["ranking"]
             self.ids.rankingGetDate.text = ranking["getDate"]
+            self.ids.rankingGetButton.disabled = False
         else:
             self.ids.rankingLabel.text = ""
             self.ids.rankingData.text = ""
             self.ids.rankingGetDate.text = ""
+            self.ids.rankingGetButton.disabled = True
 
 
 class rankHistory(BoxLayout):

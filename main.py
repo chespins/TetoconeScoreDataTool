@@ -10,6 +10,7 @@ from view import highScoreSelected as hss
 from view import inputWebPageParams as web
 from view import highScoreDetails as det
 from view import highScoreHistoryDetails as his
+from view import rankingDataGet as rdg
 from view import abuchement as abu
 from view import license
 from view import menu as mu
@@ -63,6 +64,12 @@ class TetoconeScoreApp(App):
                         name='history'
                     )
             )
+        self.sm.add_widget(
+                rdg.RankingDataGetScreen(
+                        comonData=self.appCommonData,
+                        name="rankingGet"
+                )
+        )
         self.sm.add_widget(
                 license.LicenseScreen(
                         name='license'
