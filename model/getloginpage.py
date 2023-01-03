@@ -71,8 +71,8 @@ def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool,
         return messeges.DATA_INPORT_SUCCESS
     except LoginError:
         return messeges.DATA_INPORT_LOGIN_ERROR
-    # except Exception:
-    #     return messeges.DATA_INPORT_OUTHER_ERROR
+    except Exception:
+        return messeges.DATA_INPORT_OUTHER_ERROR
 
 if __name__ == '__main__':
     pass
