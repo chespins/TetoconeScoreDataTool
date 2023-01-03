@@ -10,7 +10,7 @@ from variable.setappdata import AppCommonData
 from constant import messeges
 from util import util
 
-Builder.load_file(util.find_data_file('./kvfile/rankingDataGet.kv'))
+Builder.load_file(util.findDataFile('./kvfile/rankingDataGet.kv'))
 
 
 class RankingDataGetScreen(Screen):

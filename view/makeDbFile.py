@@ -9,7 +9,7 @@ from variable.setappdata import AppCommonData
 from constant import systemconstant as cons
 from constant import messeges as msg
 
-Builder.load_file(util.find_data_file('./kvfile/makeDbFile.kv'))
+Builder.load_file(util.findDataFile('./kvfile/makeDbFile.kv'))
 
 
 class makeDbFileScreen(Screen):
@@ -27,7 +27,7 @@ class makeDbFileScreen(Screen):
 
     def reCreateDbFile(self):
         if self.commonData.checkDbresult == cons.DB_ERROR_FILE_BREAK:
-            crd.makeDataFile()
+            crd.reMakeDataFile()
         elif self.commonData.checkDbresult == cons.DB_UPDATE:
             crd.dbUpdateFrom05()
 

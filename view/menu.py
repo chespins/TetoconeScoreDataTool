@@ -6,7 +6,7 @@ from kivy.lang import Builder
 from util import util
 from variable.setappdata import AppCommonData
 
-Builder.load_file(util.find_data_file('./kvfile/menu.kv'))
+Builder.load_file(util.findDataFile('./kvfile/menu.kv'))
 
 
 class MenuScreen(Screen):

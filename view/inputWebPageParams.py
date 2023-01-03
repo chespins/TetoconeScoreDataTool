@@ -10,7 +10,7 @@ from model import getloginpage as ins
 from constant import messeges
 from util import util
 
-Builder.load_file(util.find_data_file('./kvfile/inputWebPageParams.kv'))
+Builder.load_file(util.findDataFile('./kvfile/inputWebPageParams.kv'))
 
 
 class InputWebPageParamsScreen(Screen):

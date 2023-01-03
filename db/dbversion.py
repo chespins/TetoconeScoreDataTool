@@ -28,7 +28,7 @@ def ddlInsert():
     with sqlite3.connect(syco.TETOCONE_DB_NAME) as conn:
         conn.execute('BEGIN')
         conn.executescript(insertDdlSql)
-        conn.execute(INSERT_SQL, ())
+        conn.execute(INSERT_SQL, (syco.DB_VERSION_05, ))
         conn.commit()
 
 

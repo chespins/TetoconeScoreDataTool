@@ -7,14 +7,14 @@ import re
 timezoneReg = re.compile(r'((\+|\-)\d{2}):(\d{2})')
 
 
-def find_data_file(filename):
+def findDataFile(filename):
     if hasattr(sys, "_MEIPASS"):
         return os.path.join(sys._MEIPASS, filename)
     return os.path.join(filename)
 
 
 def readFileStr(filename):
-    f = open(find_data_file(filename), 'r', encoding='UTF-8')
+    f = open(findDataFile(filename), 'r', encoding='UTF-8')
     data = f.read()
     f.close()
     return data

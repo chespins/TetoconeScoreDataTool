@@ -23,7 +23,7 @@ from constant.systemconstant import FONT_FILE_NAME
 Config.set('graphics', 'width', '640')
 Config.set('graphics', 'height', '480')
 
-resource_add_path(util.find_data_file(FONT_DIR))
+resource_add_path(util.findDataFile(FONT_DIR))
 LabelBase.register(DEFAULT_FONT, FONT_FILE_NAME)
 
 

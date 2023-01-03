@@ -52,7 +52,9 @@ def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool,
             if connectGetFlg:
                 levelList += [5]
 
-            chartList = cha.selectedSingleChart(levelList=levelList)
+            chartList = cha.selectedSingleChart(levelIdList=levelList)
+            if len(chartList) == 0:
+                return messeges.DATA_INPORT_RANKING_NO_SCORE
 
             for chart in chartList:
                 sleep(1)
@@ -69,8 +71,8 @@ def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool,
         return messeges.DATA_INPORT_SUCCESS
     except LoginError:
         return messeges.DATA_INPORT_LOGIN_ERROR
-    except Exception:
-        return messeges.DATA_INPORT_OUTHER_ERROR
+    # except Exception:
+    #     return messeges.DATA_INPORT_OUTHER_ERROR
 
 if __name__ == '__main__':
     pass

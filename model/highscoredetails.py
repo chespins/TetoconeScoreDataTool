@@ -70,10 +70,17 @@ class HighScoreFormusic(BaseModel):
 
     def makeRankingData(chartId):
         ranking = rak.selectRankingForChartId(chartId)
-        displayedRanking = {
-                "ranking": ranking[0]["ranking"] + "位",
-                "getDate": util.changeTimeZone(ranking[0]["getDate"]) + " 現在"
-            }
+        if len(ranking) == 1:
+            displayedRanking = {
+                    "rankingDisPlayedFlg": True,
+                    "ranking": ranking[0]["ranking"] + "位",
+                    "getDate": util.changeTimeZone(ranking[0]["getDate"]) + " 現在",
+                }
+        
+        else:
+            displayedRanking = {
+                    "rankingDisPlayedFlg": False,
+                }
         return displayedRanking
 
 

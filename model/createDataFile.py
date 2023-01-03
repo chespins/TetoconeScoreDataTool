@@ -14,7 +14,7 @@ from constant.systemconstant import DB_UPDATE
 
 def checkDbVersion():
     if not os.path.isfile(TETOCONE_DB_NAME):
-        dbv.ddlInsert()
+        makeDbFile()
         return DB_SUCCESS
 
     try:
@@ -30,8 +30,12 @@ def checkDbVersion():
         return DB_ERROR_FILE_BREAK
 
 
-def makeDataFile():
+def reMakeDataFile():
     os.remove(TETOCONE_DB_NAME)
+    return makeDbFile()
+
+
+def makeDbFile():
     dbv.ddlInsert()
     return dbUpdateFrom05()
 
