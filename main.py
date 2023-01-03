@@ -26,6 +26,7 @@ Config.set('graphics', 'height', '480')
 resource_add_path(util.find_data_file(FONT_DIR))
 LabelBase.register(DEFAULT_FONT, FONT_FILE_NAME)
 
+
 class TetoconeScoreApp(App):
     def build(self):
         self.appCommonData = AppCommonData()

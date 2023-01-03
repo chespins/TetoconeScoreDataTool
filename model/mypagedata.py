@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from time import sleep
 import requests
+from requests import Session
 import json
 
 from exception.loginerror import LoginError
@@ -8,26 +9,26 @@ from constant import systemconstant as cons
 from util import util
 
 
-def getRankingData(session, musicId, chartId, genreId):
+def getRankingData(session: Session, musicId: str, chartId: str, genreId: str):
     session.headers["Referer"] = cons.RANKING_PAGE_URL.format(musicId, chartId, genreId)
     result = session.get(cons.RANKING_GET_URL.format(musicId, chartId))
     rankig = rankingDate(json.loads(result.text))
     return rankig
 
 
-def getConnectPageData(session):
+def getConnectPageData(session: Session):
     session.headers["Referer"] = cons.WEB_LOGINED_URL
     result = session.get(cons.DATA_GET_URL)
     return json.loads(result.text)
 
 
-def loginMyPage(cardId, password):
+def loginMyPage(cardId: str, password: str):
     session = requests.session()
     session.headers["user-agent"] = cons.USER_AGENT
     session.headers["Accept-Language"] = cons.ACCEPT_LANGUAGE
     loginPage = session.get(cons.WEB_LOGIN_URL)
     sleep(5)
-    login_request_data = json.dumps({
+    loginRequestData = json.dumps({
             "card_id": cardId,
             "password": password
         })
@@ -35,8 +36,8 @@ def loginMyPage(cardId, password):
     session.headers["Host"] = cons.HOST_URL
     session.headers["Referer"] = cons.WEB_LOGIN_URL
     session.headers["Content-Type"] = cons.CONTENT_TYPE
-    session.headers["Content-Length"] = str(len(login_request_data))
-    login = session.post(cons.API_LOGIN_URL, login_request_data)
+    session.headers["Content-Length"] = str(len(loginRequestData))
+    login = session.post(cons.API_LOGIN_URL, loginRequestData)
     if login.status_code != 200:
         raise LoginError()
 

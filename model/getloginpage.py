@@ -9,10 +9,9 @@ from db import ranking as ra
 from constant import messeges
 
 
-def getLoginPageData(cardId, password, scoreGetFlg, rankingGetFlg,
-        standardGetFlg, expertGetFlg, ultimateGetFlg, maniacGetFlg,
-        connectGetFlg):
-    message = ""
+def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool, 
+        rankingGetFlg: bool, standardGetFlg: bool, expertGetFlg: bool,
+        ultimateGetFlg: bool, maniacGetFlg: bool, connectGetFlg: bool):
     if not (len(cardId) > 0 and len(password) > 0):
         return messeges.DATA_IMPORT_ID_LACK
     
@@ -21,23 +20,23 @@ def getLoginPageData(cardId, password, scoreGetFlg, rankingGetFlg,
 
     levelGetedFlg = standardGetFlg or expertGetFlg or ultimateGetFlg
     levelGetedFlg = levelGetedFlg or maniacGetFlg or connectGetFlg
-    dataunmatchFlg = False
+    dataUnmatchFlg = False
 
     if rankingGetFlg and (not levelGetedFlg):
         return messeges.DATA_IMPORT_NO_LEVEL
 
     try:
         session = myPage.loginMyPage(cardId, password)
-        sleep(5)
+        sleep(3)
         if scoreGetFlg:
-            print("楽曲情報取得")
             myPageData = myPage.getConnectPageData(session)
             stages = myPageData["response"]["stages"]
             datainserts.InsertMusic(stages)
+            if rankingGetFlg:
+                sleep(1)
         
         if rankingGetFlg:
             levelList = []
-            print("ランキング情報取得")
             if standardGetFlg:
                 levelList += [1]
 

@@ -21,7 +21,7 @@ def getLoginRankingData(cardId, password, chartId):
 
     try:
         session = myPage.loginMyPage(cardId, password)
-        sleep(5)
+        sleep(3)
         ranking = myPage.getRankingData(session, chartInfo["musicId"], chartId, chartInfo["genreId"])
         rank = ranking.response["response"]["rank"]
         if ranking.response["response"]["score"] == chartInfo["highScore"]:
@@ -34,6 +34,7 @@ def getLoginRankingData(cardId, password, chartId):
         return messeges.DATA_INPORT_LOGIN_ERROR
     except Exception:
         return messeges.DATA_INPORT_OUTHER_ERROR
+
 
 if __name__ == '__main__':
     pass
