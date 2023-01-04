@@ -21,6 +21,7 @@ class makeDbFileScreen(Screen):
             self.ids.message.text = msg.DATA_FILE_ERROR
         elif self.commonData.checkDbresult == cons.DB_UPDATE:
             self.ids.message.text = msg.DATA_FILE_UPDATE
+            self.ids.readOnlyBtn.disabled = True
         elif self.commonData.checkDbresult == cons.DB_ERROR_UNKNOWN_FILE:
             self.ids.message.text = msg.DATA_FILE_VERSION_ERROR
             self.ids.yesBtn.disabled = True
