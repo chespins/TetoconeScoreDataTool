@@ -19,7 +19,7 @@
                 valign: 'middle'
                 font_size: 18
         BoxLayout:
-            size_hint_y: 0.1
+            size_hint_y: 0.05
         BoxLayout:
             size_hint_y: 0.2
             orientation: 'vertical'
@@ -62,6 +62,98 @@
                 text: ""
         BoxLayout:
             size_hint_y: 0.1
+            Label:
+                text: "取得対象選択"
+                font_size: 18  
+        BoxLayout:
+            size_hint_y: 0.3
+            orientation: 'vertical'
+            BoxLayout:
+                Label:
+                    size_hint_x: 0.2
+                    text: "スコアデータ"
+                    font_size: 18
+                BoxLayout:
+                    size_hint_x: 0.05
+                    CheckBox:
+                        id: checkBoxScore
+                        active: root.scoreGetFlg
+                        on_press: root.scoreGetFlgCheck(self)
+                BoxLayout:
+                    size_hint_x: 0.75
+            BoxLayout:
+                Label:
+                    size_hint_x: 0.2
+                    text: "ランキングデータ"
+                    font_size: 18
+                BoxLayout:
+                    size_hint_x: 0.05
+                    CheckBox:
+                        id: checkBoxranking
+                        active: root.rankingGetFlg
+                        on_press: root.rankingGetFlgCheck(self)
+                BoxLayout:
+                    size_hint_x: 0.75
+            BoxLayout:
+                BoxLayout:
+                    size_hint_x: 0.25
+                Label:
+                    size_hint_x: 0.2
+                    text: "STANDARD"
+                    font_size: 18
+                BoxLayout:
+                    size_hint_x: 0.05
+                    CheckBox:
+                        id: checkBoxStandard
+                        active: root.standardGetFlg
+                        on_press: root.standardGetFlgCheck(self)
+                Label:
+                    size_hint_x: 0.2
+                    text: "EXPERT"
+                    font_size: 18
+                BoxLayout:
+                    size_hint_x: 0.05
+                    CheckBox:
+                        id: checkBoxExpert
+                        active: root.expertGetFlg
+                        on_press: root.expertGetFlgCheck(self)
+                Label:
+                    size_hint_x: 0.2
+                    text: "ULTIMATE"
+                    font_size: 18
+                BoxLayout:
+                    size_hint_x: 0.05
+                    CheckBox:
+                        id: checkBoxUltimate
+                        active: root.ultimateGetFlg
+                        on_press: root.ultimateGetFlgCheck(self)
+            BoxLayout:
+                BoxLayout:
+                    size_hint_x: 0.25
+                Label:
+                    size_hint_x: 0.2
+                    text: "MANIAC"
+                    font_size: 18
+                BoxLayout:
+                    size_hint_x: 0.05
+                    CheckBox:
+                        id: checkBoxManiac
+                        active: root.maniacGetFlg
+                        on_press: root.maniacGetFlgCheck(self)
+                Label:
+                    size_hint_x: 0.2
+                    text: "CONNECT"
+                    font_size: 18
+                BoxLayout:
+                    size_hint_x: 0.05
+                    CheckBox:
+                        id: checkBoxConnect
+                        active: root.connectGetFlg
+                        on_press: root.connectGetFlgCheck(self)
+                BoxLayout:
+                    size_hint_x: 0.25
+        BoxLayout:
+            size_hint_y: 0.05
         BoxLayout:
             height: dp(80)
             size_hint: 1,None

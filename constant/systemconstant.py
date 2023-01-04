@@ -10,6 +10,8 @@ WEB_LOGIN_URL = HTTP_ACCESS_URL + "/login"
 WEB_LOGINED_URL = HTTP_ACCESS_URL + "/?news=1"
 API_LOGIN_URL = HTTP_ACCESS_URL + "/api/login"
 DATA_GET_URL = HTTP_ACCESS_URL + "/api/user?data=stages&lang=ja_jp"
+RANKING_GET_URL = HTTP_ACCESS_URL + "/api/user-rankings/stage-score/{0}/{1}?lang=ja_jp"
+RANKING_PAGE_URL = HTTP_ACCESS_URL + "/rankings?category=stageScore&subcategory={1}&id={0}&index=0&genre={2}&page="
 
 # APIパラメータ
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36'
@@ -27,9 +29,13 @@ ABUCHMENT_LIST = [
         ]
 
 # DBのバージョン
-CURRENT_DB_VERSION = "v0.5"
+DB_VERSION_05 = "v0.5"
+DB_VERSION_08 = "v0.8"
+
+CURRENT_DB_VERSION = DB_VERSION_08
 
 DB_SUCCESS = 0
+DB_UPDATE = 1
 DB_ERROR_FILE_BREAK = -1
 DB_ERROR_UNKNOWN_FILE = -2
 

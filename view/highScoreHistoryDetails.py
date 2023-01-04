@@ -10,7 +10,7 @@ from variable.setappdata import AppCommonData
 from model.highScoreHistory import HighScoreHistory as score
 from util import util
 
-Builder.load_file(util.find_data_file('./kvfile/highScoreHistoryDetails.kv'))
+Builder.load_file(util.findDataFile('./kvfile/highScoreHistoryDetails.kv'))
 
 
 class HighScoreHistoryDetailsScreen(Screen):

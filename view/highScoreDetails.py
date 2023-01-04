@@ -11,7 +11,7 @@ from variable.setappdata import AppCommonData
 from model.highscoredetails import HighScoreFormusic as dataSet
 from util import util
 
-Builder.load_file(util.find_data_file('./kvfile/highScoreDetails.kv'))
+Builder.load_file(util.findDataFile('./kvfile/highScoreDetails.kv'))
 
 
 class HighScoreDetailsScreen(Screen):
@@ -30,7 +30,9 @@ class HighScoreDetailsScreen(Screen):
             self.ids.modeSpinnerId.values = modePulldownData
             self.ids.modeSpinnerId.text = modePulldownData[0]
             self.ids.modeSpinnerId.disabled = len(modePulldownData) == 1
-            self.rankHistoryRv.data = dataSet.getRankHistoryDataForChartId(self.chartId,  modePulldownData[0])
+            self.setHighScoreData(modePulldownData[0])
+        else:
+            self.updateRankingData(self.ids.modeSpinnerId.text)
     
     def resetScreen(self, **kwargs) :
         self.chartId = ""
@@ -54,6 +56,23 @@ class HighScoreDetailsScreen(Screen):
         self.ids.perfectCount.text = highScoreData["perfectCount"]
         self.ids.lastPlayDate.text = highScoreData["lastUpdateTime"]
         self.rankHistoryRv.data = dataSet.getRankHistoryDataForChartId(self.chartId, displayedMode)
+        self.updateRankingData(displayedMode)
+
+
+    def updateRankingData(self, displayedMode):
+        singlePlayFlg = dataSet.isSinglePlay(displayedMode)
+        self.ids.rankingGetButton.disabled = not singlePlayFlg
+        if singlePlayFlg:
+            ranking = dataSet.makeRankingData(self.chartId)
+            if ranking["rankingDisPlayedFlg"]:
+                self.ids.rankingLabel.text = "ランキング"
+                self.ids.rankingData.text = ranking["ranking"]
+                self.ids.rankingGetDate.text = ranking["getDate"]
+                return 
+            
+        self.ids.rankingLabel.text = ""
+        self.ids.rankingData.text = ""
+        self.ids.rankingGetDate.text = ""
 
 
 class rankHistory(BoxLayout):

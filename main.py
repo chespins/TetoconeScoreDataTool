@@ -10,6 +10,7 @@ from view import highScoreSelected as hss
 from view import inputWebPageParams as web
 from view import highScoreDetails as det
 from view import highScoreHistoryDetails as his
+from view import rankingDataGet as rdg
 from view import abuchement as abu
 from view import license
 from view import menu as mu
@@ -22,8 +23,9 @@ from constant.systemconstant import FONT_FILE_NAME
 Config.set('graphics', 'width', '640')
 Config.set('graphics', 'height', '480')
 
-resource_add_path(util.find_data_file(FONT_DIR))
+resource_add_path(util.findDataFile(FONT_DIR))
 LabelBase.register(DEFAULT_FONT, FONT_FILE_NAME)
+
 
 class TetoconeScoreApp(App):
     def build(self):
@@ -63,6 +65,12 @@ class TetoconeScoreApp(App):
                         name='history'
                     )
             )
+        self.sm.add_widget(
+                rdg.RankingDataGetScreen(
+                        comonData=self.appCommonData,
+                        name="rankingGet"
+                )
+        )
         self.sm.add_widget(
                 license.LicenseScreen(
                         name='license'

@@ -11,7 +11,7 @@ from model.highscoreSearch import HighScoreSearch as hsc
 from variable.setappdata import AppCommonData
 from util import util
 
-Builder.load_file(util.find_data_file('./kvfile/highScoreSelected.kv'))
+Builder.load_file(util.findDataFile('./kvfile/highScoreSelected.kv'))
 
 
 class HighScoreSelectScreen(Screen):

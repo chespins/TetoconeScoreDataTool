@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from db import highscore as dbhs
 from db import rankhistory as rah
+from db import ranking as rak
 from constant import distConstant as dico
 from model.basemodel import BaseModel
 from util import util
@@ -66,6 +67,21 @@ class HighScoreFormusic(BaseModel):
                     pulldownList.append(modeData.name)
 
         return pulldownList
+
+    def makeRankingData(chartId):
+        ranking = rak.selectRankingForChartId(chartId)
+        if len(ranking) == 1:
+            displayedRanking = {
+                    "rankingDisPlayedFlg": True,
+                    "ranking": ranking[0]["ranking"] + "位",
+                    "getDate": util.changeTimeZone(ranking[0]["getDate"]) + " 現在",
+                }
+        
+        else:
+            displayedRanking = {
+                    "rankingDisPlayedFlg": False,
+                }
+        return displayedRanking
 
 
 class highScoreData():
