@@ -25,7 +25,7 @@ def getLoginRankingData(cardId, password, chartId):
         ranking = myPage.getRankingData(session, chartInfo["musicId"], chartId, chartInfo["genreId"])
         rank = ranking.response["response"]["rank"]
         if ranking.response["response"]["score"] == chartInfo["highScore"]:
-            ra.updateranking(chartId, rank, ranking.getDate)
+            ra.updateRanking(chartId, rank, ranking.getDate)
         else:
             return messeges.DATA_IMPORT_DATA_UNMATCH
         
