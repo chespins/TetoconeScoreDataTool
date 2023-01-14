@@ -2,7 +2,6 @@
 import os
 
 from db import dbversion as dbv
-from exception.dbversionError import DBVersionError
 from constant.systemconstant import TETOCONE_DB_NAME
 from constant.systemconstant import CURRENT_DB_VERSION
 from constant.systemconstant import DB_VERSION_05
@@ -15,19 +14,19 @@ from constant.systemconstant import DB_UPDATE
 def checkDbVersion():
     if not os.path.isfile(TETOCONE_DB_NAME):
         makeDbFile()
-        return DB_SUCCESS
+        return (DB_SUCCESS, CURRENT_DB_VERSION)
 
     try:
         readDbVersion = dbv.getDbVersion()
         if CURRENT_DB_VERSION == readDbVersion:
-            return DB_SUCCESS
+            return (DB_SUCCESS, readDbVersion)
         elif DB_VERSION_05 == readDbVersion:
-            return DB_UPDATE
+            return (DB_UPDATE, readDbVersion)
         else:
-            return DB_ERROR_UNKNOWN_FILE
+            return (DB_ERROR_UNKNOWN_FILE, readDbVersion)
 
     except:
-        return DB_ERROR_FILE_BREAK
+        return (DB_ERROR_FILE_BREAK, "")
 
 
 def reMakeDataFile():
