@@ -12,7 +12,7 @@ INSERT_SQL = "INSERT INTO db_version (version) VALUES (?)"
 UPDATE_SQL = "UPDATE db_version SET version = ? WHERE version = ?"
 
 
-def getDbVersion():
+def getDbVersion() -> str:
     with sqlite3.connect(syco.TETOCONE_DB_NAME) as conn:
         cur = conn.cursor()
         cur.execute(SELECT_SQL)
