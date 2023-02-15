@@ -58,17 +58,21 @@ class HighScoreDetailsScreen(Screen):
         self.rankHistoryRv.data = dataSet.getRankHistoryDataForChartId(self.chartId, displayedMode)
         self.updateRankingData(displayedMode)
 
-
     def updateRankingData(self, displayedMode):
         singlePlayFlg = dataSet.isSinglePlay(displayedMode)
-        self.ids.rankingGetButton.disabled = not singlePlayFlg
-        if singlePlayFlg:
-            ranking = dataSet.makeRankingData(self.chartId)
-            if ranking["rankingDisPlayedFlg"]:
-                self.ids.rankingLabel.text = "ランキング"
-                self.ids.rankingData.text = ranking["ranking"]
-                self.ids.rankingGetDate.text = ranking["getDate"]
-                return 
+        rankingDataGetFlg = self.commonData.checkRankingData()
+        if rankingDataGetFlg:
+            self.ids.rankingGetButton.disabled = not singlePlayFlg
+            if singlePlayFlg:
+                ranking = dataSet.makeRankingData(self.chartId)
+                if ranking["rankingDisPlayedFlg"]:
+                    self.ids.rankingLabel.text = "ランキング"
+                    self.ids.rankingData.text = ranking["ranking"]
+                    self.ids.rankingGetDate.text = ranking["getDate"]
+                    return 
+        
+        else:
+            self.ids.rankingGetButton.disabled = True
             
         self.ids.rankingLabel.text = ""
         self.ids.rankingData.text = ""

@@ -19,9 +19,9 @@ class makeDbFileScreen(Screen):
         self.ids.fileName.text = cons.TETOCONE_DB_NAME
         if self.commonData.checkDbresult == cons.DB_ERROR_FILE_BREAK:
             self.ids.message.text = msg.DATA_FILE_ERROR
+            self.ids.readOnlyBtn.disabled = True
         elif self.commonData.checkDbresult == cons.DB_UPDATE:
             self.ids.message.text = msg.DATA_FILE_UPDATE
-            self.ids.readOnlyBtn.disabled = True
         elif self.commonData.checkDbresult == cons.DB_ERROR_UNKNOWN_FILE:
             self.ids.message.text = msg.DATA_FILE_VERSION_ERROR
             self.ids.yesBtn.disabled = True

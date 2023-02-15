@@ -15,7 +15,7 @@ SELECT_LIST_SQL = """
 """
 SELECT_LIST_ORDER_BY = "ORDER BY ra.chart_id"
 
-def updateranking(chartId, ranking, getDate):
+def updateRanking(chartId, ranking, getDate):
     with sqlite3.connect(TETOCONE_DB_NAME) as conn:
         conn.execute('BEGIN')
         try:

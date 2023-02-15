@@ -61,7 +61,7 @@ def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool,
                 ranking = myPage.getRankingData(session, chart["musicId"], chart["chartId"], chart["genreId"])
                 rank = ranking.response["response"]["rank"]
                 if ranking.response["response"]["score"] == chart["highScore"]:
-                    ra.updateranking(chart["chartId"], rank, ranking.getDate)
+                    ra.updateRanking(chart["chartId"], rank, ranking.getDate)
                 else:
                     dataUnmatchFlg = True                    
 

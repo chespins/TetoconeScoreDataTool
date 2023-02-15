@@ -16,12 +16,10 @@
                         text: "フォントデータ"
                         font_size: 18
                         size_hint_y: None
-                    Label:
+                    LicenseLabel:
                         id: Font
-                        font_size: 12
                         size_hint: (1, None)
                         height: self.texture_size[1]
-                        halign: 'left'
                     Label:
                         text: ""
                         font_size: 18
@@ -30,12 +28,10 @@
                         text: "kivy"
                         font_size: 18
                         size_hint_y: None
-                    Label:
+                    LicenseLabel:
                         id: kivylicense
-                        font_size: 12
                         size_hint: (1, None)
                         height: self.texture_size[1]
-                        halign: 'left'
                     Label:
                         text: ""
                         font_size: 18
@@ -44,12 +40,10 @@
                         text: "requests"
                         font_size: 18
                         size_hint_y: None
-                    Label:
+                    LicenseLabel:
                         id: requests
-                        font_size: 12
                         size_hint: (1, None)
                         height: self.texture_size[1]
-                        halign: 'left'
                     Label:
                         text: ""
                         font_size: 18
@@ -62,3 +56,9 @@
             size_hint: 1,None
             on_release:
                 root.manager.current = 'menu'
+
+<LicenseLabel@Label>:
+    text_size: self.width, None
+    font_size: 12
+    valign: 'middle'
+    halign: 'left'
