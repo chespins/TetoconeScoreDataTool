@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from constant import distConstant as dico
 from db import chartconstitution
+from db import rankhistory as rakh
+from db import ranking as rak
+from util import util
 
 class BaseModel():
     
@@ -39,3 +42,35 @@ class BaseModel():
 
     def isSinglePlay(modeString):
         return modeString == dico.MODE_NAME_DIST["1"]
+
+    def makeRankingData(chartId):
+        ranking = rak.selectRankingForChartId(chartId)
+        if len(ranking) == 1:
+            displayedRanking = {
+                    "rankingDisPlayedFlg": True,
+                    "ranking": ranking[0]["ranking"] + "位",
+                    "getDate": util.changeTimeZone(ranking[0]["getDate"]) + " 現在",
+                }
+        
+        else:
+            displayedRanking = {
+                    "rankingDisPlayedFlg": False,
+                }
+        return displayedRanking
+
+    def getrankingDataForDb(chartId, modeList):
+        margeRankHistoryDist = {}        
+        rankHistoryList = rakh.selectChartByChartIdMode(chartId, modeList)
+
+        for rankHistory in rankHistoryList:
+            count = rankHistory["count"]
+            rank = rankHistory["rank"]
+            if rankHistory["rank"] in margeRankHistoryDist.keys():
+                count += margeRankHistoryDist[rank]["count"]
+
+            margeRankHistoryDist[rank] = {
+                    "rank": rankHistory["rank"],
+                    "count": count
+                }
+        
+        return margeRankHistoryDist

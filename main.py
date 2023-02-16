@@ -17,6 +17,7 @@ from view import abuchement as abu
 from view import license
 from view import menu as mu
 from view import makeDbFile as mkd
+from view import rankingList as rak
 from variable.setappdata import AppCommonData
 from util import util
 from constant.systemconstant import FONT_DIR
@@ -84,6 +85,11 @@ class TetoconeScoreApp(App):
                 abu.AbuchmentScreen(
                         comonData=self.appCommonData,
                         name='abuchment'
+                    )
+            )
+        self.sm.add_widget(rak.RankingListScreen(
+                        comonData=self.appCommonData,
+                        name='rankingList'
                     )
             )
         return self.sm
