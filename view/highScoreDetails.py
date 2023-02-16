@@ -84,8 +84,6 @@ class rankHistory(BoxLayout):
     rank = StringProperty()
     count = StringProperty()
 
-class CharBlackLabel(Label):
-    pass
 
 if __name__ == '__main__':
     pass
