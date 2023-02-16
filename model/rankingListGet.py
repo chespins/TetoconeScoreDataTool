@@ -5,7 +5,7 @@ from model.basemodel import BaseModel
 
 class RankingListGet(BaseModel):
 
-    def searchMusic(searchLavalName, searchGenreName):
+    def searchMusic(self, searchLavalName, searchGenreName):
         searchLevelId = 0
         searchGenreId = ""
         screenHighScore = []
@@ -28,8 +28,8 @@ class RankingListGet(BaseModel):
                 continue
 
             chartId = highScoreData["chartId"]
-            maxRank = RankingListGet.getMaxRank(chartId)
-            rankingData = RankingListGet.makeRankingData(chartId)
+            maxRank = self.getMaxRank(chartId)
+            rankingData = self.makeRankingData(chartId)
 
             if rankingData["rankingDisPlayedFlg"]:
                 ranking = rankingData["ranking"]            
@@ -47,9 +47,9 @@ class RankingListGet(BaseModel):
 
         return screenHighScore
 
-    def getMaxRank(chartId):
+    def getMaxRank(self, chartId):
         modeList = dico.DISPLAYED_MODE_DIST[dico.MODE_NAME_DIST["1"]].searchedMode
-        margeRankHistoryDist = RankingListGet.getrankingDataForDb(chartId, modeList)
+        margeRankHistoryDist = self.getrankingDataForDb(chartId, modeList)
 
         for rank in dico.RANK_DIST.keys():
             if rank in margeRankHistoryDist.keys():

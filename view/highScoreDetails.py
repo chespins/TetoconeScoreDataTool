@@ -8,7 +8,7 @@ from kivy.uix.label import Label
 from kivy.lang import Builder
 from variable.setappdata import AppCommonData
 
-from model.highscoredetails import HighScoreFormusic as dataSet
+from model.highscoredetails import HighScoreFormusic
 from util import util
 
 Builder.load_file(util.findDataFile('./kvfile/highScoreDetails.kv'))
@@ -17,6 +17,7 @@ Builder.load_file(util.findDataFile('./kvfile/highScoreDetails.kv'))
 class HighScoreDetailsScreen(Screen):
     chartId = StringProperty()
     rankHistoryRv = ObjectProperty()
+    dataSet = HighScoreFormusic()
 
     def __init__(self, comonData: AppCommonData, **kwargs):
         super(HighScoreDetailsScreen, self).__init__(**kwargs)
@@ -26,7 +27,7 @@ class HighScoreDetailsScreen(Screen):
         if self.chartId == "":
             self.chartId = self.commonData.getDisplayChartId()
             self.setMusicDate()
-            modePulldownData = dataSet.makeModeNamePulldown(self.chartId)
+            modePulldownData = self.dataSet.makeModeNamePulldown(self.chartId)
             self.ids.modeSpinnerId.values = modePulldownData
             self.ids.modeSpinnerId.text = modePulldownData[0]
             self.ids.modeSpinnerId.disabled = len(modePulldownData) == 1
@@ -40,14 +41,14 @@ class HighScoreDetailsScreen(Screen):
         self.commonData.setDisplayChartId("")
 
     def setMusicDate(self):
-        musicInfo = dataSet.getMusicName(self.chartId)
+        musicInfo = self.dataSet.getMusicName(self.chartId)
         self.ids.levelName.text = musicInfo["levelName"]
         self.ids.levelName.color = musicInfo["levelColor"]
         self.ids.musicName.text = musicInfo["musicName"]
         self.ids.genreName.text = musicInfo["genreName"]
 
     def setHighScoreData(self, displayedMode):
-        highScoreData = dataSet.getHighScoreByMusic(self.chartId, displayedMode)
+        highScoreData = self.dataSet.getHighScoreByMusic(self.chartId, displayedMode)
         self.ids.highScore.text = highScoreData["highScore"]
         self.ids.maxCombo.text = highScoreData["maxCombo"]
         self.ids.playCount.text = highScoreData["playCount"]
@@ -55,16 +56,16 @@ class HighScoreDetailsScreen(Screen):
         self.ids.fullComboCount.text = highScoreData["fullComboCount"]
         self.ids.perfectCount.text = highScoreData["perfectCount"]
         self.ids.lastPlayDate.text = highScoreData["lastUpdateTime"]
-        self.rankHistoryRv.data = dataSet.getRankHistoryDataForChartId(self.chartId, displayedMode)
+        self.rankHistoryRv.data = self.dataSet.getRankHistoryDataForChartId(self.chartId, displayedMode)
         self.updateRankingData(displayedMode)
 
     def updateRankingData(self, displayedMode):
-        singlePlayFlg = dataSet.isSinglePlay(displayedMode)
+        singlePlayFlg = self.dataSet.isSinglePlay(displayedMode)
         rankingDataGetFlg = self.commonData.checkRankingData()
         if rankingDataGetFlg:
             self.ids.rankingGetButton.disabled = not singlePlayFlg
             if singlePlayFlg:
-                ranking = dataSet.makeRankingData(self.chartId)
+                ranking = self.dataSet.makeRankingData(self.chartId)
                 if ranking["rankingDisPlayedFlg"]:
                     self.ids.rankingLabel.text = "ランキング"
                     self.ids.rankingData.text = ranking["ranking"]

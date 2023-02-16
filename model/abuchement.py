@@ -7,15 +7,14 @@ from model.basemodel import BaseModel
 
 class abuchmentModel(BaseModel):
     
-    @staticmethod
-    def serchMusic(displaydAbuchment, serchLavalName, ungetFlg):
+    def serchMusic(self, displaydAbuchment, serchLavalName, ungetFlg):
         screenDataDist = {}
         screenDataList = []
 
         if displaydAbuchment == systemconstant.FULL_COMBO:
-            screenDataDist = abuchmentModel.fullComboAbuchment(serchLavalName, ungetFlg)
+            screenDataDist = self.fullComboAbuchment(serchLavalName, ungetFlg)
         elif displaydAbuchment == systemconstant.PERFECT:
-            screenDataDist = abuchmentModel.parfectAbuchment(serchLavalName, ungetFlg)
+            screenDataDist = self.parfectAbuchment(serchLavalName, ungetFlg)
 
         for abuchment in screenDataDist.values():
             screenDataList.append({
@@ -29,11 +28,10 @@ class abuchmentModel(BaseModel):
 
         return screenDataList
 
-    @staticmethod
-    def parfectAbuchment(serchLavalName, ungetFlg):
+    def parfectAbuchment(self, serchLavalName, ungetFlg):
         parfectedList = []
         chartIdList = []
-        highScoreList = abuchmentModel.serchHighScore(serchLavalName)
+        highScoreList = self.serchHighScore(serchLavalName)
         for highScore in highScoreList:
             if highScore["perfectCount"] > 0:
                 chartIdList.append(highScore["chartId"])
@@ -42,13 +40,12 @@ class abuchmentModel(BaseModel):
             if (highScore["chartId"] in chartIdList) != ungetFlg:
                 parfectedList.append(highScore)
 
-        return abuchmentModel.makeAbuchmentData(parfectedList)
+        return self.makeAbuchmentData(parfectedList)
 
-    @staticmethod
-    def fullComboAbuchment(serchLavalName, ungetFlg):
+    def fullComboAbuchment(self, serchLavalName, ungetFlg):
         parfectedList = []
         chartIdList = []
-        highScoreList = abuchmentModel.serchHighScore(serchLavalName)
+        highScoreList = self.serchHighScore(serchLavalName)
         for highScore in highScoreList:
             if highScore["fullComboCount"] > 0:
                 chartIdList.append(highScore["chartId"])
@@ -58,10 +55,9 @@ class abuchmentModel(BaseModel):
             if (highScore["chartId"] in chartIdList) != ungetFlg:
                 parfectedList.append(highScore)
 
-        return abuchmentModel.makeAbuchmentData(parfectedList)
+        return self.makeAbuchmentData(parfectedList)
 
-    @staticmethod
-    def makeAbuchmentData(abuchmentList):
+    def makeAbuchmentData(self, abuchmentList):
         screenDataDist = {}
         for abuchment in abuchmentList:
             perfectCount = abuchment["perfectCount"]
@@ -83,8 +79,7 @@ class abuchmentModel(BaseModel):
 
         return screenDataDist
 
-    @staticmethod
-    def serchHighScore(serchLavalName):
+    def serchHighScore(self, serchLavalName):
         serchLevelId = 0
         for levelName in dico.LEVEL_NAME_DIST.values():
             if levelName.name == serchLavalName:

@@ -7,11 +7,10 @@ from util import util
 
 class HighScoreFormusic(BaseModel):
 
-    @staticmethod
-    def getRankHistoryDataForChartId(chartId, displayedMode):
+    def getRankHistoryDataForChartId(self, chartId, displayedMode):
         screenRankHistoryList = []
         modeList = dico.DISPLAYED_MODE_DIST[displayedMode].searchedMode
-        margeRankHistoryDist = HighScoreFormusic.getrankingDataForDb(chartId, modeList)
+        margeRankHistoryDist = self.getrankingDataForDb(chartId, modeList)
 
         for rank in dico.RANK_DIST.keys():
             if rank in margeRankHistoryDist.keys():
@@ -24,7 +23,7 @@ class HighScoreFormusic(BaseModel):
 
         return screenRankHistoryList
 
-    def getHighScoreByMusic(chartId, displayedMode):
+    def getHighScoreByMusic(self, chartId, displayedMode):
         modeList = dico.DISPLAYED_MODE_DIST[displayedMode].searchedMode
         score = highScoreData()
 
@@ -35,7 +34,7 @@ class HighScoreFormusic(BaseModel):
 
         return score.makeViewData()
 
-    def makeModeNamePulldown(chartId):
+    def makeModeNamePulldown(self, chartId):
         pulldownList = []
         dataedMode = []
         dbDataList = dbhs.selectHighScoreByChartId(chartId)

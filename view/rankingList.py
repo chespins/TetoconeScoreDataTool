@@ -15,12 +15,13 @@ Builder.load_file(util.findDataFile('./kvfile/rankingList.kv'))
 
 class RankingListScreen(Screen):
     rankingListRv = ObjectProperty()
+    rankModel = rank()
 
     def __init__(self, comonData: AppCommonData, **kwargs):
         super(RankingListScreen, self).__init__(**kwargs)
-        self.ids.LevelSpinnerId.values = rank.makeLavalNamePulldown()
+        self.ids.LevelSpinnerId.values = self.rankModel.makeLavalNamePulldown()
         self.ids.LevelSpinnerId.text = ""
-        self.ids.genreSpinnerId.values = rank.makeGenreNamePulldown()
+        self.ids.genreSpinnerId.values = self.rankModel.makeGenreNamePulldown()
         self.ids.genreSpinnerId.text = ""
         self.commonData = comonData
 
@@ -30,7 +31,7 @@ class RankingListScreen(Screen):
     def serchMusic(self):
         serchLavelName = self.ids.LevelSpinnerId.text
         serchGenreName = self.ids.genreSpinnerId.text
-        self.rankingListRv.data = rank.searchMusic(serchLavelName, serchGenreName)
+        self.rankingListRv.data = self.rankModel.searchMusic(serchLavelName, serchGenreName)
 
 
 class rankingData(BoxLayout):

@@ -7,7 +7,7 @@ from kivy.properties import BooleanProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
 
-from model.highscoreSearch import HighScoreSearch as hsc
+from model.highscoreSearch import HighScoreSearch
 from variable.setappdata import AppCommonData
 from util import util
 
@@ -17,12 +17,13 @@ Builder.load_file(util.findDataFile('./kvfile/highScoreSelected.kv'))
 class HighScoreSelectScreen(Screen):
     musicRv = ObjectProperty()
     unplayedFlg = BooleanProperty(False)
+    hsc = HighScoreSearch()
 
     def __init__(self, comonData: AppCommonData, **kwargs):
         super(HighScoreSelectScreen, self).__init__(**kwargs)
-        self.ids.LevelSpinnerId.values = hsc.makeLavalNamePulldown()
+        self.ids.LevelSpinnerId.values = self.hsc.makeLavalNamePulldown()
         self.ids.LevelSpinnerId.text = ""
-        self.ids.genreSpinnerId.values = hsc.makeGenreNamePulldown()
+        self.ids.genreSpinnerId.values = self.hsc.makeGenreNamePulldown()
         self.ids.genreSpinnerId.text = ""
         self.commonData = comonData
 
@@ -37,7 +38,7 @@ class HighScoreSelectScreen(Screen):
         searchLavelName = self.ids.LevelSpinnerId.text
         searchGenreName = self.ids.genreSpinnerId.text
         unplayedFlg = self.unplayedFlg
-        self.musicRv.data = hsc.searchMusic("", searchLavelName, searchGenreName, unplayedFlg)
+        self.musicRv.data = self.hsc.searchMusic("", searchLavelName, searchGenreName, unplayedFlg)
         self.ids.searchMusicName.text = ""
 
     def searchMusic(self):
@@ -45,7 +46,7 @@ class HighScoreSelectScreen(Screen):
         searchLavelName = self.ids.LevelSpinnerId.text
         searchGenreName = self.ids.genreSpinnerId.text
         unplayedFlg = self.unplayedFlg
-        self.musicRv.data = hsc.searchMusic(searchMusicName, searchLavelName, searchGenreName, unplayedFlg)
+        self.musicRv.data = self.hsc.searchMusic(searchMusicName, searchLavelName, searchGenreName, unplayedFlg)
 
     def setChartId(self, chartId):
         self.commonData.setDisplayChartId(chartId)
