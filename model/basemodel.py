@@ -41,7 +41,7 @@ class BaseModel():
         return displayMusicInfo
 
     def isSinglePlay(self, modeString):
-        return modeString == dico.MODE_NAME_DIST["1"]
+        return modeString == self.getSinglePlayName()
 
     def makeRankingData(self, chartId):
         ranking = rak.selectRankingForChartId(chartId)
@@ -74,3 +74,6 @@ class BaseModel():
                 }
         
         return margeRankHistoryDist
+
+    def getSinglePlayName(self):
+        return dico.MODE_NAME_DIST["1"]

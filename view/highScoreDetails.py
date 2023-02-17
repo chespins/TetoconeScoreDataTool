@@ -32,6 +32,9 @@ class HighScoreDetailsScreen(Screen):
             modePulldownData = self.dataSet.makeModeNamePulldown(self.chartId)
             self.ids.modeSpinnerId.values = modePulldownData
             self.ids.modeSpinnerId.text = modePulldownData[0]
+            if self.sourceWidget == "rankingList":
+                self.ids.modeSpinnerId.text = self.dataSet.getSinglePlayName()
+
             self.ids.modeSpinnerId.disabled = len(modePulldownData) == 1
             self.setHighScoreData(modePulldownData[0])
         else:

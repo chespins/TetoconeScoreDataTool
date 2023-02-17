@@ -48,7 +48,7 @@ class RankingListGet(BaseModel):
         return screenHighScore
 
     def getMaxRank(self, chartId):
-        modeList = dico.DISPLAYED_MODE_DIST[dico.MODE_NAME_DIST["1"]].searchedMode
+        modeList = dico.DISPLAYED_MODE_DIST[self.getSinglePlayName()].searchedMode
         margeRankHistoryDist = self.getrankingDataForDb(chartId, modeList)
 
         for rank in dico.RANK_DIST.keys():
