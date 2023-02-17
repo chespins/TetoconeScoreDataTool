@@ -13,6 +13,9 @@
                     size_hint_y: None
                     height: dp(30)
                     Label:
+                        size_hint_x: 0.1
+                        text: "詳細"
+                    Label:
                         size_hint_x: 0.4
                         text: "曲名"
                     Label:
@@ -22,10 +25,10 @@
                         size_hint_x: 0.15
                         text: "ハイスコア"
                     Label:
-                        size_hint_x: 0.15
+                        size_hint_x: 0.1
                         text: "ランク"
                     Label:
-                        size_hint_x: 0.15
+                        size_hint_x: 0.1
                         text: "順位"
                 BoxLayout:
                     canvas:
@@ -90,6 +93,11 @@
         Rectangle:
             size: self.size
             pos: self.pos
+    Button:
+        size_hint_x: 0.1
+        on_release: 
+            app.showHighScore(root.chartId, "rankingList")
+        text: "詳細"
     Label:
         size_hint_x: 0.4
         text_size: self.size
@@ -103,8 +111,8 @@
         size_hint_x: 0.15
         text: root.highScore
     Label:
-        size_hint_x: 0.15
+        size_hint_x: 0.1
         text: root.maxRank
     Label:
-        size_hint_x: 0.15
+        size_hint_x: 0.1
         text: root.ranking

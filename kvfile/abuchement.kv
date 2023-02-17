@@ -13,6 +13,9 @@
                     size_hint_y: None
                     height: dp(30)
                     Label:
+                        size_hint_x: 0.1
+                        text: "詳細"
+                    Label:
                         size_hint_x: 0.4
                         text: "曲名"
                     Label:
@@ -22,10 +25,10 @@
                         size_hint_x: 0.15
                         text: "プレイ回数"
                     Label:
-                        size_hint_x: 0.15
+                        size_hint_x: 0.125
                         text: "フルコンボ"
                     Label:
-                        size_hint_x: 0.15
+                        size_hint_x: 0.125
                         text: "パーフェクト"
                 BoxLayout:
                     canvas:
@@ -98,6 +101,12 @@
         Rectangle:
             size: self.size
             pos: self.pos
+    Button:
+        size_hint_x: 0.1
+        on_release: 
+            app.showHighScore(root.chartId, "abuchment")
+        disabled: root.detailsFlg
+        text: "詳細"
     Label:
         size_hint_x: 0.4
         text_size: self.size
@@ -111,8 +120,8 @@
         size_hint_x: 0.15
         text: root.playCount
     Label:
-        size_hint_x: 0.15
+        size_hint_x: 0.125
         text: root.fullComboCount
     Label:
-        size_hint_x: 0.15
+        size_hint_x: 0.125
         text: root.perfectCount

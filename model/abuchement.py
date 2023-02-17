@@ -24,6 +24,8 @@ class abuchmentModel(BaseModel):
                         "playCount": str(abuchment["playCount"]) + "回",
                         "perfectCount": str(abuchment["perfectCount"]) + "回",
                         "fullComboCount": str(abuchment["fullComboCount"]) + "回",
+                        "detailsFlg": abuchment["playCount"] <= 0,
+                        "chartId": abuchment["chartId"],
                 })
 
         return screenDataList
@@ -70,6 +72,7 @@ class abuchmentModel(BaseModel):
                 playCount += abuchment["playCount"]
 
             screenDataDist[chartId] = {
+                    "chartId": chartId,
                     "musicName": abuchment["musicName"],
                     "levelId": abuchment["levelId"],
                     "perfectCount": perfectCount,

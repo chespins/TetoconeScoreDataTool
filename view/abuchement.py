@@ -46,6 +46,8 @@ class AbuchmentData(BoxLayout):
     playCount = StringProperty()
     perfectCount = StringProperty()
     fullComboCount = StringProperty()
+    chartId = StringProperty()
+    detailsFlg = BooleanProperty(False)
 
 
 if __name__ == '__main__':

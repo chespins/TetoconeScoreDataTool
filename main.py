@@ -94,8 +94,9 @@ class TetoconeScoreApp(App):
             )
         return self.sm
 
-    def showHighScore(self, chartId):
+    def showHighScore(self, chartId, sourceWidget):
         self.appCommonData.setDisplayChartId(chartId)
+        self.appCommonData.sourceWidget = sourceWidget
         self.sm.current = "details"
 
 
