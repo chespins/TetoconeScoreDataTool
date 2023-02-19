@@ -30,13 +30,14 @@ class HighScoreDetailsScreen(Screen):
             self.sourceWidget = self.commonData.sourceWidget
             self.setMusicDate()
             modePulldownData = self.dataSet.makeModeNamePulldown(self.chartId)
-            self.ids.modeSpinnerId.values = modePulldownData
-            self.ids.modeSpinnerId.text = modePulldownData[0]
+            defaultMode = modePulldownData[0]
             if self.sourceWidget == "rankingList":
-                self.ids.modeSpinnerId.text = self.dataSet.getSinglePlayName()
+                defaultMode = self.dataSet.getSinglePlayName()
 
+            self.ids.modeSpinnerId.values = modePulldownData
+            self.ids.modeSpinnerId.text = defaultMode
             self.ids.modeSpinnerId.disabled = len(modePulldownData) == 1
-            self.setHighScoreData(modePulldownData[0])
+            self.setHighScoreData(defaultMode)
         else:
             self.updateRankingData(self.ids.modeSpinnerId.text)
     
