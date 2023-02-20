@@ -51,9 +51,9 @@ class RankingListGet(BaseModel):
         modeList = dico.DISPLAYED_MODE_DIST[self.getSinglePlayName()].searchedMode
         margeRankHistoryDist = self.getrankingDataForDb(chartId, modeList)
 
-        for rank in dico.RANK_DIST.keys():
-            if rank in margeRankHistoryDist.keys():
-                return rank
+        for rank in dico.RANK_DIST.values():
+            if rank.apiLank in margeRankHistoryDist.keys():
+                return rank.gameLank
 
         return "---"
 
