@@ -6,7 +6,7 @@ from util import util
 
 
 class HighScoreHistory(BaseModel):
-    def getHighScoreHistoryByChartId(chartId, ):
+    def getHighScoreHistoryByChartId(self, chartId):
         results = dbh.selectHighScoreHistoryBychartId(chartId)
         screenHighScore = []
         for highScoreData in results:

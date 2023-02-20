@@ -17,6 +17,7 @@ from view import abuchement as abu
 from view import license
 from view import menu as mu
 from view import makeDbFile as mkd
+from view import rankingList as rak
 from variable.setappdata import AppCommonData
 from util import util
 from constant.systemconstant import FONT_DIR
@@ -86,10 +87,16 @@ class TetoconeScoreApp(App):
                         name='abuchment'
                     )
             )
+        self.sm.add_widget(rak.RankingListScreen(
+                        comonData=self.appCommonData,
+                        name='rankingList'
+                    )
+            )
         return self.sm
 
-    def showHighScore(self, chartId):
+    def showHighScore(self, chartId, sourceWidget):
         self.appCommonData.setDisplayChartId(chartId)
+        self.appCommonData.sourceWidget = sourceWidget
         self.sm.current = "details"
 
 

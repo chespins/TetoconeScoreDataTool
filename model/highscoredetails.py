@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from db import highscore as dbhs
-from db import rankhistory as rah
-from db import ranking as rak
 from constant import distConstant as dico
 from model.basemodel import BaseModel
 from util import util
@@ -9,23 +7,10 @@ from util import util
 
 class HighScoreFormusic(BaseModel):
 
-    def getRankHistoryDataForChartId(chartId, displayedMode):
-        margeRankHistoryDist = {}
+    def getRankHistoryDataForChartId(self, chartId, displayedMode):
         screenRankHistoryList = []
-        modeList = dico.DISPLAYED_MODE_DIST[displayedMode].searchedMode 
-
-        rankHistoryList = rah.selectChartByChartIdMode(chartId, modeList)
-
-        for rankHistory in rankHistoryList:
-            count = rankHistory["count"]
-            rank = rankHistory["rank"]
-            if rankHistory["rank"] in margeRankHistoryDist.keys():
-                count += margeRankHistoryDist[rank]["count"]
-
-            margeRankHistoryDist[rank] = {
-                    "rank": rankHistory["rank"],
-                    "count": count
-                }
+        modeList = dico.DISPLAYED_MODE_DIST[displayedMode].searchedMode
+        margeRankHistoryDist = self.getRankData(chartId, modeList)
 
         for rank in dico.RANK_DIST.keys():
             if rank in margeRankHistoryDist.keys():
@@ -38,7 +23,7 @@ class HighScoreFormusic(BaseModel):
 
         return screenRankHistoryList
 
-    def getHighScoreByMusic(chartId, displayedMode):
+    def getHighScoreByMusic(self, chartId, displayedMode):
         modeList = dico.DISPLAYED_MODE_DIST[displayedMode].searchedMode
         score = highScoreData()
 
@@ -49,7 +34,7 @@ class HighScoreFormusic(BaseModel):
 
         return score.makeViewData()
 
-    def makeModeNamePulldown(chartId):
+    def makeModeNamePulldown(self, chartId):
         pulldownList = []
         dataedMode = []
         dbDataList = dbhs.selectHighScoreByChartId(chartId)
@@ -67,22 +52,6 @@ class HighScoreFormusic(BaseModel):
                     pulldownList.append(modeData.name)
 
         return pulldownList
-
-    def makeRankingData(chartId):
-        ranking = rak.selectRankingForChartId(chartId)
-        if len(ranking) == 1:
-            displayedRanking = {
-                    "rankingDisPlayedFlg": True,
-                    "ranking": ranking[0]["ranking"] + "位",
-                    "getDate": util.changeTimeZone(ranking[0]["getDate"]) + " 現在",
-                }
-        
-        else:
-            displayedRanking = {
-                    "rankingDisPlayedFlg": False,
-                }
-        return displayedRanking
-
 
 class highScoreData():
     def __init__(self):

@@ -5,7 +5,7 @@ from model.basemodel import BaseModel
 
 class HighScoreSearch(BaseModel):
 
-    def searchMusic(searchName, searchLavalName, searchGenreName, unplayedFlg):
+    def searchMusic(self, searchName, searchLavalName, searchGenreName, unplayedFlg):
         searchLevelId = 0
         searchGenreId = ""
         for levelName in dico.LEVEL_NAME_DIST.values():

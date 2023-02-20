@@ -13,6 +13,7 @@ class AppCommonData(EventDispatcher):
     checkDbresult = NumericProperty(0)
     readOnlyFlg = BooleanProperty(False)
     dbFileVersion = StringProperty()
+    sourceWidget = StringProperty()
 
     def __init__(self, **kwargs):
         super(AppCommonData, self).__init__(**kwargs)
@@ -23,6 +24,11 @@ class AppCommonData(EventDispatcher):
 
     def getDisplayChartId(self):
         return self.displayChartId
+
+    def clearSourceWidget(self):
+        sourceWidget = self.sourceWidget
+        self.sourceWidget = ""
+        return sourceWidget
 
     def checkRankingData(self):
         if self.dbFileVersion == DB_VERSION_08:
