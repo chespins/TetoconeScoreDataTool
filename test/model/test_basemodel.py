@@ -10,7 +10,17 @@ def setup_test():
     testObj = basemodel.BaseModel()
     return testObj
 
-
+def test_makeLavalNamePulldown():
+    testObj = setup_test()
+    success = [
+        "",
+        "STANDARD",
+        "EXPERT",
+        "ULTIMATE",
+        "MANIAC",
+        "CONNECT",
+    ]
+    assert success == testObj.makeLavalNamePulldown()
 
 def test_isSinglePlay_true():
     testObj = setup_test()
