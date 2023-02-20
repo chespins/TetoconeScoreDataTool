@@ -10,7 +10,7 @@ class HighScoreFormusic(BaseModel):
     def getRankHistoryDataForChartId(self, chartId, displayedMode):
         screenRankHistoryList = []
         modeList = dico.DISPLAYED_MODE_DIST[displayedMode].searchedMode
-        margeRankHistoryDist = self.getrankingDataForDb(chartId, modeList)
+        margeRankHistoryDist = self.getRankData(chartId, modeList)
 
         for rank in dico.RANK_DIST.keys():
             if rank in margeRankHistoryDist.keys():

@@ -58,7 +58,7 @@ class BaseModel():
                 }
         return displayedRanking
 
-    def getrankingDataForDb(self, chartId, modeList):
+    def getRankData(self, chartId, modeList):
         margeRankHistoryDist = {}        
         rankHistoryList = rakh.selectChartByChartIdMode(chartId, modeList)
 
