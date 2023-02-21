@@ -1,4 +1,4 @@
-name: Action Sample
+name: push-test
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
 
       - name: PyTest
         run: |
-          python -m pytest --junit-xml results/pytest.xml
+          python -m pytest --junit-xml ./pytest.xml
 
       # テスト結果の表示
       - name: Upload Unit Test Results
@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Unit Test Results (Python 3.7)
-          path: results/*.xml
+          path: ./*.xml
 
       - name: Download Artifacts
         if: always()
