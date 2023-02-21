@@ -11,7 +11,6 @@ def setup_test():
     return testObj
 
 def test_makeLavalNamePulldown():
-    testObj = setup_test()
     success = [
         "",
         "STANDARD",
@@ -20,7 +19,79 @@ def test_makeLavalNamePulldown():
         "MANIAC",
         "CONNECT",
     ]
+    testObj = setup_test()
     assert success == testObj.makeLavalNamePulldown()
+
+
+def test_getMusicName(mocker):
+    mock = mocker.patch("db.chartconstitution.selectChartByChartId", return_value=[{
+                    "chartId": "test001",
+                    "musicId": "test01",
+                    "levelId": 1,
+                    "musicName": "テスト楽曲名1",
+                    "genreId": "G000",
+                }])
+    success = {
+                "musicName": "テスト楽曲名1",
+                "levelName": "STANDARD",
+                "genreName": "アニメ・ポップス",
+                "levelColor": [0.212, 0.51, 0.894, 1],
+            }
+    testObj = setup_test()
+    assert success == testObj.getMusicName("test001")
+    mock.assert_called_once()
+    mock.assert_called_with("test001")
+
+
+def test_getMusicName2(mocker):
+    mock = mocker.patch("db.chartconstitution.selectChartByChartId", return_value=[{
+                    "chartId": "test002",
+                    "musicId": "test02",
+                    "levelId": 3,
+                    "musicName": "テスト楽曲名2",
+                    "genreId": "G003",
+                }])
+    success = {
+                "musicName": "テスト楽曲名2",
+                "levelName": "ULTIMATE",
+                "genreName": "ゲーム",
+                "levelColor": [0.612, 0.239, 0.8, 1],
+            }
+    testObj = setup_test()
+    assert success == testObj.getMusicName("test002")
+    mock.assert_called_once()
+    mock.assert_called_with("test002")
+
+
+def test_makeGenreNamePulldown():
+    success = [
+        "",
+        "アニメ・ポップス",
+        "バーチャル",
+        "東方アレンジ",
+        "ゲーム",
+        "オリジナル",
+        "バラエティー",
+    ]
+    testObj = setup_test()
+    assert success == testObj.makeGenreNamePulldown()
+
+
+def test_makeModeNamePulldown():
+    success = [
+        "全て",
+        "シングルプレイ",
+        "協力プレイ(全て)",
+        "協力プレイ(2人)",
+        "協力プレイ(3人)",
+        "協力プレイ(4人)",
+        "対戦プレイ(全て)",
+        "対戦プレイ(2人)",
+        "対戦プレイ(4人)",
+    ]
+    testObj = setup_test()
+    assert success == testObj.makeModeNamePulldown()
+
 
 def test_isSinglePlay_true():
     testObj = setup_test()
