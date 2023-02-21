@@ -10,7 +10,7 @@ timezoneReg = re.compile(r'((\+|\-)\d{2}):(\d{2})')
 def findDataFile(filename):
     if hasattr(sys, "_MEIPASS"):
         return os.path.join(sys._MEIPASS, filename)
-    return os.path.join(filename)
+    return os.path.join("resource", filename)
 
 
 def readFileStr(filename):
@@ -46,4 +46,4 @@ def minDateTime():
 
 
 if __name__ == '__main__':
-    pass
+    print(findDataFile("aaa.txt"))
