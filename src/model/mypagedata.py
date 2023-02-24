@@ -12,7 +12,7 @@ from util import util
 def getRankingData(session: Session, musicId: str, chartId: str, genreId: str):
     session.headers["Referer"] = cons.RANKING_PAGE_URL.format(musicId, chartId, genreId)
     result = session.get(cons.RANKING_GET_URL.format(musicId, chartId))
-    rankig = rankingDate(json.loads(result.text))
+    rankig = RankingDate(json.loads(result.text))
     return rankig
 
 
@@ -45,7 +45,7 @@ def loginMyPage(cardId: str, password: str):
     return session
 
 
-class rankingDate():
+class RankingDate():
     def __init__(self, response):
         self.getDate = util.getDateTimeNow()
         self.response = response        

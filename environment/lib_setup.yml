@@ -8,8 +8,8 @@ dependencies:
   - atomicwrites=1.4.0=py_0
   - attrs=22.1.0=py39haa95532_0
   - brotlipy=0.7.0=py39h2bbff1b_1003
-  - ca-certificates=2023.01.10=haa95532_0
-  - certifi=2022.12.7=py39haa95532_0
+  - ca-certificates=2022.12.7=h5b45459_0
+  - certifi=2022.12.7=pyhd8ed1ab_0
   - cffi=1.15.1=py39h2bbff1b_0
   - charset-normalizer=2.0.4=pyhd3eb1b0_0
   - click=8.0.4=py39haa95532_0
@@ -18,6 +18,7 @@ dependencies:
   - dav1d=1.0.0=h8ffe710_1
   - docutils=0.19=py39hcbf5309_0
   - freetype=2.12.1=h546665d_0
+  - freezegun=1.2.2=pyhd8ed1ab_0
   - future=0.18.2=py39hcbf5309_5
   - glew=2.1.0=h39d44d4_2
   - idna=3.3=pyhd3eb1b0_0
@@ -61,8 +62,10 @@ dependencies:
   - pyopenssl=22.0.0=pyhd3eb1b0_0
   - pysocks=1.7.1=py39haa95532_0
   - pytest=7.1.2=py39haa95532_0
+  - pytest-freezegun=0.4.2=pyhd8ed1ab_1
   - pytest-mock=3.10.0=py39haa95532_0
   - python=3.9.13=h6244533_1
+  - python-dateutil=2.8.2=pyhd8ed1ab_0
   - python-dotenv=0.21.0=py39haa95532_0
   - python_abi=3.9=2_cp39
   - pywin32=303=py39hb82d6ee_0
@@ -73,6 +76,7 @@ dependencies:
   - sdl2_mixer=2.6.2=h0e60522_0
   - sdl2_ttf=2.0.15=h4636d2b_0
   - setuptools=63.4.1=py39haa95532_0
+  - six=1.16.0=pyh6c4a22f_0
   - smpeg2=2.0.0=h6538335_1
   - sqlite=3.39.2=h2bbff1b_0
   - tk=8.6.12=h8ffe710_0
