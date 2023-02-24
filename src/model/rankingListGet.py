@@ -2,37 +2,26 @@
 from db import highscore
 from constant import distConstant as dico
 from model.basemodel import BaseModel
+from util import tetocone_util as teut
 
 class RankingListGet(BaseModel):
 
     def searchMusic(self, searchLavalName, searchGenreName):
-        searchLevelId = 0
-        searchGenreId = ""
+        searchLevelId = teut.getLevelIdByName(searchLavalName)
+        searchGenreId = teut.getGenreIdByName(searchGenreName)
         screenHighScore = []
-
-        for levelName in dico.LEVEL_NAME_DIST.values():
-            if levelName.name == searchLavalName:
-                searchLevelId = levelName.id
-                break
-
-        for genreId in dico.GANRU_NAME_DIST.keys():
-            if dico.GANRU_NAME_DIST[genreId] == searchGenreName:
-                searchGenreId = genreId
-                break
-
         dbHighScoreList = highscore.selectHighScore("", searchLevelId, searchGenreId)
-
         
         for highScoreData in dbHighScoreList:
             if highScoreData["mode"] != 1 or highScoreData["playCount"] == 0:
                 continue
 
             chartId = highScoreData["chartId"]
-            maxRank = self.getMaxRank(chartId)
             rankingData = self.makeRankingData(chartId)
 
             if rankingData["rankingDisPlayedFlg"]:
-                ranking = rankingData["ranking"]            
+                ranking = rankingData["ranking"]
+                maxRank = self.getMaxRank(chartId)          
                 ScoreHash = {
                             "musicName": highScoreData["musicName"],
                             "levelName": dico.LEVEL_NAME_DIST[
