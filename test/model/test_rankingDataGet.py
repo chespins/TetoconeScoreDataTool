@@ -9,7 +9,7 @@ from model import rankingDataGet
 from model.mypagedata import RankingDate
 from exception.loginerror import LoginError
 
-@pytest.mark.freeze_time(datetime.datetime(2022, 11, 20, 19, 10, 10, tzinfo=datetime.timezone.utc))
+@pytest.mark.freeze_time(datetime.datetime(2022, 11, 20, 10, 10, 10, tzinfo=datetime.timezone.utc))
 def test_getLoginRankingData_success(mocker):
     db_chart_mock = mocker.patch("db.chartconstitution.selectedSingleChart", return_value=[{
                     "chartId": "test001_01",

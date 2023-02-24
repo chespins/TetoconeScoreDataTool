@@ -36,9 +36,8 @@ def diffDate(strTime1, strTime2):
 
 
 def getDateTimeNow():
-    date = datetime.datetime.now()
-    date_iso = date.astimezone(datetime.timezone(datetime.timedelta(hours=+0)))
-    utcTime = datetime.datetime.strftime(date_iso, '%Y-%m-%d{0}%H:%M:%S+00:00')
+    date = datetime.datetime.now(tz=datetime.timezone.utc)
+    utcTime = datetime.datetime.strftime(date, '%Y-%m-%d{0}%H:%M:%S+00:00')
     return utcTime.format("T",)
 
 def minDateTime():
