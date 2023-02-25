@@ -2,21 +2,13 @@
 from db import highscore
 from constant import distConstant as dico
 from model.basemodel import BaseModel
+from util import tetocone_util as teut
 
 class HighScoreSearch(BaseModel):
 
     def searchMusic(self, searchName, searchLavalName, searchGenreName, unplayedFlg):
-        searchLevelId = 0
-        searchGenreId = ""
-        for levelName in dico.LEVEL_NAME_DIST.values():
-            if levelName.name == searchLavalName:
-                searchLevelId = levelName.id
-                break
-
-        for genreId in dico.GANRU_NAME_DIST.keys():
-            if dico.GANRU_NAME_DIST[genreId] == searchGenreName:
-                searchGenreId = genreId
-                break
+        searchLevelId = teut.getLevelIdByName(searchLavalName)
+        searchGenreId = teut.getGenreIdByName(searchGenreName)
 
         dbHighScoreList = highscore.selectHighScore(searchName, searchLevelId, searchGenreId)
         margedist = {}
