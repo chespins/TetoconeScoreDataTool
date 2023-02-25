@@ -34,7 +34,7 @@ class AbuchmentScreen(Screen):
     def serchMusic(self):
         serchLavelName = self.ids.LevelSpinnerId.text
         abuchment = self.ids.abuchmentSpinner.text
-        self.abuchmentRv.data = self.abu.serchMusic(abuchment, serchLavelName, self.ungetFlg)
+        self.abuchmentRv.data = self.abu.searchMusic(abuchment, serchLavelName, self.ungetFlg)
 
     def checkboxCheck(self, checkbox):
         self.ungetFlg = checkbox.active

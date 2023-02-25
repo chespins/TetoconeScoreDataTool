@@ -7,7 +7,7 @@ from model.basemodel import BaseModel
 
 class abuchmentModel(BaseModel):
     
-    def serchMusic(self, displaydAbuchment, serchLavalName, ungetFlg):
+    def searchMusic(self, displaydAbuchment, serchLavalName, ungetFlg):
         screenDataDist = {}
         screenDataList = []
 
