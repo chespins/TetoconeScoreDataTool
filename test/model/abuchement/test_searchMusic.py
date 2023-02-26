@@ -19,7 +19,7 @@ def test_empty(mocker):
     fullcombo_mock = mocker.patch.object(testObj, "fullComboAbuchment", return_value=fullcombo_return)
     parfect_return = {"parfect_mock": "1"}
     parfect_mock = mocker.patch.object(testObj, "parfectAbuchment", return_value=parfect_return)
-    makeData_mock = mocker.patch.object(testObj, "makeAbuchmentData", return_value={})
+    makeData_mock = mocker.patch.object(testObj, "makeAbuchmentData", return_value=[])
     db_return = ["DBreturns"]
     db_mock = mocker.patch("db.highscore.selectHighScore", return_value=db_return)
     assert testObj.searchMusic("フルコンボ", "レベル0", True) == []
@@ -41,8 +41,8 @@ def test_one_fullcombo(mocker):
     fullcombo_mock = mocker.patch.object(testObj, "fullComboAbuchment", return_value=fullcombo_return)
     parfect_return = {"parfect_mock": "1"}
     parfect_mock = mocker.patch.object(testObj, "parfectAbuchment", return_value=parfect_return)
-    makeData_mock = mocker.patch.object(testObj, "makeAbuchmentData", return_value={
-            "test001_01": {
+    makeData_mock = mocker.patch.object(testObj, "makeAbuchmentData", return_value=[
+            {
                     "chartId": "test001_01",
                     "musicName": "テスト楽曲1",
                     "levelId": 2,
@@ -50,7 +50,7 @@ def test_one_fullcombo(mocker):
                     "fullComboCount": 4,
                     "playCount": 13,
             },
-        })
+        ])
     db_return = ["DBreturns"]
     db_mock = mocker.patch("db.highscore.selectHighScore", return_value=db_return)
     success = [
@@ -83,8 +83,8 @@ def test_one_parfect(mocker):
     fullcombo_mock = mocker.patch.object(testObj, "fullComboAbuchment", return_value=fullcombo_return)
     parfect_return = {"parfect_mock": "1"}
     parfect_mock = mocker.patch.object(testObj, "parfectAbuchment", return_value=parfect_return)
-    makeData_mock = mocker.patch.object(testObj, "makeAbuchmentData", return_value={
-            "test001_11": {
+    makeData_mock = mocker.patch.object(testObj, "makeAbuchmentData", return_value=[
+            {
                     "chartId": "test001_11",
                     "musicName": "テスト楽曲2",
                     "levelId": 1,
@@ -92,7 +92,7 @@ def test_one_parfect(mocker):
                     "fullComboCount": 2,
                     "playCount": 3,
             },
-        })
+        ])
     db_return = ["DBreturns"]
     db_mock = mocker.patch("db.highscore.selectHighScore", return_value=db_return)
     success = [
@@ -125,8 +125,8 @@ def test_multi_parfect(mocker):
     fullcombo_mock = mocker.patch.object(testObj, "fullComboAbuchment", return_value=fullcombo_return)
     parfect_return = {"parfect_mock": "1"}
     parfect_mock = mocker.patch.object(testObj, "parfectAbuchment", return_value=parfect_return)
-    makeData_mock = mocker.patch.object(testObj, "makeAbuchmentData", return_value={
-            "test001_21": {
+    makeData_mock = mocker.patch.object(testObj, "makeAbuchmentData", return_value=[
+            {
                     "chartId": "test001_21",
                     "musicName": "テスト楽曲1",
                     "levelId": 3,
@@ -134,7 +134,7 @@ def test_multi_parfect(mocker):
                     "fullComboCount": 2,
                     "playCount": 3,
             },
-            "test002_21": {
+            {
                     "chartId": "test002_21",
                     "musicName": "テスト楽曲2",
                     "levelId": 4,
@@ -142,7 +142,7 @@ def test_multi_parfect(mocker):
                     "fullComboCount": 3,
                     "playCount": 4,
             },
-            "test003_21": {
+            {
                     "chartId": "test003_21",
                     "musicName": "テスト楽曲3",
                     "levelId": 5,
@@ -150,7 +150,7 @@ def test_multi_parfect(mocker):
                     "fullComboCount": 0,
                     "playCount": 0,
             },
-        })
+        ])
     db_return = ["DBreturns"]
     db_mock = mocker.patch("db.highscore.selectHighScore", return_value=db_return)
     success = [

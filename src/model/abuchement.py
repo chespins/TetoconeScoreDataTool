@@ -11,16 +11,17 @@ class abuchmentModel(BaseModel):
     def searchMusic(self, displaydAbuchment, serchLavalName, ungetFlg):
         filterList = []
         screenDataList = []
-        highScoreList = self.serchHighScore(serchLavalName)
+        serchLevelId = teut.getLevelIdByName(serchLavalName)
+        highScoreList = dbhs.selectHighScore("", serchLevelId)
 
         if displaydAbuchment == systemconstant.FULL_COMBO:
             filterList = self.fullComboAbuchment(highScoreList, ungetFlg)
         elif displaydAbuchment == systemconstant.PERFECT:
             filterList = self.parfectAbuchment(highScoreList, ungetFlg)
 
-        screenDataDist = self.makeAbuchmentData(filterList)
+        abuchmentList = self.makeAbuchmentData(filterList)
 
-        for abuchment in screenDataDist.values():
+        for abuchment in abuchmentList:
             screenDataList.append({
                         "musicName": abuchment["musicName"],
                         "levelName": dico.LEVEL_NAME_DIST[
@@ -48,7 +49,7 @@ class abuchmentModel(BaseModel):
         return parfectedList
 
     def fullComboAbuchment(self, highScoreList, ungetFlg):
-        parfectedList = []
+        fullComboList = []
         chartIdList = []
         for highScore in highScoreList:
             if highScore["fullComboCount"] > 0:
@@ -56,9 +57,9 @@ class abuchmentModel(BaseModel):
 
         for highScore in highScoreList:
             if (highScore["chartId"] in chartIdList) != ungetFlg:
-                parfectedList.append(highScore)
+                fullComboList.append(highScore)
 
-        return parfectedList
+        return fullComboList
 
     def makeAbuchmentData(self, abuchmentList):
         screenDataDist = {}
@@ -81,11 +82,7 @@ class abuchmentModel(BaseModel):
                     "playCount": playCount,
                 }
 
-        return screenDataDist
-
-    def serchHighScore(self, serchLavalName):
-        serchLevelId = teut.getLevelIdByName(serchLavalName)
-        return dbhs.selectHighScore("", serchLevelId)
+        return list(screenDataDist.values())
 
 
 if __name__ == '__main__':

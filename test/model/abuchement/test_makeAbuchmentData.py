@@ -14,7 +14,7 @@ def setup_test():
 
 def test_empty():
     testObj = setup_test()
-    assert testObj.makeAbuchmentData({}) == {}
+    assert testObj.makeAbuchmentData({}) == []
 
 
 def test_onedata():
@@ -30,8 +30,8 @@ def test_onedata():
                     "playCount": 12,
                     "clearedCount": 1,
                 }]
-    success = {
-            "test001_01": {
+    success = [
+            {
                     "chartId": "test001_01",
                     "musicName": "テスト楽曲1",
                     "levelId": 2,
@@ -39,7 +39,7 @@ def test_onedata():
                     "fullComboCount": 1,
                     "playCount": 12,
             }
-        }
+        ]
     assert testObj.makeAbuchmentData(input) == success
 
 
@@ -67,8 +67,8 @@ def test_two_chart():
                     "playCount": 1,
                     "clearedCount": 0,
                 }]
-    success = {
-            "test001_01": {
+    success = [
+            {
                     "chartId": "test001_01",
                     "musicName": "テスト楽曲1",
                     "levelId": 2,
@@ -76,7 +76,7 @@ def test_two_chart():
                     "fullComboCount": 1,
                     "playCount": 12,
             },
-            "test002_01": {
+            {
                     "chartId": "test002_01",
                     "musicName": "テスト楽曲2",
                     "levelId": 3,
@@ -84,7 +84,7 @@ def test_two_chart():
                     "fullComboCount": 3,
                     "playCount": 1,
             },
-        }
+    ]
     assert testObj.makeAbuchmentData(input) == success
 
 
@@ -112,8 +112,7 @@ def test_two_marge():
                     "playCount": 1,
                     "clearedCount": 0,
                 }]
-    success = {
-            "test001_01": {
+    success = [{
                     "chartId": "test001_01",
                     "musicName": "テスト楽曲1",
                     "levelId": 2,
@@ -121,5 +120,5 @@ def test_two_marge():
                     "fullComboCount": 4,
                     "playCount": 13,
             },
-        }
+        ]
     assert testObj.makeAbuchmentData(input) == success
