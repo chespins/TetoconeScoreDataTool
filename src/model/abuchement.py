@@ -4,17 +4,21 @@ from db import highscore as dbhs
 from constant import distConstant as dico
 from constant import systemconstant
 from model.basemodel import BaseModel
+from util import tetocone_util as teut
 
 class abuchmentModel(BaseModel):
     
     def searchMusic(self, displaydAbuchment, serchLavalName, ungetFlg):
-        screenDataDist = {}
+        filterList = []
         screenDataList = []
+        highScoreList = self.serchHighScore(serchLavalName)
 
         if displaydAbuchment == systemconstant.FULL_COMBO:
-            screenDataDist = self.fullComboAbuchment(serchLavalName, ungetFlg)
+            filterList = self.fullComboAbuchment(highScoreList, ungetFlg)
         elif displaydAbuchment == systemconstant.PERFECT:
-            screenDataDist = self.parfectAbuchment(serchLavalName, ungetFlg)
+            filterList = self.parfectAbuchment(highScoreList, ungetFlg)
+
+        screenDataDist = self.makeAbuchmentData(filterList)
 
         for abuchment in screenDataDist.values():
             screenDataList.append({
@@ -30,10 +34,9 @@ class abuchmentModel(BaseModel):
 
         return screenDataList
 
-    def parfectAbuchment(self, serchLavalName, ungetFlg):
+    def parfectAbuchment(self, highScoreList, ungetFlg):
         parfectedList = []
         chartIdList = []
-        highScoreList = self.serchHighScore(serchLavalName)
         for highScore in highScoreList:
             if highScore["perfectCount"] > 0:
                 chartIdList.append(highScore["chartId"])
@@ -42,22 +45,20 @@ class abuchmentModel(BaseModel):
             if (highScore["chartId"] in chartIdList) != ungetFlg:
                 parfectedList.append(highScore)
 
-        return self.makeAbuchmentData(parfectedList)
+        return parfectedList
 
-    def fullComboAbuchment(self, serchLavalName, ungetFlg):
+    def fullComboAbuchment(self, highScoreList, ungetFlg):
         parfectedList = []
         chartIdList = []
-        highScoreList = self.serchHighScore(serchLavalName)
         for highScore in highScoreList:
             if highScore["fullComboCount"] > 0:
                 chartIdList.append(highScore["chartId"])
-
 
         for highScore in highScoreList:
             if (highScore["chartId"] in chartIdList) != ungetFlg:
                 parfectedList.append(highScore)
 
-        return self.makeAbuchmentData(parfectedList)
+        return parfectedList
 
     def makeAbuchmentData(self, abuchmentList):
         screenDataDist = {}
@@ -69,7 +70,7 @@ class abuchmentModel(BaseModel):
             if chartId in screenDataDist.keys():
                 perfectCount += screenDataDist[chartId]["perfectCount"]
                 fullComboCount += screenDataDist[chartId]["fullComboCount"]
-                playCount += abuchment["playCount"]
+                playCount += screenDataDist[chartId]["playCount"]
 
             screenDataDist[chartId] = {
                     "chartId": chartId,
@@ -83,12 +84,7 @@ class abuchmentModel(BaseModel):
         return screenDataDist
 
     def serchHighScore(self, serchLavalName):
-        serchLevelId = 0
-        for levelName in dico.LEVEL_NAME_DIST.values():
-            if levelName.name == serchLavalName:
-                serchLevelId = levelName.id
-                break
-
+        serchLevelId = teut.getLevelIdByName(serchLavalName)
         return dbhs.selectHighScore("", serchLevelId)
 
 
