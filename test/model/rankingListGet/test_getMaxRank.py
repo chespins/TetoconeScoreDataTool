@@ -13,7 +13,7 @@ def setup_test():
     return testObj
 
 
-def test_getMaxRank_none(mocker):
+def test_none(mocker):
     testObj = setup_test()
     mock = mocker.patch.object(testObj, "getRankData", return_value={})
     
@@ -22,7 +22,7 @@ def test_getMaxRank_none(mocker):
     mock.assert_called_with("test001", {1})
 
 
-def test_getMaxRank_one(mocker):
+def test_one(mocker):
     testObj = setup_test()
     mock = mocker.patch.object(testObj, "getRankData", return_value={
                 "SS": {
@@ -35,7 +35,7 @@ def test_getMaxRank_one(mocker):
     mock.assert_called_with("test002", {1})
 
 
-def test_getMaxRank_two(mocker):
+def test_two(mocker):
     testObj = setup_test()
     mock = mocker.patch.object(testObj, "getRankData", return_value={
                 "SSS": {
@@ -52,7 +52,7 @@ def test_getMaxRank_two(mocker):
     mock.assert_called_with("test003", {1})
 
 
-def test_getMaxRank_three(mocker):
+def test_three(mocker):
     testObj = setup_test()
     mock = mocker.patch.object(testObj, "getRankData", return_value={
                 "AAA": {
@@ -73,7 +73,7 @@ def test_getMaxRank_three(mocker):
     mock.assert_called_with("test004", {1})
 
 
-def test_getMaxRank_BBB(mocker):
+def test_BBB(mocker):
     testObj = setup_test()
     mock = mocker.patch.object(testObj, "getRankData", return_value={
                 "BBB": {
@@ -86,7 +86,7 @@ def test_getMaxRank_BBB(mocker):
     mock.assert_called_with("test005", {1})
 
 
-def test_getMaxRank_Unexpected(mocker):
+def test_Unexpected(mocker):
     testObj = setup_test()
     mock = mocker.patch.object(testObj, "getRankData", return_value={
                 "ABC": {
