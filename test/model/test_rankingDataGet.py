@@ -11,7 +11,7 @@ from model.mypagedata import RankingDate
 from exception.loginerror import LoginError
 
 @pytest.mark.freeze_time(datetime.datetime(2022, 11, 20, 10, 10, 10, tzinfo=datetime.timezone.utc))
-def test_getLoginRankingData_success(mocker):
+def test_success(mocker):
     db_chart_mock = mocker.patch("db.chartconstitution.selectedSingleChart", return_value=[{
                     "chartId": "test001_01",
                     "musicId": "test001",
@@ -46,7 +46,7 @@ def test_getLoginRankingData_success(mocker):
     
 
 @pytest.mark.freeze_time(datetime.datetime(2022, 11, 21, 10, 10, 10, tzinfo=datetime.timezone.utc))
-def test_getLoginRankingData_score_unmatch(mocker):
+def test_score_unmatch(mocker):
     db_chart_mock = mocker.patch("db.chartconstitution.selectedSingleChart", return_value=[{
                     "chartId": "test002_01",
                     "musicId": "test002",
@@ -79,7 +79,7 @@ def test_getLoginRankingData_score_unmatch(mocker):
     sleep_mock.assert_called_with(3)
 
 
-def test_getLoginRankingData_data_error(mocker):
+def test_data_error(mocker):
     db_chart_mock = mocker.patch("db.chartconstitution.selectedSingleChart", return_value=[{
                     "chartId": "test003_01",
                     "musicId": "test003",
@@ -103,7 +103,7 @@ def test_getLoginRankingData_data_error(mocker):
     sleep_mock.assert_called_once()
     sleep_mock.assert_called_with(3)
 
-def test_getLoginRankingData_login_error(mocker):
+def test_login_error(mocker):
     db_chart_mock = mocker.patch("db.chartconstitution.selectedSingleChart", return_value=[{
                     "chartId": "test003_01",
                     "musicId": "test003",
@@ -125,7 +125,7 @@ def test_getLoginRankingData_login_error(mocker):
     db_ranking_mock.assert_not_called()
     sleep_mock.assert_not_called()
 
-def test_getLoginRankingData_chart_error(mocker):
+def test_chart_error(mocker):
     db_chart_mock = mocker.patch("db.chartconstitution.selectedSingleChart", return_value=[{
                     "chartId": "test003_01",
                     "musicId": "test003",
@@ -153,7 +153,7 @@ def test_getLoginRankingData_chart_error(mocker):
     db_ranking_mock.assert_not_called()
     sleep_mock.assert_not_called()
 
-def test_getLoginRankingData_id_error(mocker):
+def test_id_error(mocker):
     db_chart_mock = mocker.patch("db.chartconstitution.selectedSingleChart", return_value=[{
                     "chartId": "test003_01",
                     "musicId": "test003",
@@ -181,7 +181,7 @@ def test_getLoginRankingData_id_error(mocker):
     sleep_mock.assert_not_called()
 
 
-def test_getLoginRankingData_password_error(mocker):
+def test_password_error(mocker):
     db_chart_mock = mocker.patch("db.chartconstitution.selectedSingleChart", return_value=[{
                     "chartId": "test003_01",
                     "musicId": "test003",
