@@ -4,7 +4,7 @@ from unittest.mock import patch
 import sys
 import os
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '..\\..\\src\\'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..\\..\\..\\src\\'))
 from model import rankingListGet
 
 def setup_test():
@@ -12,7 +12,7 @@ def setup_test():
     return testObj
 
 
-def test_searchMusic_empty(mocker):
+def test_empty(mocker):
     testObj = setup_test()
     level_mock = mocker.patch("util.tetocone_util.getLevelIdByName", return_value=0)
     genre_mock = mocker.patch("util.tetocone_util.getGenreIdByName", return_value="")
@@ -30,7 +30,7 @@ def test_searchMusic_empty(mocker):
     db_mock.assert_called_with("", 0, "")
 
 
-def test_searchMusic_one(mocker):
+def test_one(mocker):
     testObj = setup_test()
     level_mock = mocker.patch("util.tetocone_util.getLevelIdByName", return_value=101)
     genre_mock = mocker.patch("util.tetocone_util.getGenreIdByName", return_value="GTEST")
@@ -73,7 +73,7 @@ def test_searchMusic_one(mocker):
     db_mock.assert_called_with("", 101, "GTEST")
 
 
-def test_searchMusic_two(mocker):
+def test_two(mocker):
     testObj = setup_test()
     level_mock = mocker.patch("util.tetocone_util.getLevelIdByName", return_value=101)
     genre_mock = mocker.patch("util.tetocone_util.getGenreIdByName", return_value="GTEST")
@@ -146,7 +146,7 @@ def test_searchMusic_two(mocker):
     db_mock.assert_called_with("", 101, "GTEST")
 
 
-def test_searchMusic_two_no_ranking(mocker):
+def test_two_no_ranking(mocker):
     testObj = setup_test()
     level_mock = mocker.patch("util.tetocone_util.getLevelIdByName", return_value=101)
     genre_mock = mocker.patch("util.tetocone_util.getGenreIdByName", return_value="GTEST")
@@ -204,7 +204,7 @@ def test_searchMusic_two_no_ranking(mocker):
     db_mock.assert_called_with("", 101, "GTEST")
 
 
-def test_searchMusic_not_single(mocker):
+def test_not_single(mocker):
     testObj = setup_test()
     level_mock = mocker.patch("util.tetocone_util.getLevelIdByName", return_value=101)
     genre_mock = mocker.patch("util.tetocone_util.getGenreIdByName", return_value="GTEST")
@@ -232,7 +232,7 @@ def test_searchMusic_not_single(mocker):
     db_mock.assert_called_with("", 101, "GTEST")
     
 
-def test_searchMusic_not_play(mocker):
+def test_not_play(mocker):
     testObj = setup_test()
     level_mock = mocker.patch("util.tetocone_util.getLevelIdByName", return_value=101)
     genre_mock = mocker.patch("util.tetocone_util.getGenreIdByName", return_value="GTEST")
@@ -258,88 +258,3 @@ def test_searchMusic_not_play(mocker):
     ranking_mock.assert_not_called()
     db_mock.assert_called_once()
     db_mock.assert_called_with("", 101, "GTEST")
-
-def test_getMaxRank_none(mocker):
-    testObj = setup_test()
-    mock = mocker.patch.object(testObj, "getRankData", return_value={})
-    
-    assert "---" == testObj.getMaxRank("test001")
-    mock.assert_called_once()
-    mock.assert_called_with("test001", {1})
-
-
-
-def test_getMaxRank_one(mocker):
-    testObj = setup_test()
-    mock = mocker.patch.object(testObj, "getRankData", return_value={
-                "SS": {
-                    "rank": "SS",
-                    "count": 5
-                }})
-    
-    assert testObj.getMaxRank("test002") == "SS"
-    mock.assert_called_once()
-    mock.assert_called_with("test002", {1})
-
-
-def test_getMaxRank_two(mocker):
-    testObj = setup_test()
-    mock = mocker.patch.object(testObj, "getRankData", return_value={
-                "SSS": {
-                    "rank": "SSS",
-                    "count": 5
-                },
-                "SS": {
-                    "rank": "SS",
-                    "count": 2
-                }})
-    
-    assert testObj.getMaxRank("test003") == "SS+"
-    mock.assert_called_once()
-    mock.assert_called_with("test003", {1})
-
-
-def test_getMaxRank_three(mocker):
-    testObj = setup_test()
-    mock = mocker.patch.object(testObj, "getRankData", return_value={
-                "AAA": {
-                    "rank": "AAA",
-                    "count": 5
-                },
-                "AA": {
-                    "rank": "AA",
-                    "count": 2
-                },
-                "BBB": {
-                    "rank": "BBB",
-                    "count": 2
-                }})
-    
-    assert testObj.getMaxRank("test004") == "AA+"
-    mock.assert_called_once()
-    mock.assert_called_with("test004", {1})
-
-
-def test_getMaxRank_BBB(mocker):
-    testObj = setup_test()
-    mock = mocker.patch.object(testObj, "getRankData", return_value={
-                "BBB": {
-                    "rank": "BBB",
-                    "count": 1
-                }})
-    
-    assert testObj.getMaxRank("test005") == "BB+"
-    mock.assert_called_once()
-    mock.assert_called_with("test005", {1})
-
-def test_getMaxRank_Unexpected(mocker):
-    testObj = setup_test()
-    mock = mocker.patch.object(testObj, "getRankData", return_value={
-                "ABC": {
-                    "rank": "ABC",
-                    "count": 1
-                }})
-    
-    assert testObj.getMaxRank("test006") == "---"
-    mock.assert_called_once()
-    mock.assert_called_with("test006", {1})
