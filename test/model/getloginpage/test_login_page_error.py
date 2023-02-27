@@ -174,7 +174,7 @@ def test_rank_other_error(mocker):
         ])
     
 
-def test_rank_chart_empty_error(mocker):
+def test_all_chart_empty_error(mocker):
     db_chart_mock = mocker.patch("db.chartconstitution.selectedSingleChart", return_value=[])
     return_sesson = {"test": 12345}
     login_mock = mocker.patch("model.mypagedata.loginMyPage", return_value=return_sesson)
@@ -208,11 +208,42 @@ def test_rank_chart_empty_error(mocker):
     db_ranking_mock.assert_not_called()
     db_chart_mock.assert_called_once()
     db_chart_mock.assert_called_with(levelIdList=[1,2,3,4,5])
-    assert sleep_mock.call_count == 2
-    sleep_mock.assert_has_calls([
-            mocker.call(3),
-            mocker.call(1),
-        ])
+    sleep_mock.assert_called_once()
+    sleep_mock.assert_called_with(3)
+
+
+def test_rank_chart_empty_error(mocker):
+    db_chart_mock = mocker.patch("db.chartconstitution.selectedSingleChart", return_value=[])
+    return_sesson = {"test": 12345}
+    login_mock = mocker.patch("model.mypagedata.loginMyPage", return_value=return_sesson)
+    stage_data = [{
+                    "test001": "test001"
+                }]
+    score_return = {
+        "responseCode": 200,
+        "responseMessage": "OK",
+        "response": {
+            "id": 123456789,
+            "cardId": "1234567890123456",
+            "name": "test001",
+            "stages": stage_data
+        }
+    }
+    score_get_mock = mocker.patch("model.mypagedata.getConnectPageData", return_value=score_return)
+    insert_mock = mocker.patch("model.datainserts.InsertMusic")
+    ranking_mock = mocker.patch("model.mypagedata.getRankingData", side_effect=HTTPError())
+    db_ranking_mock = mocker.patch("db.ranking.updateRanking")
+    sleep_mock = mocker.patch("model.getloginpage.sleep")
+    result = getloginpage.getLoginPageData("1234567890123456", "password1", False, True, True, True, True, True, True)
+    assert result == "指定された難易度を未プレイもしくはスコアデータが本ツールで取得されていません。\nプレイ状況をご確認ください。"
+    login_mock.assert_not_called()
+    score_get_mock.assert_not_called()
+    insert_mock.assert_not_called()
+    ranking_mock.assert_not_called()
+    db_ranking_mock.assert_not_called()
+    db_chart_mock.assert_called_once()
+    db_chart_mock.assert_called_with(levelIdList=[1,2,3,4,5])
+    sleep_mock.assert_not_called()
 
 
 @pytest.mark.freeze_time(datetime.datetime(2022, 11, 20, 10, 10, 10, tzinfo=datetime.timezone.utc))
