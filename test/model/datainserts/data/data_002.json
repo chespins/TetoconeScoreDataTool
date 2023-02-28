@@ -1,0 +1,382 @@
+{
+    "inputData": [
+        {
+            "id": 1,
+            "playerId": 999999,
+            "stageId": "T0001",
+            "chartId": "T0001_0",
+            "mode": 10,
+            "highScore": 1123456,
+            "maxCombo": 111,
+            "playCount": 3,
+            "clearedCount": 2,
+            "fullComboCount": 1,
+            "perfectCount": 0,
+            "createdAt": "2021-12-12T04:29:30+00:00",
+            "updatedAt": "2023-01-07T08:21:16+00:00",
+            "stage": {
+                "id": "T0001",
+                "chartIdEasy": "T0001_0",
+                "chartIdNormal": "T0001_1",
+                "chartIdHard": "T0001_2",
+                "chartIdManiac": "T0001_3",
+                "chartIdConnect": "T0001_4",
+                "artistId": "AT001",
+                "genreId": "GT001",
+                "title": "TXT_SongTitle_T0001",
+                "startDate": "2021-11-30T15:00:00+00:00",
+                "newDate": "2019-03-09T15:00:00+00:00",
+                "endDate": "2089-12-31T15:00:00+00:00",
+                "releaseMonth": "2021-11-30T15:00:00+00:00",
+                "displayEndDate": "2089-12-31T15:00:00+00:00",
+                "label": "楽曲1"
+            },
+            "rankCounts": [
+                {
+                    "rank": "A",
+                    "count": 1
+                },
+                {
+                    "rank": "BBB",
+                    "count": 1
+                },
+                {
+                    "rank": "S",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "playerId": 999999,
+            "stageId": "T0002",
+            "chartId": "T0002_1",
+            "mode": 11,
+            "highScore": 2123456,
+            "maxCombo": 222,
+            "playCount": 5,
+            "clearedCount": 5,
+            "fullComboCount": 0,
+            "perfectCount": 0,
+            "createdAt": "2022-01-23T05:58:45+00:00",
+            "updatedAt": "2023-02-11T06:39:33+00:00",
+            "stage": {
+                "id": "T0002",
+                "chartIdEasy": "T0002_0",
+                "chartIdNormal": "T0002_1",
+                "chartIdHard": "T0002_2",
+                "chartIdManiac": null,
+                "chartIdConnect": null,
+                "artistId": "AT002",
+                "genreId": "GT002",
+                "title": "TXT_SongTitle_T0002",
+                "startDate": "2021-11-30T15:00:00+00:00",
+                "newDate": "2019-03-10T15:00:00+00:00",
+                "endDate": "2089-12-31T15:00:00+00:00",
+                "releaseMonth": "2021-11-30T15:00:00+00:00",
+                "displayEndDate": "2089-12-31T15:00:00+00:00",
+                "label": "楽曲2"
+            },
+            "rankCounts": [
+                {
+                    "rank": "AAA",
+                    "count": 4
+                },
+                {
+                    "rank": "S",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "playerId": 999999,
+            "stageId": "T0003",
+            "chartId": "T0003_2",
+            "mode": 12,
+            "highScore": 3123456,
+            "maxCombo": 333,
+            "playCount": 3,
+            "clearedCount": 3,
+            "fullComboCount": 1,
+            "perfectCount": 1,
+            "createdAt": "2023-01-06T11:35:29+00:00",
+            "updatedAt": "2023-01-07T06:19:25+00:00",
+            "stage": {
+                "id": "T0003",
+                "chartIdEasy": "T0003_0",
+                "chartIdNormal": "T0003_1",
+                "chartIdHard": "T0003_2",
+                "chartIdManiac": null,
+                "chartIdConnect": null,
+                "artistId": "AT003",
+                "genreId": "GT003",
+                "title": "TXT_SongTitle_T0003",
+                "startDate": "2021-11-30T15:00:00+00:00",
+                "newDate": "2019-03-12T15:00:00+00:00",
+                "endDate": "2089-12-31T15:00:00+00:00",
+                "releaseMonth": "2021-11-30T15:00:00+00:00",
+                "displayEndDate": "2089-12-31T15:00:00+00:00",
+                "label": "楽曲3"
+            },
+            "rankCounts": [
+                {
+                    "rank": "SS",
+                    "count": 3
+                }
+            ]
+        }
+    ],
+    "DBData": [
+        [
+            {
+                "chartId": "T0001_0",
+                "mode": 10,
+                "highScore": 1123451,
+                "maxCombo": 111,
+                "updateTime": "2023-01-01T08:21:16+00:00"
+            },
+            {
+                "chartId": "T0001_0",
+                "mode": 10,
+                "highScore": 1123456,
+                "maxCombo": 110,
+                "updateTime": "2023-01-02T08:21:16+00:00"
+            }
+        ],
+        [
+            {
+                "chartId": "T0002_1",
+                "mode": 11,
+                "highScore": 2123451,
+                "maxCombo": 211,
+                "updateTime": "2023-01-01T08:23:16+00:00"
+            },
+            {
+                "chartId": "T0002_1",
+                "mode": 11,
+                "highScore": 2123456,
+                "maxCombo": 222,
+                "updateTime": "2023-01-02T08:23:16+00:00"
+            }
+        ],
+        []
+    ],
+    "outputs": {
+        "musicDist": {
+            "T0001": {
+                "id": "T0001",
+                "chartIdEasy": "T0001_0",
+                "chartIdNormal": "T0001_1",
+                "chartIdHard": "T0001_2",
+                "chartIdManiac": "T0001_3",
+                "chartIdConnect": "T0001_4",
+                "artistId": "AT001",
+                "genreId": "GT001",
+                "title": "TXT_SongTitle_T0001",
+                "startDate": "2021-11-30T15:00:00+00:00",
+                "newDate": "2019-03-09T15:00:00+00:00",
+                "endDate": "2089-12-31T15:00:00+00:00",
+                "releaseMonth": "2021-11-30T15:00:00+00:00",
+                "displayEndDate": "2089-12-31T15:00:00+00:00",
+                "label": "楽曲1",
+                "name": "楽曲1"
+            },
+            "T0002": {
+                "id": "T0002",
+                "chartIdEasy": "T0002_0",
+                "chartIdNormal": "T0002_1",
+                "chartIdHard": "T0002_2",
+                "chartIdManiac": null,
+                "chartIdConnect": null,
+                "artistId": "AT002",
+                "genreId": "GT002",
+                "title": "TXT_SongTitle_T0002",
+                "startDate": "2021-11-30T15:00:00+00:00",
+                "newDate": "2019-03-10T15:00:00+00:00",
+                "endDate": "2089-12-31T15:00:00+00:00",
+                "releaseMonth": "2021-11-30T15:00:00+00:00",
+                "displayEndDate": "2089-12-31T15:00:00+00:00",
+                "label": "楽曲2",
+                "name": "楽曲2"
+            },
+            "T0003": {
+                "id": "T0003",
+                "chartIdEasy": "T0003_0",
+                "chartIdNormal": "T0003_1",
+                "chartIdHard": "T0003_2",
+                "chartIdManiac": null,
+                "chartIdConnect": null,
+                "artistId": "AT003",
+                "genreId": "GT003",
+                "title": "TXT_SongTitle_T0003",
+                "startDate": "2021-11-30T15:00:00+00:00",
+                "newDate": "2019-03-12T15:00:00+00:00",
+                "endDate": "2089-12-31T15:00:00+00:00",
+                "releaseMonth": "2021-11-30T15:00:00+00:00",
+                "displayEndDate": "2089-12-31T15:00:00+00:00",
+                "label": "楽曲3",
+                "name": "楽曲3"
+            }
+        },
+        "chartDist": {
+            "T0001_0": {
+                "chartId": "T0001_0",
+                "musicId": "T0001",
+                "levelId": 1
+            },
+            "T0001_1": {
+                "chartId": "T0001_1",
+                "musicId": "T0001",
+                "levelId": 2
+            },
+            "T0001_2": {
+                "chartId": "T0001_2",
+                "musicId": "T0001",
+                "levelId": 3
+            },
+            "T0001_3": {
+                "chartId": "T0001_3",
+                "musicId": "T0001",
+                "levelId": 4
+            },
+            "T0001_4": {
+                "chartId": "T0001_4",
+                "musicId": "T0001",
+                "levelId": 5
+            },
+            "T0002_0": {
+                "chartId": "T0002_0",
+                "musicId": "T0002",
+                "levelId": 1
+            },
+            "T0002_1": {
+                "chartId": "T0002_1",
+                "musicId": "T0002",
+                "levelId": 2
+            },
+            "T0002_2": {
+                "chartId": "T0002_2",
+                "musicId": "T0002",
+                "levelId": 3
+            },
+            "T0003_0": {
+                "chartId": "T0003_0",
+                "musicId": "T0003",
+                "levelId": 1
+            },
+            "T0003_1": {
+                "chartId": "T0003_1",
+                "musicId": "T0003",
+                "levelId": 2
+            },
+            "T0003_2": {
+                "chartId": "T0003_2",
+                "musicId": "T0003",
+                "levelId": 3
+            }
+        },
+        "highScoreList": [
+            {
+                "chartId": "T0001_0",
+                "mode": 10,
+                "musicId": "T0001",
+                "highScore": 1123456,
+                "maxCombo": 111,
+                "playCount": 3,
+                "clearedCount": 2,
+                "fullComboCount": 1,
+                "perfectCount": 0,
+                "updateTime": "2023-01-07T08:21:16+00:00"
+            },
+            {
+                "chartId": "T0002_1",
+                "mode": 11,
+                "musicId": "T0002",
+                "highScore": 2123456,
+                "maxCombo": 222,
+                "playCount": 5,
+                "clearedCount": 5,
+                "fullComboCount": 0,
+                "perfectCount": 0,
+                "updateTime": "2023-02-11T06:39:33+00:00"
+            },
+            {
+                "chartId": "T0003_2",
+                "mode": 12,
+                "musicId": "T0003",
+                "highScore": 3123456,
+                "maxCombo": 333,
+                "playCount": 3,
+                "clearedCount": 3,
+                "fullComboCount": 1,
+                "perfectCount": 1,
+                "updateTime": "2023-01-07T06:19:25+00:00"
+            }
+        ],
+        "highScoreHistoryList": [
+            {
+                "chartId": "T0001_0",
+                "mode": 10,
+                "musicId": "T0001",
+                "highScore": 1123456,
+                "maxCombo": 111,
+                "playCount": 3,
+                "clearedCount": 2,
+                "fullComboCount": 1,
+                "perfectCount": 0,
+                "updateTime": "2023-01-07T08:21:16+00:00"
+            },
+            {
+                "chartId": "T0003_2",
+                "mode": 12,
+                "musicId": "T0003",
+                "highScore": 3123456,
+                "maxCombo": 333,
+                "playCount": 3,
+                "clearedCount": 3,
+                "fullComboCount": 1,
+                "perfectCount": 1,
+                "updateTime": "2023-01-07T06:19:25+00:00"
+            }
+        ],
+        "rankHistoryList": [
+            {
+                "chartId": "T0001_0",
+                "mode": 10,
+                "rank": "A",
+                "count": 1
+            },
+            {
+                "chartId": "T0001_0",
+                "mode": 10,
+                "rank": "BBB",
+                "count": 1
+            },
+            {
+                "chartId": "T0001_0",
+                "mode": 10,
+                "rank": "S",
+                "count": 1
+            },
+            {
+                "chartId": "T0002_1",
+                "mode": 11,
+                "rank": "AAA",
+                "count": 4
+            },
+            {
+                "chartId": "T0002_1",
+                "mode": 11,
+                "rank": "S",
+                "count": 1
+            },
+            {
+                "chartId": "T0003_2",
+                "mode": 12,
+                "rank": "SS",
+                "count": 3
+            }
+        ]
+    }
+}
