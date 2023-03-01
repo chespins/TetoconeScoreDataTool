@@ -25,12 +25,12 @@ class HighScoreFormusic(BaseModel):
 
     def getHighScoreByMusic(self, chartId, displayedMode):
         modeList = dico.DISPLAYED_MODE_DIST[displayedMode].searchedMode
+        dbresults = dbhs.selectHighScoreByChartId(chartId)
         score = highScoreData()
 
-        for mode in modeList:
-            dbresult = dbhs.selectHighScoreByAllKey(chartId, mode)
-            if len(dbresult) == 1:
-                score.setHighScore(dbresult[0])
+        for dbresult in dbresults:
+            if dbresult["mode"] in modeList:
+                score.setHighScore(dbresult)
 
         return score.makeViewData()
 
