@@ -25,7 +25,7 @@ class HighScoreHistoryDetailsScreen(Screen):
 
     def on_pre_enter(self, **kwargs):
         if self.chartId == "":
-            self.chartId = self.commonData.getDisplayChartId()
+            self.chartId = self.commonData.displayChartId
 
         musicInfo = self.score.getMusicName(self.chartId)
         self.ids.levelName.text = musicInfo["levelName"]

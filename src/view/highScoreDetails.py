@@ -18,7 +18,6 @@ class HighScoreDetailsScreen(Screen):
     chartId = StringProperty()
     rankHistoryRv = ObjectProperty()
     dataSet = HighScoreFormusic()
-    sourceWidget = StringProperty()
 
     def __init__(self, comonData: AppCommonData, **kwargs):
         super(HighScoreDetailsScreen, self).__init__(**kwargs)
@@ -26,12 +25,11 @@ class HighScoreDetailsScreen(Screen):
 
     def on_pre_enter(self, **kwargs):
         if self.chartId == "":
-            self.chartId = self.commonData.getDisplayChartId()
-            self.sourceWidget = self.commonData.sourceWidget
+            self.chartId = self.commonData.displayChartId
             self.setMusicDate()
             modePulldownData = self.dataSet.makeModeNamePulldown(self.chartId)
             defaultMode = modePulldownData[0]
-            if self.sourceWidget == "rankingList":
+            if self.commonData.isWidgetRankingData():
                 defaultMode = self.dataSet.getSinglePlayName()
 
             self.ids.modeSpinnerId.values = modePulldownData
@@ -44,7 +42,7 @@ class HighScoreDetailsScreen(Screen):
     def resetScreen(self, **kwargs) :
         self.chartId = ""
         self.rankHistoryRv.data = []
-        self.commonData.setDisplayChartId("")
+        return self.commonData.clearSourceWidget()
 
     def setMusicDate(self):
         musicInfo = self.dataSet.getMusicName(self.chartId)

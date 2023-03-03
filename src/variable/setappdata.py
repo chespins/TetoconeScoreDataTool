@@ -19,16 +19,18 @@ class AppCommonData(EventDispatcher):
         super(AppCommonData, self).__init__(**kwargs)
         (self.checkDbresult, self.dbFileVersion) = crd.checkDbVersion()
 
-    def setDisplayChartId(self, chartId):
+    def setHistoryData(self, chartId, sourceWidget):
         self.displayChartId = chartId
-
-    def getDisplayChartId(self):
-        return self.displayChartId
+        self.sourceWidget = sourceWidget
 
     def clearSourceWidget(self):
         sourceWidget = self.sourceWidget
+        self.displayChartId = ""
         self.sourceWidget = ""
         return sourceWidget
+    
+    def isWidgetRankingData(self):
+        return self.sourceWidget == "rankingList"
 
     def checkRankingData(self):
         if self.dbFileVersion == DB_VERSION_08:
