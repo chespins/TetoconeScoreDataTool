@@ -15,9 +15,9 @@ class abuchmentModel(BaseModel):
         highScoreList = dbhs.selectHighScore("", serchLevelId)
 
         if displaydAbuchment == systemconstant.FULL_COMBO:
-            filterList = self.fullComboAbuchment(highScoreList, ungetFlg)
+            filterList = self.filterScoreData(highScoreList, ungetFlg, "fullComboCount")
         elif displaydAbuchment == systemconstant.PERFECT:
-            filterList = self.parfectAbuchment(highScoreList, ungetFlg)
+            filterList = self.filterScoreData(highScoreList, ungetFlg, "perfectCount")
 
         abuchmentList = self.makeAbuchmentData(filterList)
 
@@ -34,12 +34,6 @@ class abuchmentModel(BaseModel):
                 })
 
         return screenDataList
-
-    def parfectAbuchment(self, highScoreList, ungetFlg):
-        return self.filterScoreData(highScoreList, ungetFlg, "perfectCount")
-
-    def fullComboAbuchment(self, highScoreList, ungetFlg):
-        return self.filterScoreData(highScoreList, ungetFlg, "fullComboCount")
     
     def filterScoreData(self, highScoreList, ungetFlg, targetParam):
         filteredList = []

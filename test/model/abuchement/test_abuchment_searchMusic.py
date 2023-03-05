@@ -15,10 +15,8 @@ def setup_test():
 def test_empty(mocker):
     testObj = setup_test()
     level_mock = mocker.patch("util.tetocone_util.getLevelIdByName", return_value=0)
-    fullcombo_return = {"fullcombo_mock": "1"}
-    fullcombo_mock = mocker.patch.object(testObj, "fullComboAbuchment", return_value=fullcombo_return)
-    parfect_return = {"parfect_mock": "1"}
-    parfect_mock = mocker.patch.object(testObj, "parfectAbuchment", return_value=parfect_return)
+    filter_return = {"filter_mock": "1"}
+    filter_mock = mocker.patch.object(testObj, "filterScoreData", return_value=filter_return)
     makeData_mock = mocker.patch.object(testObj, "makeAbuchmentData", return_value=[])
     db_return = ["DBreturns"]
     db_mock = mocker.patch("db.highscore.selectHighScore", return_value=db_return)
@@ -27,20 +25,17 @@ def test_empty(mocker):
     level_mock.assert_called_with("レベル0")
     db_mock.assert_called_once()
     db_mock.assert_called_with("", 0)
-    fullcombo_mock.assert_called_once()
-    fullcombo_mock.assert_called_with(db_return, True)
-    parfect_mock.assert_not_called()
+    filter_mock.assert_called_once()
+    filter_mock.assert_called_with(db_return, True, "fullComboCount")
     makeData_mock.assert_called_once()
-    makeData_mock.assert_called_with(fullcombo_return)
+    makeData_mock.assert_called_with(filter_return)
 
 
 def test_one_fullcombo(mocker):
     testObj = setup_test()
     level_mock = mocker.patch("util.tetocone_util.getLevelIdByName", return_value=0)
-    fullcombo_return = {"fullcombo_mock": "1"}
-    fullcombo_mock = mocker.patch.object(testObj, "fullComboAbuchment", return_value=fullcombo_return)
-    parfect_return = {"parfect_mock": "1"}
-    parfect_mock = mocker.patch.object(testObj, "parfectAbuchment", return_value=parfect_return)
+    filter_return = {"filter_mock": "1"}
+    filter_mock = mocker.patch.object(testObj, "filterScoreData", return_value=filter_return)
     makeData_mock = mocker.patch.object(testObj, "makeAbuchmentData", return_value=[
             {
                     "chartId": "test001_01",
@@ -69,20 +64,17 @@ def test_one_fullcombo(mocker):
     level_mock.assert_called_with("レベル0")
     db_mock.assert_called_once()
     db_mock.assert_called_with("", 0)
-    fullcombo_mock.assert_called_once()
-    fullcombo_mock.assert_called_with(db_return, False)
-    parfect_mock.assert_not_called()
+    filter_mock.assert_called_once()
+    filter_mock.assert_called_with(db_return, False, "fullComboCount")
     makeData_mock.assert_called_once()
-    makeData_mock.assert_called_with(fullcombo_return)
+    makeData_mock.assert_called_with(filter_return)
 
 
 def test_one_parfect(mocker):
     testObj = setup_test()
     level_mock = mocker.patch("util.tetocone_util.getLevelIdByName", return_value=0)
-    fullcombo_return = {"fullcombo_mock": "1"}
-    fullcombo_mock = mocker.patch.object(testObj, "fullComboAbuchment", return_value=fullcombo_return)
-    parfect_return = {"parfect_mock": "1"}
-    parfect_mock = mocker.patch.object(testObj, "parfectAbuchment", return_value=parfect_return)
+    filter_return = {"filter_mock": "1"}
+    filter_mock = mocker.patch.object(testObj, "filterScoreData", return_value=filter_return)
     makeData_mock = mocker.patch.object(testObj, "makeAbuchmentData", return_value=[
             {
                     "chartId": "test001_11",
@@ -111,20 +103,17 @@ def test_one_parfect(mocker):
     level_mock.assert_called_with("レベル1")
     db_mock.assert_called_once()
     db_mock.assert_called_with("", 0)
-    fullcombo_mock.assert_not_called()
-    parfect_mock.assert_called_once()
-    parfect_mock.assert_called_with(db_return, False)
+    filter_mock.assert_called_once()
+    filter_mock.assert_called_with(db_return, False, "perfectCount")
     makeData_mock.assert_called_once()
-    makeData_mock.assert_called_with(parfect_return)
+    makeData_mock.assert_called_with(filter_return)
 
     
 def test_multi_parfect(mocker):
     testObj = setup_test()
     level_mock = mocker.patch("util.tetocone_util.getLevelIdByName", return_value=0)
-    fullcombo_return = {"fullcombo_mock": "1"}
-    fullcombo_mock = mocker.patch.object(testObj, "fullComboAbuchment", return_value=fullcombo_return)
-    parfect_return = {"parfect_mock": "1"}
-    parfect_mock = mocker.patch.object(testObj, "parfectAbuchment", return_value=parfect_return)
+    filter_return = {"filter_mock": "1"}
+    filter_mock = mocker.patch.object(testObj, "filterScoreData", return_value=filter_return)
     makeData_mock = mocker.patch.object(testObj, "makeAbuchmentData", return_value=[
             {
                     "chartId": "test001_21",
@@ -187,8 +176,7 @@ def test_multi_parfect(mocker):
     level_mock.assert_called_with("レベル1")
     db_mock.assert_called_once()
     db_mock.assert_called_with("", 0)
-    fullcombo_mock.assert_not_called()
-    parfect_mock.assert_called_once()
-    parfect_mock.assert_called_with(db_return, False)
+    filter_mock.assert_called_once()
+    filter_mock.assert_called_with(db_return, False, "perfectCount")
     makeData_mock.assert_called_once()
-    makeData_mock.assert_called_with(parfect_return)
+    makeData_mock.assert_called_with(filter_return)
