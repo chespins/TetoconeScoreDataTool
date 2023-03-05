@@ -8,9 +8,10 @@ from kivy.lang import Builder
 from model.rankingListGet import RankingListGet as rank
 from variable.setappdata import AppCommonData
 from util import util
-from constant.systemconstant import ABUCHMENT_LIST
+from constant.systemconstant import KIVY_CURRENT_DIR
 
-Builder.load_file(util.findDataFile('./kvfile/rankingList.kv'))
+
+Builder.load_file(util.findDataFile(KIVY_CURRENT_DIR + 'rankingList.kv'))
 
 
 class RankingListScreen(Screen):

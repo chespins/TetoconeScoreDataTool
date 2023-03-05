@@ -9,8 +9,9 @@ from model import rankingDataGet as ins
 from variable.setappdata import AppCommonData
 from constant import messeges
 from util import util
+from constant.systemconstant import KIVY_CURRENT_DIR
 
-Builder.load_file(util.findDataFile('./kvfile/rankingDataGet.kv'))
+Builder.load_file(util.findDataFile(KIVY_CURRENT_DIR + 'rankingDataGet.kv'))
 
 
 class RankingDataGetScreen(Screen):

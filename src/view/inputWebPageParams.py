@@ -9,8 +9,9 @@ from kivy.clock import Clock
 from model import getloginpage as ins
 from constant import messeges
 from util import util
+from constant.systemconstant import KIVY_CURRENT_DIR
 
-Builder.load_file(util.findDataFile('./kvfile/inputWebPageParams.kv'))
+Builder.load_file(util.findDataFile(KIVY_CURRENT_DIR + 'inputWebPageParams.kv'))
 
 
 class InputWebPageParamsScreen(Screen):

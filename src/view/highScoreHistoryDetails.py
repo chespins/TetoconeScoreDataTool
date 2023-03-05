@@ -9,8 +9,10 @@ from kivy.lang import Builder
 from variable.setappdata import AppCommonData
 from model.highScoreHistory import HighScoreHistory
 from util import util
+from constant.systemconstant import KIVY_CURRENT_DIR
 
-Builder.load_file(util.findDataFile('./kvfile/highScoreHistoryDetails.kv'))
+
+Builder.load_file(util.findDataFile(KIVY_CURRENT_DIR + 'highScoreHistoryDetails.kv'))
 
 
 class HighScoreHistoryDetailsScreen(Screen):

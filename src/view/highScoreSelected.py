@@ -10,8 +10,9 @@ from kivy.lang import Builder
 from model.highscoreSearch import HighScoreSearch
 from variable.setappdata import AppCommonData
 from util import util
+from constant.systemconstant import KIVY_CURRENT_DIR
 
-Builder.load_file(util.findDataFile('./kvfile/highScoreSelected.kv'))
+Builder.load_file(util.findDataFile(KIVY_CURRENT_DIR + 'highScoreSelected.kv'))
 
 
 class HighScoreSelectScreen(Screen):

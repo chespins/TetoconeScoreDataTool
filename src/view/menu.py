@@ -5,8 +5,9 @@ from kivy.lang import Builder
 
 from util import util
 from variable.setappdata import AppCommonData
+from constant.systemconstant import KIVY_CURRENT_DIR
 
-Builder.load_file(util.findDataFile('./kvfile/menu.kv'))
+Builder.load_file(util.findDataFile(KIVY_CURRENT_DIR + 'menu.kv'))
 
 
 class MenuScreen(Screen):

@@ -10,8 +10,9 @@ from model.abuchement import abuchmentModel
 from variable.setappdata import AppCommonData
 from util import util
 from constant.systemconstant import ABUCHMENT_LIST
+from constant.systemconstant import KIVY_CURRENT_DIR
 
-Builder.load_file(util.findDataFile('./kvfile/abuchement.kv'))
+Builder.load_file(util.findDataFile(KIVY_CURRENT_DIR + 'abuchement.kv'))
 
 
 class AbuchmentScreen(Screen):

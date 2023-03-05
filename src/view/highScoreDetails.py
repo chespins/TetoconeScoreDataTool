@@ -6,12 +6,13 @@ from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.lang import Builder
-from variable.setappdata import AppCommonData
 
 from model.highscoredetails import HighScoreFormusic
 from util import util
+from constant.systemconstant import KIVY_CURRENT_DIR
+from variable.setappdata import AppCommonData
 
-Builder.load_file(util.findDataFile('./kvfile/highScoreDetails.kv'))
+Builder.load_file(util.findDataFile(KIVY_CURRENT_DIR + 'highScoreDetails.kv'))
 
 
 class HighScoreDetailsScreen(Screen):

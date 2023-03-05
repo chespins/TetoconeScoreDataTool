@@ -5,8 +5,10 @@ from kivy.lang import Builder
 
 from util import util
 from constant.systemconstant import LIBRARY_LICENSE_DIR
+from constant.systemconstant import KIVY_CURRENT_DIR
 
-Builder.load_file(util.findDataFile('./kvfile/license.kv'))
+
+Builder.load_file(util.findDataFile(KIVY_CURRENT_DIR + 'license.kv'))
 
 
 class LicenseScreen(Screen):

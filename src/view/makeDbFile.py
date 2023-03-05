@@ -9,7 +9,8 @@ from variable.setappdata import AppCommonData
 from constant import systemconstant as cons
 from constant import messeges as msg
 
-Builder.load_file(util.findDataFile('./kvfile/makeDbFile.kv'))
+
+Builder.load_file(util.findDataFile(cons.KIVY_CURRENT_DIR + 'makeDbFile.kv'))
 
 
 class makeDbFileScreen(Screen):
