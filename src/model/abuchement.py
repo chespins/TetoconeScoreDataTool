@@ -36,30 +36,24 @@ class abuchmentModel(BaseModel):
         return screenDataList
 
     def parfectAbuchment(self, highScoreList, ungetFlg):
-        parfectedList = []
-        chartIdList = []
-        for highScore in highScoreList:
-            if highScore["perfectCount"] > 0:
-                chartIdList.append(highScore["chartId"])
-
-        for highScore in highScoreList:
-            if (highScore["chartId"] in chartIdList) != ungetFlg:
-                parfectedList.append(highScore)
-
-        return parfectedList
+        return self.filterScoreData(highScoreList, ungetFlg, "perfectCount")
 
     def fullComboAbuchment(self, highScoreList, ungetFlg):
-        fullComboList = []
+        return self.filterScoreData(highScoreList, ungetFlg, "fullComboCount")
+    
+    def filterScoreData(self, highScoreList, ungetFlg, targetParam):
+        filteredList = []
         chartIdList = []
         for highScore in highScoreList:
-            if highScore["fullComboCount"] > 0:
+            if highScore[targetParam] > 0:
                 chartIdList.append(highScore["chartId"])
 
         for highScore in highScoreList:
             if (highScore["chartId"] in chartIdList) != ungetFlg:
-                fullComboList.append(highScore)
+                filteredList.append(highScore)
 
-        return fullComboList
+        return filteredList
+
 
     def makeAbuchmentData(self, abuchmentList):
         screenDataDist = {}
