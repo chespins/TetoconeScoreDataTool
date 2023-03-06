@@ -54,7 +54,6 @@ DISPLAYED_MODE_DIST = {
 
 class apiLankName:
     def __init__(self, apiLank, gameLank, colorCode):
-        self.id = id
         self.apiLank = apiLank
         self.gameLank = gameLank
         self.colorCode = colorCode
