@@ -11,7 +11,7 @@ from db import ranking
 
 
 def test_updateRanking_nodata():
-    befour_db_name = "test/db/ranking/befour_test.db"
+    befour_db_name = "test/db/befour_test.db"
     test_file_name = common_db_setup.copy_file_db(befour_db_name)
     ranking.TETOCONE_DB_NAME = test_file_name
     ranking.updateRanking("test000_00", 9012, "2023-01-10T20:09:01+00:00")
@@ -19,7 +19,7 @@ def test_updateRanking_nodata():
 
 
 def test_updateRanking_dataUpdate():
-    befour_db_name = "test/db/ranking/befour_test.db"
+    befour_db_name = "test/db/befour_test.db"
     test_file_name = common_db_setup.copy_file_db(befour_db_name)
     ranking.TETOCONE_DB_NAME = test_file_name
     ranking.updateRanking("test001_01", 1234, "2020-02-10T20:09:01+00:00")
@@ -27,7 +27,7 @@ def test_updateRanking_dataUpdate():
 
 
 def test_selectRankingForChartId_nodata():
-    befour_db_name = "test/db/ranking/befour_test.db"
+    befour_db_name = "test/db/befour_test.db"
     test_file_name = common_db_setup.copy_file_db(befour_db_name)
     ranking.TETOCONE_DB_NAME = test_file_name
     success = []
@@ -35,7 +35,7 @@ def test_selectRankingForChartId_nodata():
 
 
 def test_selectRankingForChartId():
-    befour_db_name = "test/db/ranking/befour_test.db"
+    befour_db_name = "test/db/befour_test.db"
     test_file_name = common_db_setup.copy_file_db(befour_db_name)
     ranking.TETOCONE_DB_NAME = test_file_name
     success = [{
@@ -47,7 +47,7 @@ def test_selectRankingForChartId():
 
 
 def test_selectRankingList_none_level():
-    befour_db_name = "test/db/ranking/befour_test.db"
+    befour_db_name = "test/db/befour_test.db"
     test_file_name = common_db_setup.copy_file_db(befour_db_name)
     ranking.TETOCONE_DB_NAME = test_file_name
     success = []
@@ -55,7 +55,7 @@ def test_selectRankingList_none_level():
 
 
 def test_selectRankingList_none_genre():
-    befour_db_name = "test/db/ranking/befour_test.db"
+    befour_db_name = "test/db/befour_test.db"
     test_file_name = common_db_setup.copy_file_db(befour_db_name)
     ranking.TETOCONE_DB_NAME = test_file_name
     success = []
@@ -63,7 +63,7 @@ def test_selectRankingList_none_genre():
 
 
 def test_selectRankingList_one_level():
-    befour_db_name = "test/db/ranking/befour_test.db"
+    befour_db_name = "test/db/befour_test.db"
     test_file_name = common_db_setup.copy_file_db(befour_db_name)
     ranking.TETOCONE_DB_NAME = test_file_name
     success = [{
@@ -77,7 +77,7 @@ def test_selectRankingList_one_level():
 
 
 def test_selectRankingList_one_genru():
-    befour_db_name = "test/db/ranking/befour_test.db"
+    befour_db_name = "test/db/befour_test.db"
     test_file_name = common_db_setup.copy_file_db(befour_db_name)
     ranking.TETOCONE_DB_NAME = test_file_name
     success = [{
@@ -91,7 +91,7 @@ def test_selectRankingList_one_genru():
 
 
 def test_selectRankingList_one_all():
-    befour_db_name = "test/db/ranking/befour_test.db"
+    befour_db_name = "test/db/befour_test.db"
     test_file_name = common_db_setup.copy_file_db(befour_db_name)
     ranking.TETOCONE_DB_NAME = test_file_name
     success = [{
@@ -105,7 +105,7 @@ def test_selectRankingList_one_all():
 
 
 def test_selectRankingList_three():
-    befour_db_name = "test/db/ranking/befour_test.db"
+    befour_db_name = "test/db/befour_test.db"
     test_file_name = common_db_setup.copy_file_db(befour_db_name)
     ranking.TETOCONE_DB_NAME = test_file_name
     success = [{
@@ -134,7 +134,7 @@ def test_selectRankingList_three():
 
 
 def test_selectRankingList_noparam():
-    befour_db_name = "test/db/ranking/befour_test.db"
+    befour_db_name = "test/db/befour_test.db"
     test_file_name = common_db_setup.copy_file_db(befour_db_name)
     ranking.TETOCONE_DB_NAME = test_file_name
     success = [{

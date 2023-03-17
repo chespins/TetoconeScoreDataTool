@@ -21,11 +21,3 @@ def remove_test_db_file():
 def copy_file_db(fileName):
     shutil.copy(fileName, test_file_name)
     return test_file_name
-
-
-def set_test_db_name(db_name):
-    systemconstant.TETOCONE_DB_NAME = db_name
-
-
-def reset_db_name():
-    systemconstant.TETOCONE_DB_NAME = BACKUP_DB_NAME
