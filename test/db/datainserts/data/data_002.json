@@ -1,0 +1,65 @@
+{
+    "musicDist": {
+        "T0004": {
+            "id": "T0004",
+            "chartIdEasy": "T0004_0",
+            "chartIdNormal": "T0004_1",
+            "chartIdHard": "T0004_2",
+            "chartIdManiac": "T0004_3",
+            "chartIdConnect": "T0004_4",
+            "artistId": "AT004",
+            "genreId": "GT004",
+            "title": "TXT_SongTitle_T0004",
+            "startDate": "2021-11-30T15:00:00+00:00",
+            "newDate": "2019-03-09T15:00:00+00:00",
+            "endDate": "2089-12-31T15:00:00+00:00",
+            "releaseMonth": "2021-11-30T15:00:00+00:00",
+            "displayEndDate": "2089-12-31T15:00:00+00:00",
+            "label": "楽曲4",
+            "name": "楽曲4"
+        }
+    },
+    "chartDist": {
+        "T0004_0": {
+            "chartId": "T0004_0",
+            "musicId": "T0004",
+            "levelId": 1
+        }
+    },
+    "highScoreList": [
+        {
+            "chartId": "T0004_0",
+            "mode": 20,
+            "musicId": "T0004",
+            "highScore": 1123456,
+            "maxCombo": 111,
+            "playCount": 3,
+            "clearedCount": 2,
+            "fullComboCount": 1,
+            "perfectCount": 0,
+            "updateTime": "2023-01-07T08:21:16+00:00"
+        }
+    ],
+    "highScoreHistoryList": [
+        {
+            "chartId": "T0004_0",
+            "mode": 20,
+            "musicId": "T0004",
+            "highScore": 1123456,
+            "maxCombo": 111,
+            "playCount": 30,
+            "clearedCount": 2,
+            "fullComboCount": 1,
+            "perfectCount": 0,
+            "updateTime": "2023-01-07T08:21:16+00:00"
+        }
+    ],
+    "rankHistoryList": [
+        {
+            "chartId": "T0004_0",
+            "mode": 10,
+            "rank": "A",
+            "count": 10
+        }
+    ]
+}

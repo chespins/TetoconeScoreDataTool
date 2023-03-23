@@ -1,0 +1,134 @@
+{
+    "musicDist": {
+        "T0001": {
+            "id": "T0001",
+            "chartIdEasy": "T0001_0",
+            "chartIdNormal": "T0001_1",
+            "chartIdHard": "T0001_2",
+            "chartIdManiac": "T0001_3",
+            "chartIdConnect": "T0001_4",
+            "artistId": "AT001",
+            "genreId": "GT001",
+            "title": "TXT_SongTitle_T0001",
+            "startDate": "2021-11-30T15:00:00+00:00",
+            "newDate": "2019-03-09T15:00:00+00:00",
+            "endDate": "2089-12-31T15:00:00+00:00",
+            "releaseMonth": "2022-11-30T15:00:00+00:00",
+            "displayEndDate": "2089-12-31T15:00:00+00:00",
+            "label": "楽曲1",
+            "name": "楽曲1"
+        },
+        "T0002": {
+            "id": "T0002",
+            "chartIdEasy": "T0002_0",
+            "chartIdNormal": "T0002_1",
+            "chartIdHard": "T0002_2",
+            "chartIdManiac": null,
+            "chartIdConnect": null,
+            "artistId": "AT002",
+            "genreId": "GT002",
+            "title": "TXT_SongTitle_T0002",
+            "startDate": "2021-11-30T15:00:00+00:00",
+            "newDate": "2019-03-10T15:00:00+00:00",
+            "endDate": "2089-12-31T15:00:00+00:00",
+            "releaseMonth": "2022-11-30T15:00:00+00:00",
+            "displayEndDate": "2089-12-31T15:00:00+00:00",
+            "label": "楽曲2",
+            "name": "楽曲2"
+        },
+        "T0003": {
+            "id": "T0003",
+            "chartIdEasy": "T0003_0",
+            "chartIdNormal": "T0003_1",
+            "chartIdHard": "T0003_2",
+            "chartIdManiac": null,
+            "chartIdConnect": null,
+            "artistId": "AT003",
+            "genreId": "GT003",
+            "title": "TXT_SongTitle_T0003",
+            "startDate": "2021-11-30T15:00:00+00:00",
+            "newDate": "2019-03-12T15:00:00+00:00",
+            "endDate": "2089-12-31T15:00:00+00:00",
+            "releaseMonth": "2022-11-30T15:00:00+00:00",
+            "displayEndDate": "2089-12-31T15:00:00+00:00",
+            "label": "楽曲3",
+            "name": "楽曲3"
+        }
+    },
+    "chartDist": {
+        "T0001_0": {
+            "chartId": "T0001_0",
+            "musicId": "T0001",
+            "levelId": 1
+        },
+        "T0001_1": {
+            "chartId": "T0001_1",
+            "musicId": "T0002",
+            "levelId": 2
+        },
+        "T0001_2": {
+            "chartId": "T0001_2",
+            "musicId": "T0003",
+            "levelId": 3
+        }
+    },
+    "highScoreList": [
+        {
+            "chartId": "T0001_0",
+            "mode": 10,
+            "musicId": "T0001",
+            "highScore": 1223456,
+            "maxCombo": 111,
+            "playCount": 13,
+            "clearedCount": 12,
+            "fullComboCount": 11,
+            "perfectCount": 0,
+            "updateTime": "2023-03-08T08:21:16+00:00"
+        },
+        {
+            "chartId": "T0002_1",
+            "mode": 11,
+            "musicId": "T0002",
+            "highScore": 2123456,
+            "maxCombo": 222,
+            "playCount": 15,
+            "clearedCount": 15,
+            "fullComboCount": 10,
+            "perfectCount": 0,
+            "updateTime": "2023-03-11T06:39:33+00:00"
+        },
+        {
+            "chartId": "T0003_2",
+            "mode": 12,
+            "musicId": "T0003",
+            "highScore": 3123456,
+            "maxCombo": 333,
+            "playCount": 13,
+            "clearedCount":13,
+            "fullComboCount": 11,
+            "perfectCount": 1,
+            "updateTime": "2023-03-07T06:19:25+00:00"
+        }
+    ],
+    "highScoreHistoryList": [],
+    "rankHistoryList": [
+        {
+            "chartId": "T0001_0",
+            "mode": 10,
+            "rank": "A",
+            "count": 11
+        },
+        {
+            "chartId": "T0001_0",
+            "mode": 10,
+            "rank": "BBB",
+            "count": 12
+        },
+        {
+            "chartId": "T0001_0",
+            "mode": 10,
+            "rank": "S",
+            "count": 13
+        }
+    ]
+}
