@@ -1,0 +1,44 @@
+name: push-test
+
+on:
+  push:
+    branches: 
+      - '**'
+      - '!main'
+  workflow_dispatch:
+
+jobs:
+  conda-test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          environment-file: ./environment/lib_setup.yml
+          auto-activate-base: false
+          auto-update-conda: true
+          use-only-tar-bz2: true
+          channels: conda-forge
+          channel-priority: true
+    
+      - name: conda lib List
+        run: conda list
+
+      - name: PyTest
+        run: |
+          python -m pytest --junit-xml ./pytest.xml
+
+      # テスト結果の表示
+      - name: Upload Unit Test Results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: Unit Test Results (Python 3.7)
+          path: ./*.xml
+
+      - name: Download Artifacts
+        if: always()
+        uses: actions/download-artifact@v3
+        with:
+          path: artifacts

@@ -1,0 +1,118 @@
+#:kivy 2.1.0
+
+<RankingListScreen>:
+    rankingListRv: rankingListRv
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            size_hint_y: 0.8
+            orientation: "vertical"
+            BoxLayout:
+                orientation: "vertical"
+                BoxLayout:
+                    size_hint_y: None
+                    height: dp(30)
+                    Label:
+                        size_hint_x: 0.1
+                        text: "詳細"
+                    Label:
+                        size_hint_x: 0.4
+                        text: "曲名"
+                    Label:
+                        size_hint_x: 0.15
+                        text: "難易度"
+                    Label:
+                        size_hint_x: 0.15
+                        text: "ハイスコア"
+                    Label:
+                        size_hint_x: 0.1
+                        text: "ランク"
+                    Label:
+                        size_hint_x: 0.1
+                        text: "順位"
+                BoxLayout:
+                    canvas:
+                        Color:
+                            rgba: 0.85, 0.85, 0.85, 1
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    orientation: 'vertical'
+                    RecycleView:
+                        size_hint_y: 0.9
+                        id: rankingListRv
+                        scroll_type: ['bars', 'content']
+                        scroll_wheel_distance: dp(56)
+                        bar_width: dp(10)
+                        viewclass: 'rankingData'
+                        RecycleBoxLayout:
+                            default_size: None, dp(56)
+                            default_size_hint: 1, None
+                            size_hint_y: None
+                            height: self.minimum_height
+                            orientation: 'vertical'
+                            spacing: dp(2)
+        BoxLayout:
+            orientation: 'vertical'
+            height: dp(67)
+            size_hint_y: None
+            BoxLayout:
+                Label:
+                    text: "難易度"
+                    font_size: 18
+                    size_hint_x: 0.25
+                Spinner:
+                    id: LevelSpinnerId
+                    font_size: 18
+                    size_hint_x: 0.25
+                Label:
+                    text: "ジャンル"
+                    font_size: 18
+                    size_hint_x: 0.25
+                Spinner:
+                    id: genreSpinnerId
+                    font_size: 18
+                    size_hint_x: 0.25
+            BoxLayout:
+                Button:
+                    id: buttonSerchMusic
+                    text: "表示"
+                    font_size: 18
+                    on_release: root.serchMusic()
+                Button:
+                    text: '戻る'
+                    font_size: 18
+                    on_release:
+                        root.resetData() 
+                        root.manager.current = 'menu'
+
+<rankingData>:
+    canvas.before:
+        Color:
+            rgba: 0.5, 0.5, 0.5, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    Button:
+        size_hint_x: 0.1
+        on_release: 
+            app.showHighScore(root.chartId, "rankingList")
+        text: "詳細"
+    Label:
+        size_hint_x: 0.4
+        text_size: self.size
+        halign: 'center'
+        valign: 'middle'
+        text: root.musicName
+    Label:
+        size_hint_x: 0.15
+        text: root.levelName
+    Label:
+        size_hint_x: 0.15
+        text: root.highScore
+    Label:
+        size_hint_x: 0.1
+        text: root.maxRank
+    Label:
+        size_hint_x: 0.1
+        text: root.ranking

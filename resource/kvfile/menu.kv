@@ -1,0 +1,48 @@
+#:kivy 2.1.0
+
+<MenuScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+        Label:
+            size_hint_y: 0.3
+            id: meue_title
+            font_size: 24
+            text: 'テトコネスコア確認ツール'
+            color: [0, 1, 0 , 1 ]
+        BoxLayout:
+            size_hint_y: 0.7
+            padding: 20, 30, 20, 10
+            orientation: 'vertical'
+            Button:
+                id: webData
+                text: "マイページからデータ取得"
+                font_size: 22
+                on_release: 
+                    root.manager.current = 'webData'
+            BoxLayout:
+                Button:
+                    text: "ハイスコア確認"
+                    font_size: 22
+                    on_release: 
+                        root.manager.current = 'highScoreSelect'
+                Button:
+                    text: "ランキング確認"
+                    font_size: 22
+                    on_release: 
+                        root.manager.current = 'rankingList'
+                Button:
+                    text: "達成状況確認"
+                    font_size: 22
+                    on_release: 
+                        root.manager.current = 'abuchment'
+            BoxLayout:
+                Button:
+                    text: "ライセンス"
+                    font_size: 22
+                    on_release: 
+                        root.manager.current = 'license'
+                Button:
+                    text: "ツール終了"
+                    font_size: 22
+                    on_release: app.stop()
