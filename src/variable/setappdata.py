@@ -4,6 +4,7 @@ from kivy.properties import BooleanProperty
 from kivy.properties import NumericProperty
 from kivy.event import EventDispatcher
 from constant.systemconstant import DB_VERSION_08
+from constant.systemconstant import DB_VERSION_09
 
 from model import createDataFile as crd
 
@@ -33,7 +34,8 @@ class AppCommonData(EventDispatcher):
         return self.sourceWidget == "rankingList"
 
     def checkRankingData(self):
-        if self.dbFileVersion == DB_VERSION_08:
+        okVersionList = [DB_VERSION_08, DB_VERSION_09]
+        if self.dbFileVersion in okVersionList:
             return True
 
         return False
