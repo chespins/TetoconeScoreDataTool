@@ -32,8 +32,10 @@ def test_score_success(mocker):
     ranking_mock = mocker.patch("model.mypagedata.getRankingData")
     db_ranking_mock = mocker.patch("db.ranking.updateRanking")
     sleep_mock = mocker.patch("model.getloginpage.sleep")
+    degrees_mock = mocker.patch("model.mypagedata.getDegreesData")
+    db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
 
-    result = getloginpage.getLoginPageData("1234567890123456", "password1", True, False, False, False, False, False, False)
+    result = getloginpage.getLoginPageData("1234567890123456", "password1", True, False, False, False, False, False, False, False)
     assert result == "マイページからのデータ取得が成功しました。"
     login_mock.assert_called_once()
     login_mock.assert_called_with("1234567890123456", "password1")
@@ -46,6 +48,8 @@ def test_score_success(mocker):
     db_chart_mock.assert_not_called()
     sleep_mock.assert_called_once()
     sleep_mock.assert_called_with(3)
+    degrees_mock.assert_not_called()
+    db_degrees_mock.assert_not_called()
 
 
 @pytest.mark.freeze_time(datetime.datetime(2022, 11, 21, 10, 10, 10, tzinfo=datetime.timezone.utc))
@@ -75,7 +79,10 @@ def test_rank_sucsess_all_one(mocker):
     ranking_mock = mocker.patch("model.mypagedata.getRankingData", side_effect=return_ranking)
     db_ranking_mock = mocker.patch("db.ranking.updateRanking")
     sleep_mock = mocker.patch("model.getloginpage.sleep")
-    result = getloginpage.getLoginPageData("1234567890123456", "password1", False, True, True, True, True, True, True)
+    degrees_mock = mocker.patch("model.mypagedata.getDegreesData")
+    db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
+
+    result = getloginpage.getLoginPageData("1234567890123456", "password1", False, True, True, True, True, True, True, False)
     assert result == "マイページからのデータ取得が成功しました。"
     login_mock.assert_called_once()
     login_mock.assert_called_with("1234567890123456", "password1")
@@ -92,6 +99,126 @@ def test_rank_sucsess_all_one(mocker):
             mocker.call(3),
             mocker.call(1),
         ])
+    degrees_mock.assert_not_called()
+    db_degrees_mock.assert_not_called()
+
+
+@pytest.mark.freeze_time(datetime.datetime(2022, 11, 21, 10, 10, 10, tzinfo=datetime.timezone.utc))
+def test_degrees_sucsess(mocker):
+    db_chart_mock = mocker.patch("db.chartconstitution.selectedSingleChart", return_value=[])
+    return_sesson = {"test": 12345}
+    login_mock = mocker.patch("model.mypagedata.loginMyPage", return_value=return_sesson)
+    score_get_mock = mocker.patch("model.mypagedata.getConnectPageData")
+    insert_mock = mocker.patch("model.datainserts.InsertMusic")
+    
+    insert_mock = mocker.patch("model.datainserts.InsertMusic")
+    ranking_mock = mocker.patch("model.mypagedata.getRankingData")
+    db_ranking_mock = mocker.patch("db.ranking.updateRanking")
+    sleep_mock = mocker.patch("model.getloginpage.sleep")
+    degrees_return = [
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [{
+                "test001": "test001"
+            }]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [{
+                "test002": "test002"
+            }]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [{
+                "test003": "test003"
+            }]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [{
+                "test004": "test004"
+            }]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [{
+                "test005": "test005"
+            }]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [{
+                "test006": "test006"
+            }]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [{
+                "test007": "test007"
+            }]
+        },
+    ]
+    degrees_mock = mocker.patch("model.mypagedata.getDegreesData", side_effect=degrees_return)
+    db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
+
+    result = getloginpage.getLoginPageData("1234567890123456", "password1", False, False, False, False, False, False, False, True)
+    assert result == "マイページからのデータ取得が成功しました。"
+    login_mock.assert_called_once()
+    login_mock.assert_called_with("1234567890123456", "password1")
+    score_get_mock.assert_not_called()
+    insert_mock.assert_not_called()
+    ranking_mock.assert_not_called()
+    db_ranking_mock.assert_not_called()
+    db_chart_mock.assert_not_called()
+    assert sleep_mock.call_count == 7
+    sleep_mock.assert_has_calls([
+            mocker.call(3),
+            mocker.call(1),
+            mocker.call(1),
+            mocker.call(1),
+            mocker.call(1),
+            mocker.call(1),
+            mocker.call(1),
+        ])
+    assert degrees_mock.call_count == 6
+    degrees_mock.assert_has_calls([
+            mocker.call(return_sesson, "Stage"),
+            mocker.call(return_sesson, "Partner"),
+            mocker.call(return_sesson, "Accessory"),
+            mocker.call(return_sesson, "System"),
+            mocker.call(return_sesson, "MultiMode"),
+            mocker.call(return_sesson, "Event"),
+        ])
+    db_degrees_mock.assert_called_once()
+    db_degrees_param = {
+        "Stage": [{
+            "test001": "test001"
+        }],
+        "Partner": [{
+            "test002": "test002"
+        }],
+        "Accessory": [{
+            "test003": "test003"
+        }],
+        "System": [{
+            "test004": "test004"
+        }],
+        "MultiMode": [{
+            "test005": "test005"
+        }],
+        "Event": [{
+            "test006": "test006"
+        }]
+    }
+    db_degrees_mock.assert_called_with(db_degrees_param)
 
 
 @pytest.mark.freeze_time(datetime.datetime(2022, 11, 21, 10, 10, 10, tzinfo=datetime.timezone.utc))
@@ -194,7 +321,61 @@ def test_all_sucsess_all_five(mocker):
     ranking_mock = mocker.patch("model.mypagedata.getRankingData", side_effect=return_ranking)
     db_ranking_mock = mocker.patch("db.ranking.updateRanking")
     sleep_mock = mocker.patch("model.getloginpage.sleep")
-    result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, True, True, True, True)
+    degrees_return = [
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [{
+                "test001": "test001"
+            }]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [{
+                "test002": "test002"
+            }]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [{
+                "test003": "test003"
+            }]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [{
+                "test004": "test004"
+            }]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [{
+                "test005": "test005"
+            }]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [{
+                "test006": "test006"
+            }]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [{
+                "test007": "test007"
+            }]
+        },
+    ]
+    degrees_mock = mocker.patch("model.mypagedata.getDegreesData", side_effect=degrees_return)
+    db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
+
+    result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, True, True, True, True, True)
     assert result == "マイページからのデータ取得が成功しました。"
     login_mock.assert_called_once()
     login_mock.assert_called_with("1234567890123456", "password1")
@@ -222,7 +403,7 @@ def test_all_sucsess_all_five(mocker):
     )
     db_chart_mock.assert_called_once()
     db_chart_mock.assert_called_with(levelIdList=[1,2,3,4,5])
-    assert sleep_mock.call_count == 7
+    assert sleep_mock.call_count == 13
     sleep_mock.assert_has_calls([
             mocker.call(3),
             mocker.call(1),
@@ -231,6 +412,42 @@ def test_all_sucsess_all_five(mocker):
             mocker.call(1),
             mocker.call(1),
             mocker.call(1),
+            mocker.call(1),
+            mocker.call(1),
+            mocker.call(1),
+            mocker.call(1),
+            mocker.call(1),
+            mocker.call(1),
         ])
-
+    assert degrees_mock.call_count == 6
+    degrees_mock.assert_has_calls([
+            mocker.call(return_sesson, "Stage"),
+            mocker.call(return_sesson, "Partner"),
+            mocker.call(return_sesson, "Accessory"),
+            mocker.call(return_sesson, "System"),
+            mocker.call(return_sesson, "MultiMode"),
+            mocker.call(return_sesson, "Event"),
+        ])
+    db_degrees_mock.assert_called_once()
+    db_degrees_param = {
+        "Stage": [{
+            "test001": "test001"
+        }],
+        "Partner": [{
+            "test002": "test002"
+        }],
+        "Accessory": [{
+            "test003": "test003"
+        }],
+        "System": [{
+            "test004": "test004"
+        }],
+        "MultiMode": [{
+            "test005": "test005"
+        }],
+        "Event": [{
+            "test006": "test006"
+        }]
+    }
+    db_degrees_mock.assert_called_with(db_degrees_param)
 

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from db import highscorehistory as hsh
 from db import datainserts as dbin
+from db import degrees as deg
 from constant import distConstant as lvNa
 
 
@@ -85,6 +86,24 @@ def InsertMusic(stages):
             highScoreHistoryInportList,
             rankHistoryList
         )
+    return
+    
+
+def insertDegrees(degreesDist):
+    degreesList = []
+    for category in degreesDist.keys():
+        for degrees in degreesDist[category]:
+            degreesList.append({
+                "degreesId": degrees["playerDegree"]["degreeId"],
+                "degreesName": degrees["degreeInfo"]["label"],
+                "category": category,
+                "missionLabel": degrees["missionLabel"],
+                "createdAt": degrees["playerDegree"]["createdAt"],
+                "updatedAt": degrees["playerDegree"]["updatedAt"],
+            })
+    
+    deg.insertDegrees(degreesList)
+    return
 
 
 if __name__ == '__main__':

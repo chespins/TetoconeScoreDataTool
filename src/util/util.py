@@ -20,8 +20,9 @@ def readFileStr(filename):
     return data
 
 
-def changeTimeZone(strTime):
-    dt = datetime.datetime.fromisoformat(strTime)
+def changeTimeZone(strTime: str):
+    strTimeUtc = strTime.replace(".000Z", "+00:00")
+    dt = datetime.datetime.fromisoformat(strTimeUtc)
     dtJst = dt.astimezone(datetime.timezone(datetime.timedelta(hours=+9)))
     JstDate = str(dtJst.year) + "年" + str(dtJst.month) + "月" + str(dtJst.day) + "日"
     

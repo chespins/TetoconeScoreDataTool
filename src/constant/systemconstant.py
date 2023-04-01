@@ -12,6 +12,8 @@ API_LOGIN_URL = HTTP_ACCESS_URL + "/api/login"
 DATA_GET_URL = HTTP_ACCESS_URL + "/api/user?data=stages&lang=ja_jp"
 RANKING_GET_URL = HTTP_ACCESS_URL + "/api/user-rankings/stage-score/{0}/{1}?lang=ja_jp"
 RANKING_PAGE_URL = HTTP_ACCESS_URL + "/rankings?category=stageScore&subcategory={1}&id={0}&index=0&genre={2}&page="
+DEGREE_GET_URL = HTTP_ACCESS_URL + "/api/user-degree?category={0}&lang=ja_jp"
+DEGREE_PAGE_URL = HTTP_ACCESS_URL + "/player/profile?tab=degree&category={0}"
 
 # APIパラメータ
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36'

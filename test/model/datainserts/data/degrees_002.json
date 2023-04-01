@@ -1,0 +1,79 @@
+{
+    "inputData": {
+        "test001": [
+            {
+                "playerDegree": {
+                    "id": 1111,
+                    "playerId": 12,
+                    "degreeId": "DEGREETest001",
+                    "isNew": false,
+                    "createdAt": "2022-01-01T06:57:01.000Z",
+                    "updatedAt": "2022-01-11T06:57:01.000Z"
+                },
+                "degreeInfo": {
+                    "id": "DEGREETest001",
+                    "label": "ラベル1"
+                },
+                "missionLabel": "ミッション内容1"
+            },
+            {
+                "playerDegree": {
+                    "id": 1112,
+                    "playerId": 12,
+                    "degreeId": "DEGREETest002",
+                    "isNew": false,
+                    "createdAt": "2022-01-02T06:57:01.000Z",
+                    "updatedAt": "2022-01-12T06:57:01.000Z"
+                },
+                "degreeInfo": {
+                    "id": "DEGREETest002",
+                    "label": "ラベル2"
+                },
+                "missionLabel": "ミッション内容2"
+            }
+        ],
+        "test002": [
+            {
+                "playerDegree": {
+                    "id": 1113,
+                    "playerId": 12,
+                    "degreeId": "DEGREETest003",
+                    "isNew": false,
+                    "createdAt": "2022-02-01T06:57:01.000Z",
+                    "updatedAt": "2022-02-11T06:57:01.000Z"
+                },
+                "degreeInfo": {
+                    "id": "DEGREETest003",
+                    "label": "ラベル3"
+                },
+                "missionLabel": "ミッション内容3"
+            }
+        ]
+    },
+    "outputData": [
+        {
+            "degreesId": "DEGREETest001",
+            "degreesName": "ラベル1",
+            "category": "test001",
+            "missionLabel": "ミッション内容1",
+            "createdAt": "2022-01-01T06:57:01.000Z",
+            "updatedAt": "2022-01-11T06:57:01.000Z"
+        },
+        {
+            "degreesId": "DEGREETest002",
+            "degreesName": "ラベル2",
+            "category": "test001",
+            "missionLabel": "ミッション内容2",
+            "createdAt": "2022-01-02T06:57:01.000Z",
+            "updatedAt": "2022-01-12T06:57:01.000Z"
+        },
+        {
+            "degreesId": "DEGREETest003",
+            "degreesName": "ラベル3",
+            "category": "test002",
+            "missionLabel": "ミッション内容3",
+            "createdAt": "2022-02-01T06:57:01.000Z",
+            "updatedAt": "2022-02-11T06:57:01.000Z"
+        }
+    ]
+}

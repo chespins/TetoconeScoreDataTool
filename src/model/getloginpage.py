@@ -7,15 +7,17 @@ from model import mypagedata as myPage
 from db import chartconstitution as cha
 from db import ranking as ra
 from constant import messeges
+from constant.distConstant import DEGREE_CATEGORY_DIST
 
 
 def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool, 
         rankingGetFlg: bool, standardGetFlg: bool, expertGetFlg: bool,
-        ultimateGetFlg: bool, maniacGetFlg: bool, connectGetFlg: bool):
+        ultimateGetFlg: bool, maniacGetFlg: bool, connectGetFlg: bool, 
+        degreesGetFlg: bool):
     if not (len(cardId) > 0 and len(password) > 0):
         return messeges.DATA_IMPORT_ID_LACK
     
-    if not (scoreGetFlg or rankingGetFlg):
+    if not (scoreGetFlg or rankingGetFlg or degreesGetFlg):
         return messeges.DATA_IMPORT_NO_GET_DATA
 
     levelList = []
@@ -72,6 +74,16 @@ def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool,
 
             if dataUnmatchFlg: 
                 return messeges.DATA_IMPORT_DATA_UNMATCH
+            
+        if degreesGetFlg:
+            degreesDist = {}
+            for category in DEGREE_CATEGORY_DIST.keys():
+                sleep(1)
+                response = myPage.getDegreesData(session, category)
+                degreesDist[category] = response["response"]
+
+            datainserts.insertDegrees(degreesDist)
+
         
         return messeges.DATA_INPORT_SUCCESS
     except LoginError:
