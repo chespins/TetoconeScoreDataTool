@@ -9,7 +9,7 @@ SELECT_SQL = """
     FROM degrees WHERE 1 = 1 
 """
 
-ORDER_BY_SQL = " ORDER BY id"
+ORDER_BY_SQL = " ORDER BY category, created_at"
 
 DELETE_SQL = "DELETE FROM degrees WHERE id IN ("
 

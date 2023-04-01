@@ -16,10 +16,10 @@
                         size_hint_x: 0.25
                         text: "称号名"
                     Label:
-                        size_hint_x: 0.15
+                        size_hint_x: 0.1
                         text: "カテゴリ"
                     Label:
-                        size_hint_x: 0.4
+                        size_hint_x: 0.45
                         text: "取得条件"
                     Label:
                         size_hint_x: 0.2
@@ -102,11 +102,20 @@
         valign: 'middle'
         text: root.degreesName
     Label:
-        size_hint_x: 0.15
+        size_hint_x: 0.1
+        text_size: self.size
+        halign: 'center'
+        valign: 'middle'
         text: root.categoryName
     Label:
-        size_hint_x: 0.4
+        size_hint_x: 0.45
+        text_size: self.size
+        halign: 'center'
+        valign: 'middle'
         text: root.missionLabel
     Label:
         size_hint_x: 0.2
+        text_size: self.size
+        halign: 'center'
+        valign: 'middle'
         text: root.getDate
