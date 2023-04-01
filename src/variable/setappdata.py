@@ -39,6 +39,13 @@ class AppCommonData(EventDispatcher):
             return True
 
         return False
+    
+    def checkDegreesData(self):
+        okVersionList = [DB_VERSION_09]
+        if self.dbFileVersion in okVersionList:
+            return True
+
+        return False
 
 
 if __name__ == '__main__':

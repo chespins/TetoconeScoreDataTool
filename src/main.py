@@ -18,6 +18,7 @@ from view import license
 from view import menu as mu
 from view import makeDbFile as mkd
 from view import rankingList as rak
+from view import degreesList as deg
 from variable.setappdata import AppCommonData
 from util import util
 from constant.systemconstant import FONT_DIR
@@ -92,6 +93,7 @@ class TetoconeScoreApp(App):
                         name='rankingList'
                     )
             )
+        self.sm.add_widget(deg.DegreesList(name='degreesList'))
         return self.sm
 
     def showHighScore(self, chartId, sourceWidget):

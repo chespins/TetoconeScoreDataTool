@@ -14,12 +14,18 @@
             size_hint_y: 0.7
             padding: 20, 30, 20, 10
             orientation: 'vertical'
-            Button:
-                id: webData
-                text: "マイページからデータ取得"
-                font_size: 22
-                on_release: 
-                    root.manager.current = 'webData'
+            BoxLayout:
+                Button:
+                    id: webData
+                    text: "マイページからデータ取得"
+                    font_size: 22
+                    on_release: 
+                        root.manager.current = 'webData'
+                Button:
+                    text: "称号確認"
+                    font_size: 22
+                    on_release: 
+                        root.manager.current = 'degreesList'
             BoxLayout:
                 Button:
                     text: "ハイスコア確認"
