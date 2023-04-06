@@ -59,8 +59,10 @@ def test_all_sucsess_connect_false(mocker):
     sleep_mock = mocker.patch("model.getloginpage.sleep")
     degrees_mock = mocker.patch("model.mypagedata.getDegreesData")
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
+    character_mock = mocker.patch("model.mypagedata.getCharacterData")
+    db_character_mock = mocker.patch("model.datainserts.insertCharacter")
 
-    result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, True, True, True, False, False)
+    result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, True, True, True, False, False, False)
     assert result == "マイページからのデータ取得が成功しました。"
     login_mock.assert_called_once()
     login_mock.assert_called_with("1234567890123456", "password1")
@@ -82,6 +84,8 @@ def test_all_sucsess_connect_false(mocker):
         ])
     degrees_mock.assert_not_called()
     db_degrees_mock.assert_not_called()
+    character_mock.assert_not_called()
+    db_character_mock.assert_not_called()
 
 
 @pytest.mark.freeze_time(datetime.datetime(2022, 11, 21, 10, 10, 10, tzinfo=datetime.timezone.utc))
@@ -141,8 +145,10 @@ def test_all_sucsess_maniac_false(mocker):
     sleep_mock = mocker.patch("model.getloginpage.sleep")
     degrees_mock = mocker.patch("model.mypagedata.getDegreesData")
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
+    character_mock = mocker.patch("model.mypagedata.getCharacterData")
+    db_character_mock = mocker.patch("model.datainserts.insertCharacter")
 
-    result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, True, True, False, True, False)
+    result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, True, True, False, True, False, False)
     assert result == "マイページからのデータ取得が成功しました。"
     login_mock.assert_called_once()
     login_mock.assert_called_with("1234567890123456", "password1")
@@ -173,6 +179,8 @@ def test_all_sucsess_maniac_false(mocker):
         ])
     degrees_mock.assert_not_called()
     db_degrees_mock.assert_not_called()
+    character_mock.assert_not_called()
+    db_character_mock.assert_not_called()
 
 
 @pytest.mark.freeze_time(datetime.datetime(2022, 11, 21, 10, 10, 10, tzinfo=datetime.timezone.utc))
@@ -232,8 +240,10 @@ def test_all_sucsess_ultimate_false(mocker):
     sleep_mock = mocker.patch("model.getloginpage.sleep")
     degrees_mock = mocker.patch("model.mypagedata.getDegreesData")
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
+    character_mock = mocker.patch("model.mypagedata.getCharacterData")
+    db_character_mock = mocker.patch("model.datainserts.insertCharacter")
 
-    result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, True, False, True, True, False)
+    result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, True, False, True, True, False, False)
     assert result == "マイページからのデータ取得が成功しました。"
     login_mock.assert_called_once()
     login_mock.assert_called_with("1234567890123456", "password1")
@@ -264,6 +274,8 @@ def test_all_sucsess_ultimate_false(mocker):
         ])
     degrees_mock.assert_not_called()
     db_degrees_mock.assert_not_called()
+    character_mock.assert_not_called()
+    db_character_mock.assert_not_called()
 
 
 @pytest.mark.freeze_time(datetime.datetime(2022, 11, 21, 10, 10, 10, tzinfo=datetime.timezone.utc))
@@ -323,8 +335,10 @@ def test_all_sucsess_expert_false(mocker):
     sleep_mock = mocker.patch("model.getloginpage.sleep")
     degrees_mock = mocker.patch("model.mypagedata.getDegreesData")
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
+    character_mock = mocker.patch("model.mypagedata.getCharacterData")
+    db_character_mock = mocker.patch("model.datainserts.insertCharacter")
 
-    result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, False, True, True, True, False)
+    result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, False, True, True, True, False, False)
     assert result == "マイページからのデータ取得が成功しました。"
     login_mock.assert_called_once()
     login_mock.assert_called_with("1234567890123456", "password1")
@@ -355,6 +369,8 @@ def test_all_sucsess_expert_false(mocker):
         ])
     degrees_mock.assert_not_called()
     db_degrees_mock.assert_not_called()
+    character_mock.assert_not_called()
+    db_character_mock.assert_not_called()
 
 
 @pytest.mark.freeze_time(datetime.datetime(2022, 11, 21, 10, 10, 10, tzinfo=datetime.timezone.utc))
@@ -414,8 +430,10 @@ def test_all_sucsess_standard_false(mocker):
     sleep_mock = mocker.patch("model.getloginpage.sleep")
     degrees_mock = mocker.patch("model.mypagedata.getDegreesData")
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
+    character_mock = mocker.patch("model.mypagedata.getCharacterData")
+    db_character_mock = mocker.patch("model.datainserts.insertCharacter")
 
-    result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, False, True, True, True, True, False)
+    result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, False, True, True, True, True, False, False)
     assert result == "マイページからのデータ取得が成功しました。"
     login_mock.assert_called_once()
     login_mock.assert_called_with("1234567890123456", "password1")
@@ -446,3 +464,5 @@ def test_all_sucsess_standard_false(mocker):
         ])
     degrees_mock.assert_not_called()
     db_degrees_mock.assert_not_called()
+    character_mock.assert_not_called()
+    db_character_mock.assert_not_called()

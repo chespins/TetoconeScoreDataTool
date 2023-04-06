@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from db import character as cha
 from db import highscorehistory as hsh
 from db import datainserts as dbin
 from db import degrees as deg
@@ -103,6 +104,28 @@ def insertDegrees(degreesDist):
             })
     
     deg.insertDegrees(degreesList)
+    return
+
+
+def insertCharacter(characterList):
+    dbCharacterList = []
+    for characterInfo in characterList:
+        character = characterInfo["character"]
+        introduction = characterInfo["introduction"]
+        dbCharacter = {
+            "characterId": character["characterId"],
+            "characterName": introduction["label"],
+            "introduction": introduction["introduction"],
+            "dearnessRank": character["dearnessRank"],
+            "dearnessPoint": character["dearness"],
+            "isUsed": character["isUsed"],
+            "sortIndex": character["character"]["sortIndex"],
+            "costumeId": character["costumeId"],
+            "updatedAt": character["updatedAt"],
+        }
+        dbCharacterList.append(dbCharacter)
+    
+    cha.insertCharacter(dbCharacterList)
     return
 
 

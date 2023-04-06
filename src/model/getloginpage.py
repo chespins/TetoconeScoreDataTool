@@ -13,11 +13,11 @@ from constant.distConstant import DEGREE_CATEGORY_DIST
 def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool, 
         rankingGetFlg: bool, standardGetFlg: bool, expertGetFlg: bool,
         ultimateGetFlg: bool, maniacGetFlg: bool, connectGetFlg: bool, 
-        degreesGetFlg: bool):
+        degreesGetFlg: bool, characterGetFlg: bool):
     if not (len(cardId) > 0 and len(password) > 0):
         return messeges.DATA_IMPORT_ID_LACK
     
-    if not (scoreGetFlg or rankingGetFlg or degreesGetFlg):
+    if not (scoreGetFlg or rankingGetFlg or degreesGetFlg or characterGetFlg):
         return messeges.DATA_IMPORT_NO_GET_DATA
 
     levelList = []
@@ -49,16 +49,31 @@ def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool,
     try:
         session = myPage.loginMyPage(cardId, password)
         sleep(3)
-        if scoreGetFlg:
+        if scoreGetFlg or characterGetFlg:
             myPageData = myPage.getConnectPageData(session)
-            stages = myPageData["response"]["stages"]
-            datainserts.InsertMusic(stages)
-            if rankingGetFlg:
-                chartList = cha.selectedSingleChart(levelIdList=levelList)
-                if len(chartList) == 0:
-                    return messeges.DATA_INPORT_RANKING_NO_SCORE
-                else:
-                    sleep(1)            
+            if characterGetFlg:
+                characters = myPageData["response"]["characters"]
+                characterList = []
+                for character in characters:
+                    sleep(1)
+                    characterId = character["characterId"]
+                    characterInfo = {}
+                    characterInfo["character"] = character
+                    responseInfo = myPage.getCharacterData(session, characterId)
+                    characterInfo["introduction"] = responseInfo["response"][characterId]
+                    characterList.append(characterInfo)
+            
+                datainserts.insertCharacter(characterList)
+
+            if scoreGetFlg:
+                stages = myPageData["response"]["stages"]
+                datainserts.InsertMusic(stages)
+                if rankingGetFlg:
+                    chartList = cha.selectedSingleChart(levelIdList=levelList)
+                    if len(chartList) == 0:
+                        return messeges.DATA_INPORT_RANKING_NO_SCORE
+                    else:
+                        sleep(1)            
 
         if rankingGetFlg:            
             dataUnmatchFlg = False

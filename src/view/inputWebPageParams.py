@@ -17,6 +17,7 @@ Builder.load_file(util.findDataFile(KIVY_CURRENT_DIR + 'inputWebPageParams.kv'))
 class InputWebPageParamsScreen(Screen):
     scoreGetFlg = BooleanProperty(True)
     degreesGetFlg = BooleanProperty(True)
+    characterGetFlg = BooleanProperty(True)
     rankingGetFlg = BooleanProperty(True)
     standardGetFlg = BooleanProperty(True)
     expertGetFlg = BooleanProperty(True)
@@ -53,6 +54,7 @@ class InputWebPageParamsScreen(Screen):
         self.ids.buttonBack.disabled = True
         self.ids.checkBoxScore.disabled = True
         self.ids.checkBoxDegrees.disabled = True
+        self.ids.checkBoxCharacter.disabled = True
         self.ids.checkBoxranking.disabled = True
         self.ids.checkBoxStandard.disabled = True
         self.ids.checkBoxExpert.disabled = True
@@ -68,7 +70,7 @@ class InputWebPageParamsScreen(Screen):
         password = self.ids.password.text
         self.message = ins.getLoginPageData(serialNo, password, self.scoreGetFlg, self.rankingGetFlg,
                 self.standardGetFlg, self.expertGetFlg, self.ultimateGetFlg, 
-                self.maniacGetFlg, self.connectGetFlg, self.degreesGetFlg
+                self.maniacGetFlg, self.connectGetFlg, self.degreesGetFlg, self.characterGetFlg
             )
         Clock.schedule_once(self.endLoginMyPage)
 
@@ -81,9 +83,6 @@ class InputWebPageParamsScreen(Screen):
             self.ids.serialNo.disabled = False
             self.ids.password.disabled = False
             self.ids.buttonLogin.disabled = False
-            self.ids.checkBoxScore.disabled = False
-            self.ids.checkBoxDegrees.disabled = False
-            self.ids.checkBoxranking.disabled = False
             self.setRankingLevel()
 
     def scoreGetFlgCheck(self, checkbox):
@@ -91,6 +90,9 @@ class InputWebPageParamsScreen(Screen):
 
     def degreesGetFlgCheck(self, checkbox):
         self.degreesGetFlg = checkbox.active
+
+    def characterGetFlgCheck(self, checkbox):
+        self.characterGetFlg = checkbox.active
 
     def rankingGetFlgCheck(self, checkbox):
         self.rankingGetFlg = checkbox.active
@@ -114,6 +116,7 @@ class InputWebPageParamsScreen(Screen):
     def setRankingLevel(self):
         self.ids.checkBoxScore.disabled = False
         self.ids.checkBoxDegrees.disabled = False
+        self.ids.checkBoxCharacter.disabled = False
         self.ids.checkBoxranking.disabled = False
         self.ids.checkBoxStandard.disabled = not self.rankingGetFlg
         self.ids.checkBoxExpert.disabled = not self.rankingGetFlg

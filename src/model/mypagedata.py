@@ -22,6 +22,12 @@ def getDegreesData(session: Session, category: str):
     return json.loads(result.text)
 
 
+def getCharacterData(session: Session, characterId: str):
+    session.headers["Referer"] = cons.WEB_LOGINED_URL
+    result = session.get(cons.CHARACTER_GET_URL.format(characterId))
+    return json.loads(result.text)
+
+
 def getConnectPageData(session: Session):
     session.headers["Referer"] = cons.WEB_LOGINED_URL
     result = session.get(cons.DATA_GET_URL)

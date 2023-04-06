@@ -1,0 +1,45 @@
+{
+    "inputData": [
+        {
+            "character": {
+                "id": 12,
+                "playerId": 1,
+                "characterId": "CHR_T_01",
+                "dearness": 101,
+                "isUsed": false,
+                "costumeId": "COSTUME_T_01_1001",
+                "createdAt": "2021-09-12T04:51:57+00:00",
+                "updatedAt": "2021-10-12T04:51:57+00:00",
+                "character": {
+                    "id": "CHR_T_001",
+                    "displayName": "TXT_CHR_NAME_T_01",
+                    "defaultCostumeId": "COSTUME_T_01_1001",
+                    "sortIndex": 1,
+                    "collaboration": true,
+                    "label": "テストキャラ1"
+                },
+                "accessories": [],
+                "dearnessRank": 11
+            },
+            "introduction": {
+                "characterId": "CHR_T_0001",
+                "introductionId": "TXT_T_Introduction_01",
+                "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4",
+                "label": "テストキャラ01"
+            }
+        }
+    ],
+    "outputData": [
+        {
+            "characterId": "CHR_T_01",
+            "characterName": "テストキャラ01",
+            "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4",
+            "dearnessRank": 11,
+            "dearnessPoint": 101,
+            "isUsed": false,
+            "sortIndex": 1,
+            "costumeId": "COSTUME_T_01_1001",
+            "updatedAt": "2021-10-12T04:51:57+00:00"
+        }
+    ]
+}

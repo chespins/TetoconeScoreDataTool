@@ -109,3 +109,29 @@ def test_three_data_same_music(mocker):
         outputs["highScoreHistoryList"],
         outputs["rankHistoryList"]
     )
+
+
+
+def test_insertCharacter_empty(mocker):
+    mock = mocker.patch("db.character.insertCharacter")
+    datainserts.insertCharacter([])
+    mock.assert_called_once()
+    mock.assert_called_with([])
+
+
+def test_insertCharacter_one_data(mocker):
+    test_data = readFileStr("character_001.json")
+    input_data = test_data["inputData"]
+    mock = mocker.patch("db.character.insertCharacter")
+    datainserts.insertCharacter(input_data)
+    mock.assert_called_once()
+    mock.assert_called_with(test_data["outputData"])
+
+
+def test_insertCharacter_three_data(mocker):
+    test_data = readFileStr("character_002.json")
+    input_data = test_data["inputData"]
+    mock = mocker.patch("db.character.insertCharacter")
+    datainserts.insertCharacter(input_data)
+    mock.assert_called_once()
+    mock.assert_called_with(test_data["outputData"])
