@@ -111,6 +111,31 @@ def test_three_data_same_music(mocker):
     )
 
 
+def test_insertDegrees_empty(mocker):
+    input_data = {}
+    insert_mock = mocker.patch("db.degrees.insertDegrees")
+    datainserts.insertDegrees(input_data)
+    insert_mock.assert_called_once()
+    insert_mock.assert_called_with([])
+
+
+def test_insertDegrees_one_data(mocker):
+    test_data = readFileStr("degrees_001.json")
+    input_data = test_data["inputData"]
+    insert_mock = mocker.patch("db.degrees.insertDegrees")
+    datainserts.insertDegrees(input_data)
+    insert_mock.assert_called_once()
+    insert_mock.assert_called_with(test_data["outputData"])
+
+
+def test_insertDegrees_three_data(mocker):
+    test_data = readFileStr("degrees_002.json")
+    input_data = test_data["inputData"]
+    insert_mock = mocker.patch("db.degrees.insertDegrees")
+    datainserts.insertDegrees(input_data)
+    insert_mock.assert_called_once()
+    insert_mock.assert_called_with(test_data["outputData"])
+
 
 def test_insertCharacter_empty(mocker):
     mock = mocker.patch("db.character.insertCharacter")
