@@ -34,6 +34,10 @@ class RankingListScreen(Screen):
         serchGenreName = self.ids.genreSpinnerId.text
         self.rankingListRv.data = self.rankModel.searchMusic(serchLavelName, serchGenreName)
 
+    def showHighScore(self, chartId):
+        self.commonData.setHistoryData(chartId, "rankingList")
+        self.manager.current = 'details'
+
 
 class rankingData(BoxLayout):
     musicName = StringProperty()
@@ -41,6 +45,9 @@ class rankingData(BoxLayout):
     highScore = StringProperty()
     maxRank = StringProperty()
     ranking = StringProperty()
+
+    def showHighScore(self, chartId):
+        self.parent.parent.parent.parent.parent.parent.parent.showHighScore(chartId)
 
 
 if __name__ == '__main__':

@@ -98,10 +98,6 @@ class TetoconeScoreApp(App):
         self.sm.add_widget(cha.characterDataScreen(name='characterData'))
         return self.sm
 
-    def showHighScore(self, chartId, sourceWidget):
-        self.appCommonData.setHistoryData(chartId, sourceWidget)
-        self.sm.current = "details"
-
 
 if __name__ == '__main__':
     TetoconeScoreApp().run()

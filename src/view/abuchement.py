@@ -40,6 +40,10 @@ class AbuchmentScreen(Screen):
     def checkboxCheck(self, checkbox):
         self.ungetFlg = checkbox.active
 
+    def showHighScore(self, chartId):
+        self.commonData.setHistoryData(chartId, "abuchment")
+        self.manager.current = 'details'
+
 
 class AbuchmentData(BoxLayout):
     musicName = StringProperty()
@@ -49,6 +53,9 @@ class AbuchmentData(BoxLayout):
     fullComboCount = StringProperty()
     chartId = StringProperty()
     detailsFlg = BooleanProperty(False)
+
+    def showHighScore(self, chartId):
+        self.parent.parent.parent.parent.parent.parent.parent.showHighScore(chartId)
 
 
 if __name__ == '__main__':
