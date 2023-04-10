@@ -94,8 +94,10 @@ class TetoconeScoreApp(App):
                         name='rankingList'
                     )
             )
-        self.sm.add_widget(deg.DegreesList(name='degreesList'))
-        self.sm.add_widget(cha.characterDataScreen(name='characterData'))
+        if self.appCommonData.checkDegreesData():
+                self.sm.add_widget(deg.DegreesList(name='degreesList'))
+                self.sm.add_widget(cha.characterDataScreen(name='characterData'))
+        
         return self.sm
 
 

@@ -8,12 +8,6 @@ from constant.distConstant import DEGREE_CATEGORY_DIST
 
 class CharacterInfoModel(BaseModel):
     characterInfoDist = {}
-
-    def __init__(self, **kwargs):
-        super(CharacterInfoModel, self).__init__(**kwargs)
-        self.refreshCharacterData()
-        
-    
     def refreshCharacterData(self):
         characterInfoList = cha.selectCharacter()
 

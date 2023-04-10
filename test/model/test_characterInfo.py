@@ -44,14 +44,13 @@ def setup_test(mocker):
     ]
     mocker.patch("db.character.selectCharacter", return_value=dbData)
     testObj = characterInfo.CharacterInfoModel()
+    testObj.refreshCharacterData()
     return testObj
 
 
-def test_init(mocker):
-    reflash_mock = mocker.patch("model.characterInfo.CharacterInfoModel.refreshCharacterData")
-    characterInfo.CharacterInfoModel()
-    reflash_mock.assert_called_once()
-    reflash_mock.assert_called_with()
+def test_init():
+    testObj = characterInfo.CharacterInfoModel()
+    assert testObj.characterInfoDist == {}
 
 
 def test_reflash(mocker):
@@ -91,8 +90,6 @@ def test_reflash(mocker):
         },
     }
     dbData =  [
-        [],
-        [
         {
             "characterId": "TEST001",
             "characterName": "テストキャラ1",
@@ -126,16 +123,14 @@ def test_reflash(mocker):
             "costumeId": "COS_TEST_003",
             "updatedAt": "2023-04-12T05:33:21+00:00",
         },
-    ]]
-    db_mock = mocker.patch("db.character.selectCharacter", side_effect=dbData)
+    ]
+    db_mock = mocker.patch("db.character.selectCharacter", return_value=dbData)
     testObj = characterInfo.CharacterInfoModel()
     testObj.refreshCharacterData()
     assert testObj.characterInfoDist == success
-    assert db_mock.call_count == 2
-    db_mock.assert_has_calls([
-            mocker.call(),
-            mocker.call(),
-    ])
+    db_mock.assert_called_once()
+    db_mock.assert_called_with()
+
 
 def test_isEmptyCharacterInfoList_false(mocker):
     testObj = setup_test(mocker)

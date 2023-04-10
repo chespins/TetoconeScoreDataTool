@@ -18,6 +18,9 @@ class MenuScreen(Screen):
     def on_pre_enter(self, **kwargs):
         self.ids.webData.disabled = self.commonData.readOnlyFlg
         self.ids.rankingCheck.disabled = not self.commonData.checkRankingData()
+        degreesDis = not self.commonData.checkDegreesData()
+        self.ids.characterData.disabled = degreesDis
+        self.ids.degreesList.disabled =  degreesDis
 
 
 if __name__ == '__main__':
