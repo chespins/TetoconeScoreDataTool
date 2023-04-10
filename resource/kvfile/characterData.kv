@@ -39,41 +39,40 @@
                         id: dearnessPoint
                 BoxLayout:
                     size_hint_y: 0.4
-                    CharBlackLabel:
-                        size_hint_X: 0.1
-                        text: 'キャラクター説明'
-                    CharBlackLabel:
-                        size_hint_X: 0.9
-                        id: introduction
-                        text_size: self.size
-                        halign: 'center'
-                        valign: 'middle'
+                    BoxLayout:
+                        size_x: None
+                        size_hint: (0.2, 1)
+                        CharBlackLabel:
+                            text: 'キャラクター説明'
+                    BoxLayout:
+                        size_x: None
+                        size_hint: (0.05, 1)
+                    BoxLayout:
+                        size_x: None
+                        size_hint: (0.6, 1)
+                        CharBlackLabel:
+                            id: introduction
+                            text_size: self.size
+                            halign: 'center'
+                            valign: 'middle'
+                    BoxLayout:
+                        size_x: None
+                        size_hint: (0.05, 1)
                 BoxLayout:
                     size_hint_y: 0.2
-                    CharBlackLabel:
-                        size_hint_x: 0.4
-                        text: '最終プレイ日時'
-                    CharBlackLabel:
-                        size_hint_x: 0.6
-                        id: lastPlayDate
+                    BoxLayout:
+                        size_x: None
+                        size_hint_X: 0.2
+                        CharBlackLabel:
+                            text: '最終プレイ日時'
+                    BoxLayout:
+                        size_x: None
+                        size_hint_X: 0.8
+                        CharBlackLabel:
+                            id: lastPlayDate
             BoxLayout:
                 orientation:'vertical'
                 size_hint_x: 0.3
-                canvas:
-                    Color:
-                        rgba: 0.5, 0.5, 0.5, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                BoxLayout:
-                    height: dp(30)
-                    size_hint_y: None
-                    Label:
-                        size_hint_x: 0.3
-                        text: '詳細'
-                    Label:
-                        size_hint_x: 0.7
-                        text: 'キャラクター名'
                 BoxLayout:
                     canvas:
                         Color:
@@ -117,7 +116,7 @@
 <CharacterName>:
     canvas.before:
         Color:
-            rgba: 0.75, 0, 0.75, 1
+            rgba: [0, 0, 1, 0.4]
         Rectangle:
             size: self.size
             pos: self.pos
