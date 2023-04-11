@@ -44,6 +44,7 @@ def test_score_success(mocker):
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", True, False, False, False, False, False, False, False, False)
     assert result == "マイページからのデータ取得が成功しました。"
@@ -62,6 +63,7 @@ def test_score_success(mocker):
     db_degrees_mock.assert_not_called()
     character_mock.assert_not_called()
     db_character_mock.assert_not_called()
+    db_introduction_mock.assert_not_called()
 
 
 @pytest.mark.freeze_time(datetime.datetime(2022, 11, 21, 10, 10, 10, tzinfo=datetime.timezone.utc))
@@ -95,6 +97,7 @@ def test_rank_sucsess_all_one(mocker):
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", False, True, True, True, True, True, True, False, False)
     assert result == "マイページからのデータ取得が成功しました。"
@@ -117,6 +120,7 @@ def test_rank_sucsess_all_one(mocker):
     db_degrees_mock.assert_not_called()
     character_mock.assert_not_called()
     db_character_mock.assert_not_called()
+    db_introduction_mock.assert_not_called()
 
 
 @pytest.mark.freeze_time(datetime.datetime(2022, 11, 21, 10, 10, 10, tzinfo=datetime.timezone.utc))
@@ -184,6 +188,7 @@ def test_degrees_sucsess(mocker):
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", False, False, False, False, False, False, False, True, False)
     assert result == "マイページからのデータ取得が成功しました。"
@@ -237,6 +242,7 @@ def test_degrees_sucsess(mocker):
     db_degrees_mock.assert_called_with(db_degrees_param)
     character_mock.assert_not_called()
     db_character_mock.assert_not_called()
+    db_introduction_mock.assert_not_called()
 
 
 @pytest.mark.freeze_time(datetime.datetime(2022, 11, 21, 10, 10, 10, tzinfo=datetime.timezone.utc))
@@ -253,6 +259,7 @@ def test_character_sucsess(mocker):
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
     character_mock = mocker.patch("model.mypagedata.getCharacterData", side_effect=test_data["character_return"])
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter", return_value=test_data["dbIntroduction_return"])
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", False, False, False, False, False, False, False, False, True)
     assert result == "マイページからのデータ取得が成功しました。"
@@ -275,6 +282,8 @@ def test_character_sucsess(mocker):
     character_mock.assert_called_with(test_data["return_sesson"], "CHR_T_01")
     db_character_mock.assert_called_once()
     db_character_mock.assert_called_with(test_data["dbCharacter_param"])
+    db_introduction_mock.assert_called_once()
+    db_introduction_mock.assert_called_with("CHR_T_01")
 
 
 @pytest.mark.freeze_time(datetime.datetime(2022, 11, 21, 10, 10, 10, tzinfo=datetime.timezone.utc))
@@ -333,6 +342,7 @@ def test_all_sucsess_all_five(mocker):
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
     character_mock = mocker.patch("model.mypagedata.getCharacterData", side_effect=test_data["character_return"])
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter", side_effect=test_data["dbIntroduction_return"])
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, True, True, True, True, True, True)
     assert result == "マイページからのデータ取得が成功しました。"
@@ -362,10 +372,9 @@ def test_all_sucsess_all_five(mocker):
     )
     db_chart_mock.assert_called_once()
     db_chart_mock.assert_called_with(levelIdList=[1,2,3,4,5])
-    assert sleep_mock.call_count == 16
+    assert sleep_mock.call_count == 15
     sleep_mock.assert_has_calls([
             mocker.call(3),
-            mocker.call(1),
             mocker.call(1),
             mocker.call(1),
             mocker.call(1),
@@ -392,11 +401,16 @@ def test_all_sucsess_all_five(mocker):
         ])
     db_degrees_mock.assert_called_once()
     db_degrees_mock.assert_called_with(test_data["db_degrees_param"])
-    assert character_mock.call_count == 3
+    assert character_mock.call_count == 2
     character_mock.assert_has_calls([
             mocker.call(test_data["return_sesson"], "CHR_T_01"),
-            mocker.call(test_data["return_sesson"], "CHR_T_02"),
             mocker.call(test_data["return_sesson"], "CHR_T_03"),
         ])
     db_character_mock.assert_called_once()
     db_character_mock.assert_called_with(test_data["dbCharacter_param"])
+    assert db_introduction_mock.call_count == 3
+    db_introduction_mock.assert_has_calls([
+            mocker.call("CHR_T_01"),
+            mocker.call("CHR_T_02"),
+            mocker.call("CHR_T_03"),
+        ])

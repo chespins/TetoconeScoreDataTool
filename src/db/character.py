@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 import sqlite3
 from constant.systemconstant import TETOCONE_DB_NAME
+from constant.systemconstant import NO_DATA_STR
 
 
 SELECT_SQL = """
     SELECT id, name, introduction, dearness_rank, dearness_point, is_used, sort_index, costume_id, updated_at FROM character ORDER BY sort_index
+"""
+
+SELECT_INTRODUCTION_ID = """
+    SELECT introduction FROM character WHERE id = ?
 """
 
 DELETE_SQL = "DELETE FROM character WHERE id IN ("
@@ -33,6 +38,17 @@ def selectCharacter():
                 })
 
     return characterList
+
+
+def selectIntroductionCharacter(characterId):
+    with sqlite3.connect(TETOCONE_DB_NAME) as conn:
+        cur = conn.cursor()
+        cur.execute(SELECT_INTRODUCTION_ID, (characterId,))
+        results = cur.fetchall()
+        if len(results) != 1:
+            return NO_DATA_STR
+        
+        return results[0][0]
 
 
 def insertCharacter(characterList):

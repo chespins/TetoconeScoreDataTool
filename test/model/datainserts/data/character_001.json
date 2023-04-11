@@ -21,18 +21,13 @@
                 "accessories": [],
                 "dearnessRank": 11
             },
-            "introduction": {
-                "characterId": "CHR_T_0001",
-                "introductionId": "TXT_T_Introduction_01",
-                "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4",
-                "label": "テストキャラ01"
-            }
+            "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4"
         }
     ],
     "outputData": [
         {
             "characterId": "CHR_T_01",
-            "characterName": "テストキャラ01",
+            "characterName": "テストキャラ1",
             "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4",
             "dearnessRank": 11,
             "dearnessPoint": 101,

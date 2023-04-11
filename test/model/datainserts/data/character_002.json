@@ -21,12 +21,7 @@
                 "accessories": [],
                 "dearnessRank": 11
             },
-            "introduction": {
-                "characterId": "CHR_T_0001",
-                "introductionId": "TXT_T_Introduction_01",
-                "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4",
-                "label": "テストキャラ01"
-            }
+            "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4"
         },
         {
             "character": {
@@ -49,12 +44,7 @@
                 "accessories": [],
                 "dearnessRank": 12
             },
-            "introduction": {
-                "characterId": "CHR_T_0002",
-                "introductionId": "TXT_T_Introduction_02",
-                "introduction": "テスト説明2\nテスト説明2\nテスト説明3\nテスト説明4",
-                "label": "テストキャラ02"
-            }
+            "introduction": "テスト説明2\nテスト説明2\nテスト説明3\nテスト説明4"
         },
         {
             "character": {
@@ -77,18 +67,13 @@
                 "accessories": [],
                 "dearnessRank": 13
             },
-            "introduction": {
-                "characterId": "CHR_T_0003",
-                "introductionId": "TXT_T_Introduction_03",
-                "introduction": "テスト説明3\nテスト説明2\nテスト説明3\nテスト説明4",
-                "label": "テストキャラ03"
-            }
+            "introduction": "テスト説明3\nテスト説明2\nテスト説明3\nテスト説明4"
         }
     ],
     "outputData": [
         {
             "characterId": "CHR_T_01",
-            "characterName": "テストキャラ01",
+            "characterName": "テストキャラ1",
             "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4",
             "dearnessRank": 11,
             "dearnessPoint": 101,
@@ -99,7 +84,7 @@
         },
         {
             "characterId": "CHR_T_02",
-            "characterName": "テストキャラ02",
+            "characterName": "テストキャラ2",
             "introduction": "テスト説明2\nテスト説明2\nテスト説明3\nテスト説明4",
             "dearnessRank": 12,
             "dearnessPoint": 102,
@@ -110,7 +95,7 @@
         },
         {
             "characterId": "CHR_T_03",
-            "characterName": "テストキャラ03",
+            "characterName": "テストキャラ3",
             "introduction": "テスト説明3\nテスト説明2\nテスト説明3\nテスト説明4",
             "dearnessRank": 13,
             "dearnessPoint": 103,

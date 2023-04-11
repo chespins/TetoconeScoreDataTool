@@ -111,11 +111,10 @@ def insertCharacter(characterList):
     dbCharacterList = []
     for characterInfo in characterList:
         character = characterInfo["character"]
-        introduction = characterInfo["introduction"]
         dbCharacter = {
             "characterId": character["characterId"],
-            "characterName": introduction["label"],
-            "introduction": introduction["introduction"],
+            "characterName": character["character"]["label"],
+            "introduction": characterInfo["introduction"],
             "dearnessRank": character["dearnessRank"],
             "dearnessPoint": character["dearness"],
             "isUsed": character["isUsed"],

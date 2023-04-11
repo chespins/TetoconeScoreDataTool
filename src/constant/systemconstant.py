@@ -22,6 +22,9 @@ DNT = "1"
 ACCEPT_LANGUAGE = "ja"
 CONTENT_TYPE = "application/json"
 
+# 使用不可文字列
+NO_DATA_STR = "NO_DATA"
+
 # クリア状況確認用
 FULL_COMBO = "フルコンボ"
 PERFECT = "パーフェクト"

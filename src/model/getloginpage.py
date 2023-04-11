@@ -6,8 +6,10 @@ from model import datainserts
 from model import mypagedata as myPage
 from db import chartconstitution as cha
 from db import ranking as ra
+from db import character as cra
 from constant import messeges
 from constant.distConstant import DEGREE_CATEGORY_DIST
+from constant.systemconstant import NO_DATA_STR
 
 
 def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool, 
@@ -55,12 +57,16 @@ def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool,
                 characters = myPageData["response"]["characters"]
                 characterList = []
                 for character in characters:
-                    sleep(1)
                     characterId = character["characterId"]
                     characterInfo = {}
                     characterInfo["character"] = character
-                    responseInfo = myPage.getCharacterData(session, characterId)
-                    characterInfo["introduction"] = responseInfo["response"][characterId]
+                    characterInfo["introduction"] = cra.selectIntroductionCharacter(characterId)
+                    
+                    if characterInfo["introduction"] == NO_DATA_STR:
+                        sleep(1)
+                        responseInfo = myPage.getCharacterData(session, characterId)
+                        characterInfo["introduction"] = responseInfo["response"][characterId]["introduction"]
+                    
                     characterList.append(characterInfo)
             
                 datainserts.insertCharacter(characterList)

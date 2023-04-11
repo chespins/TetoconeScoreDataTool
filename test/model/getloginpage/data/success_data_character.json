@@ -1,5 +1,7 @@
 {
-    "return_sesson": {"test": 12345},
+    "return_sesson": {
+        "test": 12345
+    },
     "score_return": {
         "responseCode": 200,
         "responseMessage": "OK",
@@ -45,6 +47,7 @@
             }
         }
     ],
+    "dbIntroduction_return": "NO_DATA",
     "dbCharacter_param": [
         {
             "character": {
@@ -67,12 +70,7 @@
                 "accessories": [],
                 "dearnessRank": 11
             },
-            "introduction": {
-                "characterId": "CHR_T_001",
-                "introductionId": "TXT_CHR_T_01",
-                "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4",
-                "label": "テストキャラ01"
-            }
+            "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4"
         }
     ]
 }

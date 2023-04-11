@@ -180,6 +180,11 @@
             ]
         }
     ],
+    "dbIntroduction_return": [
+        "NO_DATA",
+        "テスト説明2",
+        "NO_DATA"
+    ],
     "character_return": [
         {
             "responseCode": 200,
@@ -190,18 +195,6 @@
                     "introductionId": "TXT_CHR_T_01",
                     "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4",
                     "label": "テストキャラ01"
-                }
-            }
-        },
-        {
-            "responseCode": 200,
-            "responseMessage": "OK",
-            "response": {
-                "CHR_T_02": {
-                    "characterId": "CHR_T_002",
-                    "introductionId": "TXT_CHR_T_02",
-                    "introduction": "テスト説明2\nテスト説明2\nテスト説明3\nテスト説明4",
-                    "label": "テストキャラ02"
                 }
             }
         },
@@ -272,12 +265,7 @@
                 "accessories": [],
                 "dearnessRank": 11
             },
-            "introduction": {
-                "characterId": "CHR_T_001",
-                "introductionId": "TXT_CHR_T_01",
-                "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4",
-                "label": "テストキャラ01"
-            }
+            "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4"
         },
         {
             "character": {
@@ -300,12 +288,7 @@
                 "accessories": [],
                 "dearnessRank": 12
             },
-            "introduction": {
-                "characterId": "CHR_T_002",
-                "introductionId": "TXT_CHR_T_02",
-                "introduction": "テスト説明2\nテスト説明2\nテスト説明3\nテスト説明4",
-                "label": "テストキャラ02"
-            }
+            "introduction": "テスト説明2"
         },
         {
             "character": {
@@ -328,12 +311,7 @@
                 "accessories": [],
                 "dearnessRank": 13
             },
-            "introduction": {
-                "characterId": "CHR_T_003",
-                "introductionId": "TXT_CHR_T_03",
-                "introduction": "テスト説明3\nテスト説明2\nテスト説明3\nテスト説明4",
-                "label": "テストキャラ03"
-            }
+            "introduction": "テスト説明3\nテスト説明2\nテスト説明3\nテスト説明4"
         }
     ],
     "stage_data": [

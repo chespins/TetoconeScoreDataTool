@@ -60,6 +60,22 @@ def test_select():
     assert character.selectCharacter() == success
 
 
+def test_introductionCharacter():
+    befour_db_name = "test/db/character/character_data.db"
+    test_file_name = common_db_setup.copy_file_db(befour_db_name)
+    character.TETOCONE_DB_NAME = test_file_name
+    success = "テスト1\nテスト1\nテスト1"
+    assert character.selectIntroductionCharacter("TEST001") == success
+
+
+def test_introductionCharacter_nodata():
+    befour_db_name = "test/db/character/character_data.db"
+    test_file_name = common_db_setup.copy_file_db(befour_db_name)
+    character.TETOCONE_DB_NAME = test_file_name
+    success = "NO_DATA"
+    assert character.selectIntroductionCharacter("TEST000") == success
+
+
 def test_insert_new():
     befour_db_name = "test/db/character/character_data.db"
     test_file_name = common_db_setup.copy_file_db(befour_db_name)
