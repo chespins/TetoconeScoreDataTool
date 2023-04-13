@@ -148,15 +148,24 @@ def test_insertCharacter_one_data(mocker):
     test_data = readFileStr("character_001.json")
     input_data = test_data["inputData"]
     mock = mocker.patch("db.character.insertCharacter")
+    select_mock = mocker.patch("db.character.selectCharacter")
     datainserts.insertCharacter(input_data)
     mock.assert_called_once()
     mock.assert_called_with(test_data["outputData"])
+    select_mock.assert_not_called()
 
 
 def test_insertCharacter_three_data(mocker):
     test_data = readFileStr("character_002.json")
     input_data = test_data["inputData"]
     mock = mocker.patch("db.character.insertCharacter")
+    select_mock = mocker.patch("db.character.selectCharacter", side_effect=test_data["select_return"])
     datainserts.insertCharacter(input_data)
     mock.assert_called_once()
     mock.assert_called_with(test_data["outputData"])
+    assert select_mock.call_count == 3
+    select_mock.assert_has_calls([
+            mocker.call(characterId="CHR_T_01"),
+            mocker.call(characterId="CHR_T_04"),
+            mocker.call(characterId="CHR_T_05"),
+    ])

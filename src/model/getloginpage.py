@@ -7,6 +7,7 @@ from model import mypagedata as myPage
 from db import chartconstitution as cha
 from db import ranking as ra
 from db import character as cra
+from util import util
 from constant import messeges
 from constant.distConstant import DEGREE_CATEGORY_DIST
 from constant.systemconstant import NO_DATA_STR
@@ -67,6 +68,12 @@ def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool,
                         responseInfo = myPage.getCharacterData(session, characterId)
                         characterInfo["introduction"] = responseInfo["response"][characterId]["introduction"]
                     
+                    if character["isUsed"]:
+                        sleep(1)
+                        caracterRanking = myPage.getCharacterRanking(session, characterId)
+                        characterInfo["rankingDate"] = util.getDateTimeNow()
+                        characterInfo["ranking"] = caracterRanking["response"]
+
                     characterList.append(characterInfo)
             
                 datainserts.insertCharacter(characterList)

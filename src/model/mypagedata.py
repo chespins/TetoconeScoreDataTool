@@ -28,6 +28,12 @@ def getCharacterData(session: Session, characterId: str):
     return json.loads(result.text)
 
 
+def getCharacterRanking(session: Session, characterId: str):
+    session.headers["Referer"] = cons.CHARACTER_RANKING_PAGE_URL.format(characterId)
+    result = session.get(cons.CHARACTER_RANKING_GET_URL.format(characterId))
+    return json.loads(result.text)
+
+
 def getConnectPageData(session: Session):
     session.headers["Referer"] = cons.WEB_LOGINED_URL
     result = session.get(cons.DATA_GET_URL)

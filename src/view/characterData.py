@@ -38,6 +38,8 @@ class characterDataScreen(Screen):
         self.ids.dearnessRank.text = character["dearnessRank"]
         self.ids.dearnessPoint.text = character["dearnessPoint"]
         self.ids.introduction.text = character["introduction"]
+        self.ids.rankingData.text = character["dearnessRanking"]
+        self.ids.rankingGetDate.text = character["dearnessRankingDate"]
         self.ids.lastPlayDate.text = character["lastPlayDate"]
 
 

@@ -43,6 +43,7 @@ def test_score_success(mocker):
     degrees_mock = mocker.patch("model.mypagedata.getDegreesData")
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
+    character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
     db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
 
@@ -62,6 +63,7 @@ def test_score_success(mocker):
     degrees_mock.assert_not_called()
     db_degrees_mock.assert_not_called()
     character_mock.assert_not_called()
+    character_ranking_mock.assert_not_called()
     db_character_mock.assert_not_called()
     db_introduction_mock.assert_not_called()
 
@@ -96,6 +98,7 @@ def test_rank_sucsess_all_one(mocker):
     degrees_mock = mocker.patch("model.mypagedata.getDegreesData")
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
+    character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
     db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
 
@@ -119,6 +122,7 @@ def test_rank_sucsess_all_one(mocker):
     degrees_mock.assert_not_called()
     db_degrees_mock.assert_not_called()
     character_mock.assert_not_called()
+    character_ranking_mock.assert_not_called()
     db_character_mock.assert_not_called()
     db_introduction_mock.assert_not_called()
 
@@ -187,6 +191,7 @@ def test_degrees_sucsess(mocker):
     degrees_mock = mocker.patch("model.mypagedata.getDegreesData", side_effect=degrees_return)
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
+    character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
     db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
 
@@ -240,6 +245,7 @@ def test_degrees_sucsess(mocker):
         }]
     }
     db_degrees_mock.assert_called_with(db_degrees_param)
+    character_ranking_mock.assert_not_called()
     character_mock.assert_not_called()
     db_character_mock.assert_not_called()
     db_introduction_mock.assert_not_called()
@@ -258,6 +264,7 @@ def test_character_sucsess(mocker):
     degrees_mock = mocker.patch("model.mypagedata.getDegreesData")
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
     character_mock = mocker.patch("model.mypagedata.getCharacterData", side_effect=test_data["character_return"])
+    character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking", return_value=test_data["character_ranking_return"])
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
     db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter", return_value=test_data["dbIntroduction_return"])
 
@@ -271,15 +278,18 @@ def test_character_sucsess(mocker):
     ranking_mock.assert_not_called()
     db_ranking_mock.assert_not_called()
     db_chart_mock.assert_not_called()
-    assert sleep_mock.call_count == 2
+    assert sleep_mock.call_count == 3
     sleep_mock.assert_has_calls([
             mocker.call(3),
+            mocker.call(1),
             mocker.call(1),
         ])
     degrees_mock.assert_not_called()
     db_degrees_mock.assert_not_called()
     character_mock.assert_called_once()
     character_mock.assert_called_with(test_data["return_sesson"], "CHR_T_01")
+    character_ranking_mock.assert_called_once()
+    character_ranking_mock.assert_called_with(test_data["return_sesson"], "CHR_T_01")
     db_character_mock.assert_called_once()
     db_character_mock.assert_called_with(test_data["dbCharacter_param"])
     db_introduction_mock.assert_called_once()
@@ -341,6 +351,7 @@ def test_all_sucsess_all_five(mocker):
     degrees_mock = mocker.patch("model.mypagedata.getDegreesData", side_effect=test_data["degrees_return"])
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
     character_mock = mocker.patch("model.mypagedata.getCharacterData", side_effect=test_data["character_return"])
+    character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking", side_effect=test_data["character_ranking_return"])
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
     db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter", side_effect=test_data["dbIntroduction_return"])
 
@@ -372,9 +383,11 @@ def test_all_sucsess_all_five(mocker):
     )
     db_chart_mock.assert_called_once()
     db_chart_mock.assert_called_with(levelIdList=[1,2,3,4,5])
-    assert sleep_mock.call_count == 15
+    assert sleep_mock.call_count == 17
     sleep_mock.assert_has_calls([
             mocker.call(3),
+            mocker.call(1),
+            mocker.call(1),
             mocker.call(1),
             mocker.call(1),
             mocker.call(1),
@@ -405,6 +418,11 @@ def test_all_sucsess_all_five(mocker):
     character_mock.assert_has_calls([
             mocker.call(test_data["return_sesson"], "CHR_T_01"),
             mocker.call(test_data["return_sesson"], "CHR_T_03"),
+        ])
+    assert character_ranking_mock.call_count == 2
+    character_ranking_mock.assert_has_calls([
+            mocker.call(test_data["return_sesson"], "CHR_T_01"),
+            mocker.call(test_data["return_sesson"], "CHR_T_02"),
         ])
     db_character_mock.assert_called_once()
     db_character_mock.assert_called_with(test_data["dbCharacter_param"])

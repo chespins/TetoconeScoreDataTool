@@ -15,6 +15,8 @@ RANKING_PAGE_URL = HTTP_ACCESS_URL + "/rankings?category=stageScore&subcategory=
 DEGREE_GET_URL = HTTP_ACCESS_URL + "/api/user-degree?category={0}&lang=ja_jp"
 DEGREE_PAGE_URL = HTTP_ACCESS_URL + "/player/profile?tab=degree&category={0}"
 CHARACTER_GET_URL = HTTP_ACCESS_URL + "/api/user-character?lang=ja_jp&character_ids[]={0}"
+CHARACTER_RANKING_GET_URL = HTTP_ACCESS_URL + "/api/user-rankings/character-dearness/{0}?page=1&max=100&lang=ja_jp"
+CHARACTER_RANKING_PAGE_URL = HTTP_ACCESS_URL + "/rankings?category=characterDearness&subcategory={0}&page="
 
 # APIパラメータ
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36'

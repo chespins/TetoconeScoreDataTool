@@ -10,7 +10,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..\\..\\..\\src\\'))
 from db import character
 
 
-def test_select_no():
+def test_select_nodata():
     befour_db_name = "test/db/character/character_no_data.db"
     test_file_name = common_db_setup.copy_file_db(befour_db_name)
     character.TETOCONE_DB_NAME = test_file_name
@@ -18,7 +18,7 @@ def test_select_no():
     assert character.selectCharacter() == success
 
 
-def test_select():
+def test_select_noparam():
     befour_db_name = "test/db/character/character_data.db"
     test_file_name = common_db_setup.copy_file_db(befour_db_name)
     character.TETOCONE_DB_NAME = test_file_name
@@ -32,6 +32,9 @@ def test_select():
             "isUsed": False,
             "sortIndex": 10,
             "costumeId": "COS_TEST_001",
+            "collaboration": False,
+            "dearnessRanking": 1000,
+            "rankingGetDate": "2023-02-02T05:33:21+00:00",
             "updatedAt": "2023-02-12T05:33:21+00:00",
         },
         {
@@ -43,6 +46,9 @@ def test_select():
             "isUsed": False,
             "sortIndex": 11,
             "costumeId": "COS_TEST_002",
+            "collaboration": True,
+            "dearnessRanking": 2000,
+            "rankingGetDate": "2023-03-02T05:33:21+00:00",
             "updatedAt": "2023-03-12T05:33:21+00:00",
         },
         {
@@ -54,10 +60,36 @@ def test_select():
             "isUsed": True,
             "sortIndex": 12,
             "costumeId": "COS_TEST_003",
+            "collaboration": False,
+            "dearnessRanking": 3000,
+            "rankingGetDate": "2023-04-02T05:33:21+00:00",
             "updatedAt": "2023-04-12T05:33:21+00:00",
         },
     ]
     assert character.selectCharacter() == success
+
+
+def test_select_params():
+    befour_db_name = "test/db/character/character_data.db"
+    test_file_name = common_db_setup.copy_file_db(befour_db_name)
+    character.TETOCONE_DB_NAME = test_file_name
+    success = [
+        {
+            "characterId": "TEST002",
+            "characterName": "テストキャラ2",
+            "introduction": "テスト2\nテスト2\nテスト2",
+            "dearnessRank": 2,
+            "dearnessPoint": 2234,
+            "isUsed": False,
+            "sortIndex": 11,
+            "costumeId": "COS_TEST_002",
+            "collaboration": True,
+            "dearnessRanking": 2000,
+            "rankingGetDate": "2023-03-02T05:33:21+00:00",
+            "updatedAt": "2023-03-12T05:33:21+00:00",
+        },
+    ]
+    assert character.selectCharacter(characterId="TEST002") == success
 
 
 def test_introductionCharacter():
@@ -90,6 +122,9 @@ def test_insert_new():
             "isUsed": False,
             "sortIndex": 13,
             "costumeId": "COS_TEST_004",
+            "collaboration": False,
+            "dearnessRanking": 3000,
+            "rankingGetDate": "2023-05-02T05:33:21+00:00",
             "updatedAt": "2023-05-12T05:33:21+00:00",
         },
         ]
@@ -111,6 +146,9 @@ def test_insert_update():
             "isUsed": True,
             "sortIndex": 10,
             "costumeId": "COS_TEST_101",
+            "collaboration": False,
+            "dearnessRanking": 1100,
+            "rankingGetDate": "2024-02-02T05:33:21+00:00",
             "updatedAt": "2024-02-12T05:33:21+00:00",
         },
         {
@@ -122,6 +160,9 @@ def test_insert_update():
             "isUsed": False,
             "sortIndex": 11,
             "costumeId": "COS_TEST_102",
+            "collaboration": False,
+            "dearnessRanking": 2200,
+            "rankingGetDate": "2024-03-02T05:33:21+00:00",
             "updatedAt": "2024-03-12T05:33:21+00:00",
         },
         {
@@ -133,6 +174,9 @@ def test_insert_update():
             "isUsed": False,
             "sortIndex": 12,
             "costumeId": "COS_TEST_103",
+            "collaboration": True,
+            "dearnessRanking": 3300,
+            "rankingGetDate": "2024-04-02T05:33:21+00:00",
             "updatedAt": "2024-04-12T05:33:21+00:00",
         },
             {
@@ -144,6 +188,9 @@ def test_insert_update():
             "isUsed": False,
             "sortIndex": 13,
             "costumeId": "COS_TEST_104",
+            "collaboration": False,
+            "dearnessRanking": 4400,
+            "rankingGetDate": "2024-05-02T05:33:21+00:00",
             "updatedAt": "2024-05-12T05:33:21+00:00",
         },
         ]

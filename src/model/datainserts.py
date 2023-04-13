@@ -111,8 +111,22 @@ def insertCharacter(characterList):
     dbCharacterList = []
     for characterInfo in characterList:
         character = characterInfo["character"]
+        characterId = character["characterId"]
+        dearnessRanking = None
+        rankingGetDate = None
+        
+        if character["isUsed"]:
+            dearnessRanking = characterInfo["ranking"]["rank"]
+            rankingGetDate = characterInfo["rankingDate"]
+
+        else:
+            dbData = cha.selectCharacter(characterId=characterId)
+            if len(dbData) > 0:
+                dearnessRanking = dbData[0]["dearnessRanking"]
+                rankingGetDate = dbData[0]["rankingGetDate"]
+
         dbCharacter = {
-            "characterId": character["characterId"],
+            "characterId": characterId,
             "characterName": character["character"]["label"],
             "introduction": characterInfo["introduction"],
             "dearnessRank": character["dearnessRank"],
@@ -120,6 +134,9 @@ def insertCharacter(characterList):
             "isUsed": character["isUsed"],
             "sortIndex": character["character"]["sortIndex"],
             "costumeId": character["costumeId"],
+            "collaboration": character["character"]["collaboration"],
+            "dearnessRanking": dearnessRanking,
+            "rankingGetDate": rankingGetDate,
             "updatedAt": character["updatedAt"],
         }
         dbCharacterList.append(dbCharacter)

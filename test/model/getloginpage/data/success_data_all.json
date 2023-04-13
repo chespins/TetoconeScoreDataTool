@@ -57,7 +57,7 @@
                     "playerId": 1,
                     "characterId": "CHR_T_01",
                     "dearness": 101,
-                    "isUsed": false,
+                    "isUsed": true,
                     "costumeId": "COSTUME_T_01_1001",
                     "createdAt": "2021-09-12T04:51:57+00:00",
                     "updatedAt": "2021-10-12T04:51:57+00:00",
@@ -66,7 +66,7 @@
                         "displayName": "TXT_CHR_NAME_T_01",
                         "defaultCostumeId": "COSTUME_T_01_1001",
                         "sortIndex": 1,
-                        "collaboration": true,
+                        "collaboration": false,
                         "label": "テストキャラ1"
                     },
                     "accessories": [],
@@ -77,7 +77,7 @@
                     "playerId": 1,
                     "characterId": "CHR_T_02",
                     "dearness": 102,
-                    "isUsed": false,
+                    "isUsed": true,
                     "costumeId": "COSTUME_T_02_1001",
                     "createdAt": "2022-09-12T04:51:57+00:00",
                     "updatedAt": "2022-10-12T04:51:57+00:00",
@@ -211,6 +211,32 @@
             }
         }
     ],
+    "character_ranking_return": [
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": {
+                "score": 1,
+                "rank": 111
+            }
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": {
+                "score": 2,
+                "rank": 222
+            }
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": {
+                "score": 3,
+                "rank": 333
+            }
+        }
+    ],
     "db_degrees_param": {
         "Stage": [
             {
@@ -250,7 +276,7 @@
                 "playerId": 1,
                 "characterId": "CHR_T_01",
                 "dearness": 101,
-                "isUsed": false,
+                "isUsed": true,
                 "costumeId": "COSTUME_T_01_1001",
                 "createdAt": "2021-09-12T04:51:57+00:00",
                 "updatedAt": "2021-10-12T04:51:57+00:00",
@@ -259,13 +285,18 @@
                     "displayName": "TXT_CHR_NAME_T_01",
                     "defaultCostumeId": "COSTUME_T_01_1001",
                     "sortIndex": 1,
-                    "collaboration": true,
+                    "collaboration": false,
                     "label": "テストキャラ1"
                 },
                 "accessories": [],
                 "dearnessRank": 11
             },
-            "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4"
+            "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4",
+            "rankingDate": "2022-11-21T10:10:10+00:00",
+            "ranking": {
+                "score": 1,
+                "rank": 111
+            }
         },
         {
             "character": {
@@ -273,7 +304,7 @@
                 "playerId": 1,
                 "characterId": "CHR_T_02",
                 "dearness": 102,
-                "isUsed": false,
+                "isUsed": true,
                 "costumeId": "COSTUME_T_02_1001",
                 "createdAt": "2022-09-12T04:51:57+00:00",
                 "updatedAt": "2022-10-12T04:51:57+00:00",
@@ -288,7 +319,12 @@
                 "accessories": [],
                 "dearnessRank": 12
             },
-            "introduction": "テスト説明2"
+            "introduction": "テスト説明2",
+            "rankingDate": "2022-11-21T10:10:10+00:00",
+            "ranking": {
+                "score": 2,
+                "rank": 222
+            }
         },
         {
             "character": {

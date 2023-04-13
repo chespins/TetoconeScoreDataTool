@@ -60,6 +60,7 @@ def test_all_sucsess_connect_false(mocker):
     degrees_mock = mocker.patch("model.mypagedata.getDegreesData")
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
+    character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
     db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
 
@@ -86,6 +87,7 @@ def test_all_sucsess_connect_false(mocker):
     degrees_mock.assert_not_called()
     db_degrees_mock.assert_not_called()
     character_mock.assert_not_called()
+    character_ranking_mock.assert_not_called()
     db_character_mock.assert_not_called()
     db_introduction_mock.assert_not_called()
 
@@ -148,6 +150,7 @@ def test_all_sucsess_maniac_false(mocker):
     degrees_mock = mocker.patch("model.mypagedata.getDegreesData")
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
+    character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
     db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
 
@@ -183,6 +186,7 @@ def test_all_sucsess_maniac_false(mocker):
     degrees_mock.assert_not_called()
     db_degrees_mock.assert_not_called()
     character_mock.assert_not_called()
+    character_ranking_mock.assert_not_called()
     db_character_mock.assert_not_called()
     db_introduction_mock.assert_not_called()
 
@@ -245,6 +249,7 @@ def test_all_sucsess_ultimate_false(mocker):
     degrees_mock = mocker.patch("model.mypagedata.getDegreesData")
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
+    character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
     db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
 
@@ -280,6 +285,7 @@ def test_all_sucsess_ultimate_false(mocker):
     degrees_mock.assert_not_called()
     db_degrees_mock.assert_not_called()
     character_mock.assert_not_called()
+    character_ranking_mock.assert_not_called()
     db_character_mock.assert_not_called()
     db_introduction_mock.assert_not_called()
 
@@ -342,6 +348,7 @@ def test_all_sucsess_expert_false(mocker):
     degrees_mock = mocker.patch("model.mypagedata.getDegreesData")
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
+    character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
     db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
 
@@ -377,6 +384,7 @@ def test_all_sucsess_expert_false(mocker):
     degrees_mock.assert_not_called()
     db_degrees_mock.assert_not_called()
     character_mock.assert_not_called()
+    character_ranking_mock.assert_not_called()
     db_character_mock.assert_not_called()
     db_introduction_mock.assert_not_called()
 
@@ -439,6 +447,7 @@ def test_all_sucsess_standard_false(mocker):
     degrees_mock = mocker.patch("model.mypagedata.getDegreesData")
     db_degrees_mock = mocker.patch("model.datainserts.insertDegrees")
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
+    character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
     db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
 
@@ -474,5 +483,6 @@ def test_all_sucsess_standard_false(mocker):
     degrees_mock.assert_not_called()
     db_degrees_mock.assert_not_called()
     character_mock.assert_not_called()
+    character_ranking_mock.assert_not_called()
     db_character_mock.assert_not_called()
     db_introduction_mock.assert_not_called()

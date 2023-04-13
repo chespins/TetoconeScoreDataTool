@@ -17,6 +17,9 @@ CREATE TABLE character (
   , is_used boolean
   , sort_index Integer
   , costume_id text
+  , collaboration boolean
+  , dearness_ranking Integer
+  , ranking_get_date text
   , updated_at text
   , CONSTRAINT character_PKC PRIMARY KEY (id)
 ) ;

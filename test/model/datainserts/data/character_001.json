@@ -6,7 +6,7 @@
                 "playerId": 1,
                 "characterId": "CHR_T_01",
                 "dearness": 101,
-                "isUsed": false,
+                "isUsed": true,
                 "costumeId": "COSTUME_T_01_1001",
                 "createdAt": "2021-09-12T04:51:57+00:00",
                 "updatedAt": "2021-10-12T04:51:57+00:00",
@@ -15,13 +15,18 @@
                     "displayName": "TXT_CHR_NAME_T_01",
                     "defaultCostumeId": "COSTUME_T_01_1001",
                     "sortIndex": 1,
-                    "collaboration": true,
+                    "collaboration": false,
                     "label": "テストキャラ1"
                 },
                 "accessories": [],
                 "dearnessRank": 11
             },
-            "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4"
+            "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4",
+            "rankingDate": "2022-11-12T04:51:57+00:00",
+            "ranking": {
+                "score": 111,
+                "rank": 100
+            }
         }
     ],
     "outputData": [
@@ -31,9 +36,12 @@
             "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4",
             "dearnessRank": 11,
             "dearnessPoint": 101,
-            "isUsed": false,
+            "isUsed": true,
             "sortIndex": 1,
             "costumeId": "COSTUME_T_01_1001",
+            "collaboration": false,
+            "dearnessRanking": 100,
+            "rankingGetDate": "2022-11-12T04:51:57+00:00",
             "updatedAt": "2021-10-12T04:51:57+00:00"
         }
     ]

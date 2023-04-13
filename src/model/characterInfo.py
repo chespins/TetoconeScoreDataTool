@@ -45,20 +45,32 @@ class CharacterInfoModel(BaseModel):
         return self.makeDisplayedData(None)
 
     def makeDisplayedData(self, dbData):
+        dearnessRanking =  "--- 位"
+        dearnessRankingDate = "-----"
+        
         displayedData = {
             "characterName": "データなし",
             "introduction": "",
             "dearnessRank": "ランク ",
             "dearnessPoint": "ポイント",
-            "updatedAt": "---",
+            "dearnessRanking": dearnessRanking,
+            "dearnessRankingDate": dearnessRankingDate,
+            "lastPlayDate": "---",
         }
 
+
         if not (dbData is None):
+            if not dbData["dearnessRanking"] is None:
+                dearnessRanking = str(dbData["dearnessRanking"]) + "位"
+                dearnessRankingDate = util.changeTimeZone(dbData["rankingGetDate"]) + " 現在"
+
             displayedData = {
                     "characterName": dbData["characterName"],
                     "introduction": dbData["introduction"].replace("\n", ""),
                     "dearnessRank": "ランク " + str(dbData["dearnessRank"]),
                     "dearnessPoint": str(dbData["dearnessPoint"]) + "ポイント",
+                    "dearnessRanking": dearnessRanking,
+                    "dearnessRankingDate": dearnessRankingDate,
                     "lastPlayDate": util.changeTimeZone(dbData["updatedAt"]),
                 }
         

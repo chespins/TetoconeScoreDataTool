@@ -15,7 +15,7 @@
                     "playerId": 1,
                     "characterId": "CHR_T_01",
                     "dearness": 101,
-                    "isUsed": false,
+                    "isUsed": true,
                     "costumeId": "COSTUME_T_01_1001",
                     "createdAt": "2021-09-12T04:51:57+00:00",
                     "updatedAt": "2021-10-12T04:51:57+00:00",
@@ -47,6 +47,14 @@
             }
         }
     ],
+    "character_ranking_return": {
+        "responseCode": 200,
+        "responseMessage": "OK",
+        "response": {
+            "score": 1,
+            "rank": 111
+        }
+    },
     "dbIntroduction_return": "NO_DATA",
     "dbCharacter_param": [
         {
@@ -55,7 +63,7 @@
                 "playerId": 1,
                 "characterId": "CHR_T_01",
                 "dearness": 101,
-                "isUsed": false,
+                "isUsed": true,
                 "costumeId": "COSTUME_T_01_1001",
                 "createdAt": "2021-09-12T04:51:57+00:00",
                 "updatedAt": "2021-10-12T04:51:57+00:00",
@@ -70,7 +78,12 @@
                 "accessories": [],
                 "dearnessRank": 11
             },
-            "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4"
+            "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4",
+            "rankingDate": "2022-11-21T10:10:10+00:00",
+            "ranking": {
+                "score": 1,
+                "rank": 111
+            }
         }
     ]
 }

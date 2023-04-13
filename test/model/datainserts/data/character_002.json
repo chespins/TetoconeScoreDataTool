@@ -21,7 +21,12 @@
                 "accessories": [],
                 "dearnessRank": 11
             },
-            "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4"
+            "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4",
+            "rankingDate": "2021-11-12T04:51:57+00:00",
+            "ranking": {
+                "score": 111,
+                "rank": 100
+            }
         },
         {
             "character": {
@@ -44,7 +49,12 @@
                 "accessories": [],
                 "dearnessRank": 12
             },
-            "introduction": "テスト説明2\nテスト説明2\nテスト説明3\nテスト説明4"
+            "introduction": "テスト説明2\nテスト説明2\nテスト説明3\nテスト説明4",
+            "rankingDate": "2022-11-12T04:51:57+00:00",
+            "ranking": {
+                "score": 222,
+                "rank": 200
+            }
         },
         {
             "character": {
@@ -67,8 +77,94 @@
                 "accessories": [],
                 "dearnessRank": 13
             },
-            "introduction": "テスト説明3\nテスト説明2\nテスト説明3\nテスト説明4"
+            "introduction": "テスト説明3\nテスト説明2\nテスト説明3\nテスト説明4",
+            "rankingDate": "2023-11-12T04:51:57+00:00",
+            "ranking": {
+                "score": 333,
+                "rank": 300
+            }
+        },
+        {
+            "character": {
+                "id": 14,
+                "playerId": 1,
+                "characterId": "CHR_T_04",
+                "dearness": 104,
+                "isUsed": false,
+                "costumeId": "COSTUME_T_04_1001",
+                "createdAt": "2024-09-12T04:51:57+00:00",
+                "updatedAt": "2024-10-12T04:51:57+00:00",
+                "character": {
+                    "id": "CHR_T_004",
+                    "displayName": "TXT_CHR_NAME_T_04",
+                    "defaultCostumeId": "COSTUME_T_04_1001",
+                    "sortIndex": 4,
+                    "collaboration": false,
+                    "label": "テストキャラ4"
+                },
+                "accessories": [],
+                "dearnessRank": 14
+            },
+            "introduction": "テスト説明4\nテスト説明2\nテスト説明3\nテスト説明4"
+        },
+        {
+            "character": {
+                "id": 15,
+                "playerId": 1,
+                "characterId": "CHR_T_05",
+                "dearness": 105,
+                "isUsed": false,
+                "costumeId": "COSTUME_T_05_1001",
+                "createdAt": "2025-09-12T04:51:57+00:00",
+                "updatedAt": "2025-10-12T04:51:57+00:00",
+                "character": {
+                    "id": "CHR_T_005",
+                    "displayName": "TXT_CHR_NAME_T_05",
+                    "defaultCostumeId": "COSTUME_T_05_1001",
+                    "sortIndex": 5,
+                    "collaboration": false,
+                    "label": "テストキャラ5"
+                },
+                "accessories": [],
+                "dearnessRank": 15
+            },
+            "introduction": "テスト説明5\nテスト説明2\nテスト説明3\nテスト説明4"
         }
+    ],
+    "select_return": [
+        [
+            {
+                "characterId": "CHR_T_01",
+                "characterName": "テストキャ1",
+                "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4",
+                "dearnessRank": 11,
+                "dearnessPoint": 101,
+                "isUsed": false,
+                "sortIndex": 1,
+                "costumeId": "COSTUME_T_01_1001",
+                "collaboration": true,
+                "dearnessRanking": 1000,
+                "rankingGetDate": "2021-01-12T04:51:57+00:00",
+                "updatedAt": "2021-03-12T04:51:57+00:00"
+            }
+        ],
+        [
+            {
+                "characterId": "CHR_T_04",
+                "characterName": "テストキャラ4",
+                "introduction": "テスト説明4\nテスト説明2\nテスト説明3\nテスト説明4",
+                "dearnessRank": 14,
+                "dearnessPoint": 104,
+                "isUsed": false,
+                "sortIndex": 3,
+                "costumeId": "COSTUME_T_04_1001",
+                "collaboration": false,
+                "dearnessRanking": 4000,
+                "rankingGetDate": "2024-01-12T04:51:57+00:00",
+                "updatedAt": "2024-03-12T04:51:57+00:00"
+            }
+        ],
+        []
     ],
     "outputData": [
         {
@@ -80,6 +176,9 @@
             "isUsed": false,
             "sortIndex": 1,
             "costumeId": "COSTUME_T_01_1001",
+            "collaboration": true,
+            "dearnessRanking": 1000,
+            "rankingGetDate": "2021-01-12T04:51:57+00:00",
             "updatedAt": "2021-10-12T04:51:57+00:00"
         },
         {
@@ -91,6 +190,9 @@
             "isUsed": true,
             "sortIndex": 2,
             "costumeId": "COSTUME_T_02_1001",
+            "collaboration": false,
+            "dearnessRanking": 200,
+            "rankingGetDate": "2022-11-12T04:51:57+00:00",
             "updatedAt": "2022-10-12T04:51:57+00:00"
         },
         {
@@ -102,7 +204,38 @@
             "isUsed": true,
             "sortIndex": 3,
             "costumeId": "COSTUME_T_03_1001",
+            "collaboration": false,
+            "dearnessRanking": 300,
+            "rankingGetDate": "2023-11-12T04:51:57+00:00",
             "updatedAt": "2023-10-12T04:51:57+00:00"
+        },
+        {
+            "characterId": "CHR_T_04",
+            "characterName": "テストキャラ4",
+            "introduction": "テスト説明4\nテスト説明2\nテスト説明3\nテスト説明4",
+            "dearnessRank": 14,
+            "dearnessPoint": 104,
+            "isUsed": false,
+            "sortIndex": 4,
+            "costumeId": "COSTUME_T_04_1001",
+            "collaboration": false,
+            "dearnessRanking": 4000,
+            "rankingGetDate": "2024-01-12T04:51:57+00:00",
+            "updatedAt": "2024-10-12T04:51:57+00:00"
+        },
+        {
+            "characterId": "CHR_T_05",
+            "characterName": "テストキャラ5",
+            "introduction": "テスト説明5\nテスト説明2\nテスト説明3\nテスト説明4",
+            "dearnessRank": 15,
+            "dearnessPoint": 105,
+            "isUsed": false,
+            "sortIndex": 5,
+            "costumeId": "COSTUME_T_05_1001",
+            "collaboration": false,
+            "dearnessRanking": null,
+            "rankingGetDate": null,
+            "updatedAt": "2025-10-12T04:51:57+00:00"
         }
     ]
 }
