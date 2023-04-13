@@ -90,6 +90,32 @@ def test_reMakeDataFile(mocker):
     make_mock.assert_called_with()
 
 
+def test_updateDataFile_05(mocker):
+    update_05_mock = mocker.patch("model.createDataFile.dbUpdateFrom05")
+    update_08_mock = mocker.patch("model.createDataFile.dbUpdateFrom08")
+    assert createDataFile.updateDbFile("v0.5")  == "v0.9"
+    update_05_mock.assert_called_once()
+    update_05_mock.assert_called_with()
+    update_08_mock.assert_not_called()
+
+
+def test_updateDataFile_08(mocker):
+    update_05_mock = mocker.patch("model.createDataFile.dbUpdateFrom05")
+    update_08_mock = mocker.patch("model.createDataFile.dbUpdateFrom08")
+    assert createDataFile.updateDbFile("v0.8") == "v0.9"
+    update_05_mock.assert_not_called()
+    update_08_mock.assert_called_once()
+    update_08_mock.assert_called_with()
+
+
+def test_updateDataFile_other(mocker):
+    update_05_mock = mocker.patch("model.createDataFile.dbUpdateFrom05")
+    update_08_mock = mocker.patch("model.createDataFile.dbUpdateFrom08")
+    assert createDataFile.updateDbFile("v0.7") == "v0.7"
+    update_05_mock.assert_not_called()
+    update_08_mock.assert_not_called()
+
+
 def test_makeDbFile(mocker):
     db_mock = mocker.patch("db.dbversion.ddlInsert")
     update_mock = mocker.patch("model.createDataFile.dbUpdateFrom05", return_values=True)

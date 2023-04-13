@@ -31,7 +31,7 @@ class makeDbFileScreen(Screen):
         if self.commonData.checkDbresult == cons.DB_ERROR_FILE_BREAK:
             crd.reMakeDataFile()
         elif self.commonData.checkDbresult == cons.DB_UPDATE:
-            crd.dbUpdateFrom05()
+            self.commonData.dbFileVersion = crd.updateDbFile(self.commonData.dbFileVersion)
 
     def readOnlyOpen(self):
         self.commonData.readOnlyFlg = True
