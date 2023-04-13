@@ -61,12 +61,14 @@ def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool,
                     characterId = character["characterId"]
                     characterInfo = {}
                     characterInfo["character"] = character
-                    characterInfo["introduction"] = cra.selectIntroductionCharacter(characterId)
-                    
-                    if characterInfo["introduction"] == NO_DATA_STR:
+                    dbcharacter = cra.selectCharacter(characterId=characterId)
+                    if len(dbcharacter) == 0:
                         sleep(1)
                         responseInfo = myPage.getCharacterData(session, characterId)
                         characterInfo["introduction"] = responseInfo["response"][characterId]["introduction"]
+                    else:
+                        characterInfo["introduction"] = dbcharacter[0]["introduction"]
+                                            
                     
                     if character["isUsed"]:
                         sleep(1)

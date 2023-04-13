@@ -62,7 +62,7 @@ def test_all_sucsess_connect_false(mocker):
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
-    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectCharacter")
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, True, True, True, False, False, False)
     assert result == "マイページからのデータ取得が成功しました。"
@@ -152,7 +152,7 @@ def test_all_sucsess_maniac_false(mocker):
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
-    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectCharacter")
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, True, True, False, True, False, False)
     assert result == "マイページからのデータ取得が成功しました。"
@@ -251,7 +251,7 @@ def test_all_sucsess_ultimate_false(mocker):
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
-    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectCharacter")
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, True, False, True, True, False, False)
     assert result == "マイページからのデータ取得が成功しました。"
@@ -350,7 +350,7 @@ def test_all_sucsess_expert_false(mocker):
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
-    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectCharacter")
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, False, True, True, True, False, False)
     assert result == "マイページからのデータ取得が成功しました。"
@@ -449,7 +449,7 @@ def test_all_sucsess_standard_false(mocker):
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
-    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectCharacter")
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, False, True, True, True, True, False, False)
     assert result == "マイページからのデータ取得が成功しました。"

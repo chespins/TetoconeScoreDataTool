@@ -55,7 +55,7 @@
             "rank": 111
         }
     },
-    "dbIntroduction_return": "NO_DATA",
+    "dbIntroduction_return": [],
     "dbCharacter_param": [
         {
             "character": {

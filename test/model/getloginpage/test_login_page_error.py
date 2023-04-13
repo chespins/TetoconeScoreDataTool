@@ -74,7 +74,7 @@ def test_rank_data_unmatch(mocker):
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
-    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectCharacter")
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", False, True, True, True, True, True, True, True, False)
     assert result == "取得済のスコアデータとランキングデータに差異がありました。\nスコアデータを取り直してください。"
@@ -168,7 +168,7 @@ def test_rank_other_error(mocker):
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
-    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectCharacter")
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", False, True, True, True, True, True, True, True, False)
     assert result == "予期せぬエラーが発生しました。時間をおいてやり直してください。"
@@ -227,7 +227,7 @@ def test_all_chart_empty_error(mocker):
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
-    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectCharacter")
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, True, True, True, True, True, False)
     assert result == "指定された難易度を未プレイもしくはスコアデータが本ツールで取得されていません。\nプレイ状況をご確認ください。"
@@ -278,7 +278,7 @@ def test_rank_chart_empty_error(mocker):
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
-    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectCharacter")
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", False, True, True, True, True, True, True, True, False)
     assert result == "指定された難易度を未プレイもしくはスコアデータが本ツールで取得されていません。\nプレイ状況をご確認ください。"
@@ -313,7 +313,7 @@ def test_score_other_error(mocker):
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
-    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectCharacter")
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, True, True, True, True, True, True)
     assert result == "予期せぬエラーが発生しました。時間をおいてやり直してください。"
@@ -348,7 +348,7 @@ def test_login_error(mocker):
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
-    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectCharacter")
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, True, True, True, True, True, True, True)
     assert result == "ログインに失敗しました。ユーザIDもしくはパスワードが正しいか確認してください。"
@@ -381,7 +381,7 @@ def test_nolevel_error(mocker):
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
-    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectCharacter")
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", True, True, False, False, False, False, False, True, True)
     assert result == "ランキング情報取得時は取得したい難易度を必ず1つ以上選択してください。"
@@ -413,7 +413,7 @@ def test_nogetdata_error(mocker):
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
-    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectCharacter")
 
     result = getloginpage.getLoginPageData("1234567890123456", "password1", False, False, True, True, True, True, True, False, False)
     assert result == "取得したいデータの種類を必ず1つ以上選択してください。"
@@ -445,7 +445,7 @@ def test_loginid_error(mocker):
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
-    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectCharacter")
 
     result = getloginpage.getLoginPageData("", "password1", True, True, True, True, True, True, True, True, True)
     assert result == "ユーザ名およびパスワードは必ず入力してください。"
@@ -477,7 +477,7 @@ def test_password_error(mocker):
     character_mock = mocker.patch("model.mypagedata.getCharacterData")
     character_ranking_mock = mocker.patch("model.mypagedata.getCharacterRanking")
     db_character_mock = mocker.patch("model.datainserts.insertCharacter")
-    db_introduction_mock = mocker.patch("db.character.selectIntroductionCharacter")
+    db_introduction_mock = mocker.patch("db.character.selectCharacter")
 
     result = getloginpage.getLoginPageData("1234567890123456", "", True, True, True, True, True, True, True, True, True)
     assert result == "ユーザ名およびパスワードは必ず入力してください。"

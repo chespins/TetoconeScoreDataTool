@@ -181,9 +181,24 @@
         }
     ],
     "dbIntroduction_return": [
-        "NO_DATA",
-        "テスト説明2",
-        "NO_DATA"
+        [],
+        [
+            {
+                "characterId": "CHR_T_02",
+                "characterName": "テストキャラ1",
+                "introduction": "テスト説明2",
+                "dearnessRank": 1,
+                "dearnessPoint": 1,
+                "isUsed": true,
+                "sortIndex": 1,
+                "costumeId": "COSTUME_T_02_1001",
+                "collaboration": false,
+                "dearnessRanking": 102,
+                "rankingGetDate": "2022-1-12T04:51:57+00:00",
+                "updatedAt": "2021-01-12T04:51:57+00:00"
+            }
+        ],
+        []
     ],
     "character_return": [
         {

@@ -56,17 +56,6 @@ def selectCharacter(characterId=""):
     return characterList
 
 
-def selectIntroductionCharacter(characterId):
-    with sqlite3.connect(TETOCONE_DB_NAME) as conn:
-        cur = conn.cursor()
-        cur.execute(SELECT_INTRODUCTION_ID, (characterId,))
-        results = cur.fetchall()
-        if len(results) != 1:
-            return NO_DATA_STR
-        
-        return results[0][0]
-
-
 def insertCharacter(characterList):
     deleteSql = DELETE_SQL
     insertSql = INSERT_SQL
