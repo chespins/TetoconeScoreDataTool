@@ -20,7 +20,7 @@
                     text: "マイページからデータ取得"
                     font_size: 22
                     on_release: 
-                        root.manager.current = 'webData'
+                        root.switchingWebData()
             BoxLayout:
                 Button:
                     text: "ハイスコア確認"
@@ -44,19 +44,19 @@
                     text: "称号確認"
                     font_size: 22
                     on_release: 
-                        root.manager.current = 'degreesList'
+                        root.switchingDegreesList()
                 Button:
                     id: characterData
                     text: "キャラクター情報確認"
                     font_size: 22
                     on_release: 
-                        root.manager.current = 'characterData'
+                        root.switchingCharacterData()
             BoxLayout:
                 Button:
                     text: "ライセンス"
                     font_size: 22
                     on_release: 
-                        root.manager.current = 'license'
+                        root.switchingLicense()
                 Button:
                     text: "ツール終了"
                     font_size: 22

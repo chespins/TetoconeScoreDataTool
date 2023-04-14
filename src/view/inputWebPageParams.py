@@ -43,7 +43,8 @@ class InputWebPageParamsScreen(Screen):
         self.ids.serialNo.disabled = False
         self.ids.password.disabled = False
         self.ids.buttonLogin.disabled = False
-        self.setRankingLevel()
+        self.manager.remove_widget(self)
+        super().on_leave(*kwargs) 
 
     def bottonLoginMyPage(self):
         self.ids.loginStatusMessage.text = messeges.DATA_INPORT_PROCESS

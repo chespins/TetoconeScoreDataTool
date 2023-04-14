@@ -38,6 +38,10 @@ class DegreesList(Screen):
         self.resetData()
         self.degreesRv.data = self.model.getdegreesList("", "")
 
+    def on_leave(self, *args):
+        self.manager.remove_widget(self)
+        super().on_leave(*args)
+
 
 class Degrees(BoxLayout):
     degreesId = StringProperty()

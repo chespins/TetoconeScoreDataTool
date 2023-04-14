@@ -9,17 +9,13 @@ from kivy.uix.screenmanager import ScreenManager
 from kivy.config import Config
 
 from view import highScoreSelected as hss
-from view import inputWebPageParams as web
 from view import highScoreDetails as det
 from view import highScoreHistoryDetails as his
 from view import rankingDataGet as rdg
 from view import abuchement as abu
-from view import license
 from view import menu as mu
 from view import makeDbFile as mkd
 from view import rankingList as rak
-from view import degreesList as deg
-from view import characterData as cha
 from variable.setappdata import AppCommonData
 from util import util
 from constant.systemconstant import FONT_DIR
@@ -45,6 +41,7 @@ class TetoconeScoreApp(App):
                             name='dbFile'
                         )
                 )
+
         self.sm.add_widget(
                 mu.MenuScreen(
                         comonData=self.appCommonData,
@@ -56,9 +53,6 @@ class TetoconeScoreApp(App):
                         comonData=self.appCommonData,
                         name='highScoreSelect'
                     )
-            )
-        self.sm.add_widget(
-                web.InputWebPageParamsScreen(name='webData')
             )
         self.sm.add_widget(
                 det.HighScoreDetailsScreen(
@@ -79,11 +73,6 @@ class TetoconeScoreApp(App):
                 )
         )
         self.sm.add_widget(
-                license.LicenseScreen(
-                        name='license'
-                    )
-            )
-        self.sm.add_widget(
                 abu.AbuchmentScreen(
                         comonData=self.appCommonData,
                         name='abuchment'
@@ -94,12 +83,7 @@ class TetoconeScoreApp(App):
                         name='rankingList'
                     )
             )
-        if self.appCommonData.checkDegreesData():
-                self.sm.add_widget(deg.DegreesList(name='degreesList'))
-                self.sm.add_widget(cha.characterDataScreen(name='characterData'))
-        
         return self.sm
-
 
 if __name__ == '__main__':
     TetoconeScoreApp().run()

@@ -36,6 +36,10 @@ class makeDbFileScreen(Screen):
     def readOnlyOpen(self):
         self.commonData.readOnlyFlg = True
 
+    def on_leave(self, *args):
+        self.manager.remove_widget(self)
+        super().on_leave(*args)    
+
 
 if __name__ == '__main__':
     pass

@@ -42,6 +42,10 @@ class characterDataScreen(Screen):
         self.ids.rankingGetDate.text = character["dearnessRankingDate"]
         self.ids.lastPlayDate.text = character["lastPlayDate"]
 
+    def on_leave(self, *args):
+        self.manager.remove_widget(self)
+        super().on_leave(*args)
+
 
 class CharacterName(BoxLayout):
     characterId = StringProperty()
