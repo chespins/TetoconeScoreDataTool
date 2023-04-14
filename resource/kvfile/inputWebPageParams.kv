@@ -79,8 +79,28 @@
                         id: checkBoxScore
                         active: root.scoreGetFlg
                         on_press: root.scoreGetFlgCheck(self)
+                Label:
+                    size_hint_x: 0.2
+                    text: "称号"
+                    font_size: 18
                 BoxLayout:
-                    size_hint_x: 0.75
+                    size_hint_x: 0.05
+                    CheckBox:
+                        id: checkBoxDegrees
+                        active: root.degreesGetFlg
+                        on_press: root.degreesGetFlgCheck(self)
+                Label:
+                    size_hint_x: 0.2
+                    text: "キャラクター"
+                    font_size: 18
+                BoxLayout:
+                    size_hint_x: 0.05
+                    CheckBox:
+                        id: checkBoxCharacter
+                        active: root.characterGetFlg
+                        on_press: root.characterGetFlgCheck(self)
+                BoxLayout:
+                    size_hint_x: 0.25
             BoxLayout:
                 Label:
                     size_hint_x: 0.2

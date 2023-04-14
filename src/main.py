@@ -9,12 +9,10 @@ from kivy.uix.screenmanager import ScreenManager
 from kivy.config import Config
 
 from view import highScoreSelected as hss
-from view import inputWebPageParams as web
 from view import highScoreDetails as det
 from view import highScoreHistoryDetails as his
 from view import rankingDataGet as rdg
 from view import abuchement as abu
-from view import license
 from view import menu as mu
 from view import makeDbFile as mkd
 from view import rankingList as rak
@@ -43,6 +41,7 @@ class TetoconeScoreApp(App):
                             name='dbFile'
                         )
                 )
+
         self.sm.add_widget(
                 mu.MenuScreen(
                         comonData=self.appCommonData,
@@ -54,9 +53,6 @@ class TetoconeScoreApp(App):
                         comonData=self.appCommonData,
                         name='highScoreSelect'
                     )
-            )
-        self.sm.add_widget(
-                web.InputWebPageParamsScreen(name='webData')
             )
         self.sm.add_widget(
                 det.HighScoreDetailsScreen(
@@ -77,11 +73,6 @@ class TetoconeScoreApp(App):
                 )
         )
         self.sm.add_widget(
-                license.LicenseScreen(
-                        name='license'
-                    )
-            )
-        self.sm.add_widget(
                 abu.AbuchmentScreen(
                         comonData=self.appCommonData,
                         name='abuchment'
@@ -93,11 +84,6 @@ class TetoconeScoreApp(App):
                     )
             )
         return self.sm
-
-    def showHighScore(self, chartId, sourceWidget):
-        self.appCommonData.setHistoryData(chartId, sourceWidget)
-        self.sm.current = "details"
-
 
 if __name__ == '__main__':
     TetoconeScoreApp().run()

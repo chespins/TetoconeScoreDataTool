@@ -1,0 +1,32 @@
+{
+    "inputData": {
+        "test001": [
+            {
+                "playerDegree": {
+                    "id": 1111,
+                    "playerId": 12,
+                    "degreeId": "DEGREETest001",
+                    "isNew": false,
+                    "createdAt": "2022-01-01T06:57:01.000Z",
+                    "updatedAt": "2022-01-11T06:57:01.000Z"
+                },
+                "degreeInfo": {
+                    "id": "DEGREETest001",
+                    "label": "ラベル1"
+                },
+                "missionLabel": "ミッション内容1"
+            }
+        ],
+        "test002": []
+    },
+    "outputData": [
+        {
+            "degreesId": "DEGREETest001",
+            "degreesName": "ラベル1",
+            "category": "test001",
+            "missionLabel": "ミッション内容1",
+            "createdAt": "2022-01-01T06:57:01.000Z",
+            "updatedAt": "2022-01-11T06:57:01.000Z"
+        }
+    ]
+}

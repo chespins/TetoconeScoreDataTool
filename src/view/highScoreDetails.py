@@ -66,7 +66,7 @@ class HighScoreDetailsScreen(Screen):
 
     def updateRankingData(self, displayedMode):
         singlePlayFlg = self.dataSet.isSinglePlay(displayedMode)
-        rankingDataGetFlg = self.commonData.checkRankingData()
+        rankingDataGetFlg = not self.commonData.readOnlyFlg
         if rankingDataGetFlg:
             self.ids.rankingGetButton.disabled = not singlePlayFlg
             if singlePlayFlg:

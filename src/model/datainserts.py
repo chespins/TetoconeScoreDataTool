@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+from db import character as cha
 from db import highscorehistory as hsh
 from db import datainserts as dbin
+from db import degrees as deg
 from constant import distConstant as lvNa
 
 
@@ -85,6 +87,62 @@ def InsertMusic(stages):
             highScoreHistoryInportList,
             rankHistoryList
         )
+    return
+    
+
+def insertDegrees(degreesDist):
+    degreesList = []
+    for category in degreesDist.keys():
+        for degrees in degreesDist[category]:
+            degreesList.append({
+                "degreesId": degrees["playerDegree"]["degreeId"],
+                "degreesName": degrees["degreeInfo"]["label"],
+                "category": category,
+                "missionLabel": degrees["missionLabel"],
+                "createdAt": degrees["playerDegree"]["createdAt"],
+                "updatedAt": degrees["playerDegree"]["updatedAt"],
+            })
+    
+    deg.insertDegrees(degreesList)
+    return
+
+
+def insertCharacter(characterList):
+    dbCharacterList = []
+    for characterInfo in characterList:
+        character = characterInfo["character"]
+        characterId = character["characterId"]
+        dearnessRanking = None
+        rankingGetDate = None
+        
+        if character["isUsed"]:
+            dearnessRanking = characterInfo["ranking"]["rank"]
+            rankingGetDate = characterInfo["rankingDate"]
+
+        else:
+            dbData = cha.selectCharacter(characterId=characterId)
+            if len(dbData) > 0:
+                dearnessRanking = dbData[0]["dearnessRanking"]
+                rankingGetDate = dbData[0]["rankingGetDate"]
+
+        dbCharacter = {
+            "characterId": characterId,
+            "characterName": character["character"]["label"],
+            "introduction": characterInfo["introduction"],
+            "dearnessRank": character["dearnessRank"],
+            "dearnessPoint": character["dearness"],
+            "isUsed": character["isUsed"],
+            "sortIndex": character["character"]["sortIndex"],
+            "costumeId": character["costumeId"],
+            "collaboration": character["character"]["collaboration"],
+            "dearnessRanking": dearnessRanking,
+            "rankingGetDate": rankingGetDate,
+            "updatedAt": character["updatedAt"],
+        }
+        dbCharacterList.append(dbCharacter)
+    
+    cha.insertCharacter(dbCharacterList)
+    return
 
 
 if __name__ == '__main__':

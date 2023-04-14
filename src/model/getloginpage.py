@@ -6,16 +6,21 @@ from model import datainserts
 from model import mypagedata as myPage
 from db import chartconstitution as cha
 from db import ranking as ra
+from db import character as cra
+from util import util
 from constant import messeges
+from constant.distConstant import DEGREE_CATEGORY_DIST
+from constant.systemconstant import NO_DATA_STR
 
 
 def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool, 
         rankingGetFlg: bool, standardGetFlg: bool, expertGetFlg: bool,
-        ultimateGetFlg: bool, maniacGetFlg: bool, connectGetFlg: bool):
+        ultimateGetFlg: bool, maniacGetFlg: bool, connectGetFlg: bool, 
+        degreesGetFlg: bool, characterGetFlg: bool):
     if not (len(cardId) > 0 and len(password) > 0):
         return messeges.DATA_IMPORT_ID_LACK
     
-    if not (scoreGetFlg or rankingGetFlg):
+    if not (scoreGetFlg or rankingGetFlg or degreesGetFlg or characterGetFlg):
         return messeges.DATA_IMPORT_NO_GET_DATA
 
     levelList = []
@@ -47,16 +52,43 @@ def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool,
     try:
         session = myPage.loginMyPage(cardId, password)
         sleep(3)
-        if scoreGetFlg:
+        if scoreGetFlg or characterGetFlg:
             myPageData = myPage.getConnectPageData(session)
-            stages = myPageData["response"]["stages"]
-            datainserts.InsertMusic(stages)
-            if rankingGetFlg:
-                chartList = cha.selectedSingleChart(levelIdList=levelList)
-                if len(chartList) == 0:
-                    return messeges.DATA_INPORT_RANKING_NO_SCORE
-                else:
-                    sleep(1)            
+            if characterGetFlg:
+                characters = myPageData["response"]["characters"]
+                characterList = []
+                for character in characters:
+                    characterId = character["characterId"]
+                    characterInfo = {}
+                    characterInfo["character"] = character
+                    dbcharacter = cra.selectCharacter(characterId=characterId)
+                    if len(dbcharacter) == 0:
+                        sleep(1)
+                        responseInfo = myPage.getCharacterData(session, characterId)
+                        characterInfo["introduction"] = responseInfo["response"][characterId]["introduction"]
+                    else:
+                        characterInfo["introduction"] = dbcharacter[0]["introduction"]
+                                            
+                    
+                    if character["isUsed"]:
+                        sleep(1)
+                        caracterRanking = myPage.getCharacterRanking(session, characterId)
+                        characterInfo["rankingDate"] = util.getDateTimeNow()
+                        characterInfo["ranking"] = caracterRanking["response"]
+
+                    characterList.append(characterInfo)
+            
+                datainserts.insertCharacter(characterList)
+
+            if scoreGetFlg:
+                stages = myPageData["response"]["stages"]
+                datainserts.InsertMusic(stages)
+                if rankingGetFlg:
+                    chartList = cha.selectedSingleChart(levelIdList=levelList)
+                    if len(chartList) == 0:
+                        return messeges.DATA_INPORT_RANKING_NO_SCORE
+                    else:
+                        sleep(1)            
 
         if rankingGetFlg:            
             dataUnmatchFlg = False
@@ -72,6 +104,16 @@ def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool,
 
             if dataUnmatchFlg: 
                 return messeges.DATA_IMPORT_DATA_UNMATCH
+            
+        if degreesGetFlg:
+            degreesDist = {}
+            for category in DEGREE_CATEGORY_DIST.keys():
+                sleep(1)
+                response = myPage.getDegreesData(session, category)
+                degreesDist[category] = response["response"]
+
+            datainserts.insertDegrees(degreesDist)
+
         
         return messeges.DATA_INPORT_SUCCESS
     except LoginError:

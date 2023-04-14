@@ -55,6 +55,10 @@ class HighScoreSelectScreen(Screen):
     def checkboxCheck(self, checkbox):
         self.unplayedFlg = checkbox.active
 
+    def showHighScore(self, chartId):
+        self.commonData.setHistoryData(chartId, "highScoreSelect")
+        self.manager.current = 'details'
+
 
 class SearchHighScore(BoxLayout):
     musicName = StringProperty()
@@ -63,6 +67,9 @@ class SearchHighScore(BoxLayout):
     playCount = StringProperty()
     chartId = StringProperty()
     detailsFlg = BooleanProperty()
+
+    def showHighScore(self, chartId):
+        self.parent.parent.parent.parent.parent.parent.parent.showHighScore(chartId)
 
 
 if __name__ == '__main__':

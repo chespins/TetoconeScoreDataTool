@@ -9,15 +9,23 @@ HTTP_ACCESS_URL = "https://" + HOST_URL + "/mypage-web2"
 WEB_LOGIN_URL = HTTP_ACCESS_URL + "/login"
 WEB_LOGINED_URL = HTTP_ACCESS_URL + "/?news=1"
 API_LOGIN_URL = HTTP_ACCESS_URL + "/api/login"
-DATA_GET_URL = HTTP_ACCESS_URL + "/api/user?data=stages&lang=ja_jp"
+DATA_GET_URL = HTTP_ACCESS_URL + "/api/user?data=characters,stages,degrees&lang=ja_jp"
 RANKING_GET_URL = HTTP_ACCESS_URL + "/api/user-rankings/stage-score/{0}/{1}?lang=ja_jp"
 RANKING_PAGE_URL = HTTP_ACCESS_URL + "/rankings?category=stageScore&subcategory={1}&id={0}&index=0&genre={2}&page="
+DEGREE_GET_URL = HTTP_ACCESS_URL + "/api/user-degree?category={0}&lang=ja_jp"
+DEGREE_PAGE_URL = HTTP_ACCESS_URL + "/player/profile?tab=degree&category={0}"
+CHARACTER_GET_URL = HTTP_ACCESS_URL + "/api/user-character?lang=ja_jp&character_ids[]={0}"
+CHARACTER_RANKING_GET_URL = HTTP_ACCESS_URL + "/api/user-rankings/character-dearness/{0}?page=1&max=100&lang=ja_jp"
+CHARACTER_RANKING_PAGE_URL = HTTP_ACCESS_URL + "/rankings?category=characterDearness&subcategory={0}&page="
 
 # APIパラメータ
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36'
 DNT = "1"
 ACCEPT_LANGUAGE = "ja"
 CONTENT_TYPE = "application/json"
+
+# 使用不可文字列
+NO_DATA_STR = "NO_DATA"
 
 # クリア状況確認用
 FULL_COMBO = "フルコンボ"
@@ -31,8 +39,10 @@ ABUCHMENT_LIST = [
 # DBのバージョン
 DB_VERSION_05 = "v0.5"
 DB_VERSION_08 = "v0.8"
+DB_VERSION_09 = "v0.9"
 
-CURRENT_DB_VERSION = DB_VERSION_08
+CURRENT_DB_VERSION = DB_VERSION_09
+OLD_DB_VERSION_LIST = [DB_VERSION_05, DB_VERSION_08]
 
 DB_SUCCESS = 0
 DB_UPDATE = 1
