@@ -56,30 +56,8 @@ def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool,
             myPageData = myPage.getConnectPageData(session)
             if characterGetFlg:
                 characters = myPageData["response"]["characters"]
-                characterList = []
-                for character in characters:
-                    characterId = character["characterId"]
-                    characterInfo = {}
-                    characterInfo["character"] = character
-                    dbcharacter = cra.selectCharacter(characterId=characterId)
-                    if len(dbcharacter) == 0:
-                        sleep(1)
-                        responseInfo = myPage.getCharacterData(session, characterId)
-                        characterInfo["introduction"] = responseInfo["response"][characterId]["introduction"]
-                    else:
-                        characterInfo["introduction"] = dbcharacter[0]["introduction"]
-                                            
-                    
-                    if character["isUsed"]:
-                        sleep(1)
-                        caracterRanking = myPage.getCharacterRanking(session, characterId)
-                        characterInfo["rankingDate"] = util.getDateTimeNow()
-                        characterInfo["ranking"] = caracterRanking["response"]
-
-                    characterList.append(characterInfo)
-            
-                datainserts.insertCharacter(characterList)
-
+                getCharacterData(session, characters)            
+                
             if scoreGetFlg:
                 stages = myPageData["response"]["stages"]
                 datainserts.InsertMusic(stages)
@@ -91,18 +69,7 @@ def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool,
                         sleep(1)            
 
         if rankingGetFlg:            
-            dataUnmatchFlg = False
-
-            for chart in chartList:
-                sleep(1)
-                ranking = myPage.getRankingData(session, chart["musicId"], chart["chartId"], chart["genreId"])
-                rank = ranking.response["response"]["rank"]
-                if ranking.response["response"]["score"] == chart["highScore"]:
-                    ra.updateRanking(chart["chartId"], rank, ranking.getDate)
-                else:
-                    dataUnmatchFlg = True                    
-
-            if dataUnmatchFlg: 
+            if getScoreRankingData(session, chartList): 
                 return messeges.DATA_IMPORT_DATA_UNMATCH
             
         if degreesGetFlg:
@@ -113,13 +80,53 @@ def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool,
                 degreesDist[category] = response["response"]
 
             datainserts.insertDegrees(degreesDist)
-
         
         return messeges.DATA_INPORT_SUCCESS
     except LoginError:
         return messeges.DATA_INPORT_LOGIN_ERROR
     except Exception:
         return messeges.DATA_INPORT_OUTHER_ERROR
+    
+
+def getScoreRankingData(session, chartList):
+    dataUnmatchFlg = False
+
+    for chart in chartList:
+        sleep(1)
+        ranking = myPage.getRankingData(session, chart["musicId"], chart["chartId"], chart["genreId"])
+        rank = ranking.response["response"]["rank"]
+        if ranking.response["response"]["score"] == chart["highScore"]:
+            ra.updateRanking(chart["chartId"], rank, ranking.getDate)
+        else:
+            dataUnmatchFlg = True 
+    
+    return dataUnmatchFlg
+
+
+def getCharacterData(session, characters):
+    characterList = []
+    for character in characters:
+        characterId = character["characterId"]
+        characterInfo = {}
+        characterInfo["character"] = character
+        dbcharacter = cra.selectCharacter(characterId=characterId)
+        if len(dbcharacter) == 0:
+            sleep(1)
+            responseInfo = myPage.getCharacterData(session, characterId)
+            characterInfo["introduction"] = responseInfo["response"][characterId]["introduction"]
+        else:
+            characterInfo["introduction"] = dbcharacter[0]["introduction"]                                
+                    
+        if character["isUsed"]:
+            sleep(1)
+            caracterRanking = myPage.getCharacterRanking(session, characterId)
+            characterInfo["rankingDate"] = util.getDateTimeNow()
+            characterInfo["ranking"] = caracterRanking["response"]
+
+        characterList.append(characterInfo)
+
+    datainserts.insertCharacter(characterList)
+
 
 if __name__ == '__main__':
     pass
