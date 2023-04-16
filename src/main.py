@@ -8,14 +8,8 @@ from kivy.resources import resource_add_path
 from kivy.uix.screenmanager import ScreenManager
 from kivy.config import Config
 
-from view import highScoreSelected as hss
-from view import highScoreDetails as det
-from view import highScoreHistoryDetails as his
-from view import rankingDataGet as rdg
-from view import abuchement as abu
 from view import menu as mu
 from view import makeDbFile as mkd
-from view import rankingList as rak
 from variable.setappdata import AppCommonData
 from util import util
 from constant.systemconstant import FONT_DIR
@@ -35,54 +29,20 @@ class TetoconeScoreApp(App):
         self.appCommonData = AppCommonData()
         self.sm = ScreenManager()
         if self.appCommonData.checkDbresult != 0:
-            self.sm.add_widget(
-                    mkd.makeDbFileScreen(
-                            comonData=self.appCommonData,
-                            name='dbFile'
+                self.sm.add_widget(
+                        mkd.makeDbFileScreen(
+                                comonData=self.appCommonData,
+                                name='dbFile'
                         )
                 )
-
-        self.sm.add_widget(
-                mu.MenuScreen(
-                        comonData=self.appCommonData,
-                        name='menu'
-                    )
-            )
-        self.sm.add_widget(
-                hss.HighScoreSelectScreen(
-                        comonData=self.appCommonData,
-                        name='highScoreSelect'
-                    )
-            )
-        self.sm.add_widget(
-                det.HighScoreDetailsScreen(
-                        comonData=self.appCommonData,
-                        name='details'
-                    )
-            )
-        self.sm.add_widget(
-                his.HighScoreHistoryDetailsScreen(
-                        comonData=self.appCommonData,
-                        name='history'
-                    )
-            )
-        self.sm.add_widget(
-                rdg.RankingDataGetScreen(
-                        comonData=self.appCommonData,
-                        name="rankingGet"
+        else:
+                self.sm.add_widget(
+                        mu.MenuScreen(
+                                comonData=self.appCommonData,
+                                name='menu'
+                        )
                 )
-        )
-        self.sm.add_widget(
-                abu.AbuchmentScreen(
-                        comonData=self.appCommonData,
-                        name='abuchment'
-                    )
-            )
-        self.sm.add_widget(rak.RankingListScreen(
-                        comonData=self.appCommonData,
-                        name='rankingList'
-                    )
-            )
+        
         return self.sm
 
 if __name__ == '__main__':

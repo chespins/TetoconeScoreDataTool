@@ -26,18 +26,18 @@
                     text: "ハイスコア確認"
                     font_size: 22
                     on_release: 
-                        root.manager.current = 'highScoreSelect'
+                        root.switchingHighScoreSelect()
                 Button:
                     id: rankingCheck
                     text: "ランキング確認"
                     font_size: 22
                     on_release: 
-                        root.manager.current = 'rankingList'
+                        root.switchingRankingList()
                 Button:
                     text: "達成状況確認"
                     font_size: 22
                     on_release: 
-                        root.manager.current = 'abuchment'
+                        root.switchingAbuchment()
             BoxLayout:
                 Button:
                     id: degreesList

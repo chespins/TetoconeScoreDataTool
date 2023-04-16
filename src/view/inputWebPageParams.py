@@ -37,12 +37,6 @@ class InputWebPageParamsScreen(Screen):
         self.setRankingLevel()
 
     def on_leave(self, **kwargs):
-        self.ids.loginStatusMessage.text = ''
-        self.ids.serialNo.text = ''
-        self.ids.password.text = ''
-        self.ids.serialNo.disabled = False
-        self.ids.password.disabled = False
-        self.ids.buttonLogin.disabled = False
         self.manager.remove_widget(self)
         super().on_leave(*kwargs) 
 

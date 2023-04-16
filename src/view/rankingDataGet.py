@@ -30,12 +30,8 @@ class RankingDataGetScreen(Screen):
         self.ids.buttonLogin.disabled = False
 
     def on_leave(self, **kwargs):
-        self.ids.loginStatusMessage.text = ''
-        self.ids.serialNo.text = ''
-        self.ids.password.text = ''
-        self.ids.serialNo.disabled = False
-        self.ids.password.disabled = False
-        self.ids.buttonLogin.disabled = False
+        self.manager.remove_widget(self)
+        return super().on_leave(*kwargs)
 
     def bottonLoginMyPage(self):
         self.ids.loginStatusMessage.text = messeges.DATA_INPORT_PROCESS
@@ -51,7 +47,7 @@ class RankingDataGetScreen(Screen):
     def loginMyPage(self):
         serialNo = self.ids.serialNo.text
         password = self.ids.password.text
-        self.message = ins.getLoginRankingData(serialNo, password, self.commonData.getDisplayChartId())
+        self.message = ins.getLoginRankingData(serialNo, password, self.commonData.displayChartId)
         Clock.schedule_once(self.endLoginMyPage)
 
     def endLoginMyPage(self, dt):
