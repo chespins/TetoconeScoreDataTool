@@ -73,13 +73,7 @@ def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool,
                 return messeges.DATA_IMPORT_DATA_UNMATCH
             
         if degreesGetFlg:
-            degreesDist = {}
-            for category in DEGREE_CATEGORY_DIST.keys():
-                sleep(1)
-                response = myPage.getDegreesData(session, category)
-                degreesDist[category] = response["response"]
-
-            datainserts.insertDegrees(degreesDist)
+            getDegreesData(session)
         
         return messeges.DATA_INPORT_SUCCESS
     except LoginError:
@@ -126,6 +120,16 @@ def getCharacterData(session, characters):
         characterList.append(characterInfo)
 
     datainserts.insertCharacter(characterList)
+
+
+def getDegreesData(session):
+    degreesDist = {}
+    for category in DEGREE_CATEGORY_DIST.keys():
+        sleep(1)
+        response = myPage.getDegreesData(session, category)
+        degreesDist[category] = response["response"]
+
+    datainserts.insertDegrees(degreesDist)
 
 
 if __name__ == '__main__':
