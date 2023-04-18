@@ -1,0 +1,102 @@
+{
+    "sesson": {
+        "test": 12345
+    },
+    "getDegreesData": [
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [
+                {
+                    "test001": "test001"
+                }
+            ]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [
+                {
+                    "test002": "test002"
+                }
+            ]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [
+                {
+                    "test003": "test003"
+                }
+            ]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [
+                {
+                    "test004": "test004"
+                }
+            ]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [
+                {
+                    "test005": "test005"
+                }
+            ]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [
+                {
+                    "test006": "test006"
+                }
+            ]
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": [
+                {
+                    "test007": "test007"
+                }
+            ]
+        }
+    ],
+    "db_degrees_param": {
+        "Stage": [
+            {
+                "test001": "test001"
+            }
+        ],
+        "Partner": [
+            {
+                "test002": "test002"
+            }
+        ],
+        "Accessory": [
+            {
+                "test003": "test003"
+            }
+        ],
+        "System": [
+            {
+                "test004": "test004"
+            }
+        ],
+        "MultiMode": [
+            {
+                "test005": "test005"
+            }
+        ],
+        "Event": [
+            {
+                "test006": "test006"
+            }
+        ]
+    }
+}

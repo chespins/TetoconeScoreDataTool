@@ -1,0 +1,16 @@
+{
+    "input": {
+        "sesson": {
+            "test": 12345
+        },
+        "characters": []
+    },
+    "mock_return": {
+        "getCharacterData": {},
+        "getCharacterRanking": {},
+        "selectCharacter": []
+    },
+    "mock_params": {
+        "insertCharacter": []
+    }
+}

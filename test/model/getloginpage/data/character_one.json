@@ -1,0 +1,84 @@
+{
+    "input": {
+        "sesson": {
+            "test": 12345
+        },
+        "characters": [
+            {
+                "id": 12,
+                "playerId": 1,
+                "characterId": "CHR_T_01",
+                "dearness": 101,
+                "isUsed": true,
+                "costumeId": "COSTUME_T_01_1001",
+                "createdAt": "2021-09-12T04:51:57+00:00",
+                "updatedAt": "2021-10-12T04:51:57+00:00",
+                "character": {
+                    "id": "CHR_T_001",
+                    "displayName": "TXT_CHR_NAME_T_01",
+                    "defaultCostumeId": "COSTUME_T_01_1001",
+                    "sortIndex": 1,
+                    "collaboration": true,
+                    "label": "テストキャラ1"
+                },
+                "accessories": [],
+                "dearnessRank": 11
+            }
+        ]
+    },
+    "mock_return": {
+        "getCharacterData": {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": {
+                "CHR_T_01": {
+                    "characterId": "CHR_T_001",
+                    "introductionId": "TXT_CHR_T_01",
+                    "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4",
+                    "label": "テストキャラ01"
+                }
+            }
+        },
+        "getCharacterRanking": {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": {
+                "score": 1,
+                "rank": 111
+            }
+        },
+        "selectCharacter": []
+    },
+    "mock_params": {
+        "insertCharacter": [
+            {
+                "character": {
+                    "id": 12,
+                    "playerId": 1,
+                    "characterId": "CHR_T_01",
+                    "dearness": 101,
+                    "isUsed": true,
+                    "costumeId": "COSTUME_T_01_1001",
+                    "createdAt": "2021-09-12T04:51:57+00:00",
+                    "updatedAt": "2021-10-12T04:51:57+00:00",
+                    "character": {
+                        "id": "CHR_T_001",
+                        "displayName": "TXT_CHR_NAME_T_01",
+                        "defaultCostumeId": "COSTUME_T_01_1001",
+                        "sortIndex": 1,
+                        "collaboration": true,
+                        "label": "テストキャラ1"
+                    },
+                    "accessories": [],
+                    "dearnessRank": 11
+                },
+                "introduction": "テスト説明\nテスト説明2\nテスト説明3\nテスト説明4",
+                "rankingDate": "2022-11-21T10:10:10+00:00",
+                "ranking": {
+                    "score": 1,
+                    "rank": 111
+                }
+            }
+        ]
+    }
+}
