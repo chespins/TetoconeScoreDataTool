@@ -18,12 +18,12 @@ class InputWebPageParamsScreen(Screen):
     scoreGetFlg = BooleanProperty(True)
     degreesGetFlg = BooleanProperty(True)
     characterGetFlg = BooleanProperty(True)
-    rankingGetFlg = BooleanProperty(True)
-    standardGetFlg = BooleanProperty(True)
-    expertGetFlg = BooleanProperty(True)
-    ultimateGetFlg = BooleanProperty(True)
-    maniacGetFlg = BooleanProperty(True)
-    connectGetFlg = BooleanProperty(True)
+    rankingGetFlg = BooleanProperty(False)
+    standardGetFlg = BooleanProperty(False)
+    expertGetFlg = BooleanProperty(False)
+    ultimateGetFlg = BooleanProperty(False)
+    maniacGetFlg = BooleanProperty(False)
+    connectGetFlg = BooleanProperty(False)
 
     def __init__(self, **kwargs):
         super(InputWebPageParamsScreen, self).__init__(**kwargs)
