@@ -10,20 +10,37 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..\\..\\..\\src\\'))
 from db import ranking
 
 
-def test_updateRanking_nodata():
+def getInputParam(keyName):
+    fileName = os.path.join("ranking", "updateRanking", "inputData.json")
+    params = common_db_setup.getParamJson(fileName)
+    return params[keyName]
+
+
+def test_insertRanking_one_new():
     befour_db_name = "test/db/befour_test.db"
     test_file_name = common_db_setup.copy_file_db(befour_db_name)
+    rankingList = getInputParam("one_new")
     ranking.TETOCONE_DB_NAME = test_file_name
-    ranking.updateRanking("test000_00", 9012, "2023-01-10T20:09:01+00:00")
+    ranking.insertRanking(rankingList)
     assert filecmp.cmp(test_file_name, "test/db/ranking/updateRanking/result_nodata.db")
 
 
-def test_updateRanking_dataUpdate():
+def test_insertRanking_one_update():
     befour_db_name = "test/db/befour_test.db"
     test_file_name = common_db_setup.copy_file_db(befour_db_name)
+    rankingList = getInputParam("one_update")
     ranking.TETOCONE_DB_NAME = test_file_name
-    ranking.updateRanking("test001_01", 1234, "2020-02-10T20:09:01+00:00")
+    ranking.insertRanking(rankingList)
     assert filecmp.cmp(test_file_name, "test/db/ranking/updateRanking/result_update.db")
+
+
+def test_insertRanking_three():
+    befour_db_name = "test/db/befour_test.db"
+    test_file_name = common_db_setup.copy_file_db(befour_db_name)
+    rankingList = getInputParam("three")
+    ranking.TETOCONE_DB_NAME = test_file_name
+    ranking.insertRanking(rankingList)
+    assert filecmp.cmp(test_file_name, "test/db/ranking/updateRanking/result_three.db")
 
 
 def test_selectRankingForChartId_nodata():

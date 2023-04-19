@@ -10,7 +10,6 @@ from db import character as cra
 from util import util
 from constant import messeges
 from constant.distConstant import DEGREE_CATEGORY_DIST
-from constant.systemconstant import NO_DATA_STR
 
 
 def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool, 
@@ -84,15 +83,24 @@ def getLoginPageData(cardId: str, password: str, scoreGetFlg: bool,
 
 def getScoreRankingData(session, chartList):
     dataUnmatchFlg = False
+    rankingList = []
 
     for chart in chartList:
         sleep(1)
         ranking = myPage.getRankingData(session, chart["musicId"], chart["chartId"], chart["genreId"])
         rank = ranking.response["response"]["rank"]
         if ranking.response["response"]["score"] == chart["highScore"]:
-            ra.updateRanking(chart["chartId"], rank, ranking.getDate)
+            ranking = {
+                    "chartId": chart["chartId"],
+                    "ranking": rank,
+                    "getDate": ranking.getDate,
+            }
+            rankingList.append(ranking)
         else:
             dataUnmatchFlg = True 
+
+    if len(rankingList) > 0:
+        ra.insertRanking(rankingList)
     
     return dataUnmatchFlg
 
@@ -130,6 +138,32 @@ def getDegreesData(session):
         degreesDist[category] = response["response"]
 
     datainserts.insertDegrees(degreesDist)
+
+
+def getLoginRankingData(cardId, password, chartId):
+    if not (len(cardId) > 0 and len(password) > 0):
+        return messeges.DATA_IMPORT_ID_LACK
+
+    chartInfoList = cha.selectedSingleChart(chartId=chartId)
+    
+    if len(chartInfoList) != 1:
+        return messeges.DATA_IMPORT_DATA_UNMATCH
+
+    chartInfo = chartInfoList[0]
+    chartList = [chartInfo]
+
+    try:
+        session = myPage.loginMyPage(cardId, password)
+        sleep(3)
+        if getScoreRankingData(session, chartList):
+            return messeges.DATA_IMPORT_DATA_UNMATCH
+        else:
+            return messeges.DATA_INPORT_SUCCESS
+        
+    except LoginError:
+        return messeges.DATA_INPORT_LOGIN_ERROR
+    except Exception:
+        return messeges.DATA_INPORT_OUTHER_ERROR
 
 
 if __name__ == '__main__':

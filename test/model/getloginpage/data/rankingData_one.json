@@ -10,5 +10,12 @@
             "genreId": "GTEST1",
             "highScore": 111
         }
+    ],
+    "dbInsert": [
+        {
+            "chartId": "test001_01",
+            "ranking": 1111,
+            "getDate": "2022-11-21T10:10:10+00:00"
+        }
     ]
 }

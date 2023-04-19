@@ -24,7 +24,7 @@ def test_getScoreRankingData_one_false(mocker):
         }),
     ]
     ranking_mock = mocker.patch("model.mypagedata.getRankingData", side_effect=return_ranking)
-    db_ranking_mock = mocker.patch("db.ranking.updateRanking")
+    db_ranking_mock = mocker.patch("db.ranking.insertRanking")
     sleep_mock = mocker.patch("model.getloginpage.sleep")
     session = input_data["session"]
 
@@ -33,7 +33,7 @@ def test_getScoreRankingData_one_false(mocker):
     ranking_mock.assert_called_once()
     ranking_mock.assert_called_with(session, "test001", "test001_01", "GTEST1")
     db_ranking_mock.assert_called_once()
-    db_ranking_mock.assert_called_with("test001_01", 1111, "2022-11-21T10:10:10+00:00")
+    db_ranking_mock.assert_called_with(input_data["dbInsert"])
     sleep_mock.assert_called_once()
     sleep_mock.assert_called_with(1)
 
@@ -52,7 +52,7 @@ def test_getScoreRankingData_one_true(mocker):
         }),
     ]
     ranking_mock = mocker.patch("model.mypagedata.getRankingData", side_effect=return_ranking)
-    db_ranking_mock = mocker.patch("db.ranking.updateRanking")
+    db_ranking_mock = mocker.patch("db.ranking.insertRanking")
     sleep_mock = mocker.patch("model.getloginpage.sleep")
     session = input_data["session"]
 
@@ -95,7 +95,7 @@ def test_getScoreRankingData_three_false(mocker):
         }),
     ]
     ranking_mock = mocker.patch("model.mypagedata.getRankingData", side_effect=return_ranking)
-    db_ranking_mock = mocker.patch("db.ranking.updateRanking")
+    db_ranking_mock = mocker.patch("db.ranking.insertRanking")
     sleep_mock = mocker.patch("model.getloginpage.sleep")
     session = input_data["session"]
 
@@ -107,12 +107,8 @@ def test_getScoreRankingData_three_false(mocker):
             mocker.call(session, "test002", "test002_01", "GTEST2"),
             mocker.call(session, "test003", "test003_01", "GTEST3"),
     ])
-    assert db_ranking_mock.call_count == 3
-    db_ranking_mock.assert_has_calls([
-            mocker.call("test001_01", 1111, "2022-11-21T10:10:10+00:00"),
-            mocker.call("test002_01", 2222, "2022-11-21T10:10:10+00:00"),
-            mocker.call("test003_01", 3333, "2022-11-21T10:10:10+00:00"),
-    ])
+    db_ranking_mock.assert_called_once()
+    db_ranking_mock.assert_called_with(input_data["dbInsert_true"])
     assert sleep_mock.call_count == 3
     sleep_mock.assert_has_calls([
             mocker.call(1),
@@ -151,7 +147,7 @@ def test_getScoreRankingData_three_true(mocker):
         }),
     ]
     ranking_mock = mocker.patch("model.mypagedata.getRankingData", side_effect=return_ranking)
-    db_ranking_mock = mocker.patch("db.ranking.updateRanking")
+    db_ranking_mock = mocker.patch("db.ranking.insertRanking")
     sleep_mock = mocker.patch("model.getloginpage.sleep")
     session = input_data["session"]
 
@@ -163,11 +159,8 @@ def test_getScoreRankingData_three_true(mocker):
             mocker.call(session, "test002", "test002_01", "GTEST2"),
             mocker.call(session, "test003", "test003_01", "GTEST3"),
     ])
-    assert db_ranking_mock.call_count == 2
-    db_ranking_mock.assert_has_calls([
-            mocker.call("test001_01", 1111, "2022-11-21T10:10:10+00:00"),
-            mocker.call("test003_01", 3333, "2022-11-21T10:10:10+00:00"),
-    ])
+    db_ranking_mock.assert_called_once()
+    db_ranking_mock.assert_called_with(input_data["dbInsert_false"])
     assert sleep_mock.call_count == 3
     sleep_mock.assert_has_calls([
             mocker.call(1),

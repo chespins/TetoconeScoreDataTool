@@ -24,5 +24,34 @@
             "genreId": "GTEST3",
             "highScore": 333
         }
+    ],
+    "dbInsert_true": [
+        {
+            "chartId": "test001_01",
+            "ranking": 1111,
+            "getDate": "2022-11-21T10:10:10+00:00"
+        },
+        {
+            "chartId": "test002_01",
+            "ranking": 2222,
+            "getDate": "2022-11-21T10:10:10+00:00"
+        },
+        {
+            "chartId": "test003_01",
+            "ranking": 3333,
+            "getDate": "2022-11-21T10:10:10+00:00"
+        }
+    ],
+    "dbInsert_false": [
+        {
+            "chartId": "test001_01",
+            "ranking": 1111,
+            "getDate": "2022-11-21T10:10:10+00:00"
+        },
+        {
+            "chartId": "test003_01",
+            "ranking": 3333,
+            "getDate": "2022-11-21T10:10:10+00:00"
+        }
     ]
 }

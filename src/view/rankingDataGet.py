@@ -5,7 +5,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 from kivy.clock import Clock
 
-from model import rankingDataGet as ins
+from model import getloginpage as ins
 from variable.setappdata import AppCommonData
 from constant import messeges
 from util import util
