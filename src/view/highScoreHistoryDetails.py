@@ -36,9 +36,9 @@ class HighScoreHistoryDetailsScreen(Screen):
         self.ids.genreName.text = musicInfo["genreName"]
         self.highScoreHistoryRv.data = self.score.getHighScoreHistoryByChartId(self.chartId)
 
-    def resetScreen(self, **kwargs):
-        self.highScoreHistoryRv.data = []
-        self.chartId = ""
+    def on_leave(self, *args):
+        self.manager.remove_widget(self)
+        return super().on_leave(*args)
 
     def switchScreen(self):
         if self.allDisplayFlg:

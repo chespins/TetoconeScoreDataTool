@@ -4,13 +4,14 @@ from kivy.uix.screenmanager import Screen
 from kivy.properties import StringProperty
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.label import Label
 from kivy.lang import Builder
 
 from model.highscoredetails import HighScoreFormusic
 from util import util
 from constant.systemconstant import KIVY_CURRENT_DIR
 from variable.setappdata import AppCommonData
+from view import highScoreHistoryDetails as his
+from view import rankingDataGet as rdg
 
 Builder.load_file(util.findDataFile(KIVY_CURRENT_DIR + 'highScoreDetails.kv'))
 
@@ -19,6 +20,7 @@ class HighScoreDetailsScreen(Screen):
     chartId = StringProperty()
     rankHistoryRv = ObjectProperty()
     dataSet = HighScoreFormusic()
+    leaveFlg = False
 
     def __init__(self, comonData: AppCommonData, **kwargs):
         super(HighScoreDetailsScreen, self).__init__(**kwargs)
@@ -41,9 +43,24 @@ class HighScoreDetailsScreen(Screen):
             self.updateRankingData(self.ids.modeSpinnerId.text)
     
     def resetScreen(self, **kwargs) :
-        self.chartId = ""
-        self.rankHistoryRv.data = []
-        return self.commonData.clearSourceWidget()
+        self.leaveFlg = True
+        self.manager.current = self.commonData.clearSourceWidget()
+
+    def switchinghistoryData(self):
+        screenName = 'history'
+        self.manager.add_widget(his.HighScoreHistoryDetailsScreen(name=screenName, comonData=self.commonData))
+        self.manager.current = screenName
+        
+    def switchingRankingData(self):
+        screenName = 'rankingGet'
+        self.manager.add_widget(rdg.RankingDataGetScreen(name=screenName, comonData=self.commonData))
+        self.manager.current = screenName
+    
+    def on_leave(self, *args):
+        if self.leaveFlg:
+            self.manager.remove_widget(self)
+
+        return super().on_leave(*args)
 
     def setMusicDate(self):
         musicInfo = self.dataSet.getMusicName(self.chartId)

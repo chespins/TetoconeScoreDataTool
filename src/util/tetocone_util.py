@@ -20,3 +20,7 @@ def getGenreIdByName(searchGenreName) -> str:
             break
     
     return searchGenreId
+
+
+if __name__ == '__main__':
+    pass

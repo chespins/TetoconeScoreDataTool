@@ -8,6 +8,7 @@ from kivy.lang import Builder
 
 from model.abuchement import abuchmentModel
 from variable.setappdata import AppCommonData
+from view.baseScoreListScreen import BaseScoreListScreen
 from util import util
 from constant.systemconstant import ABUCHMENT_LIST
 from constant.systemconstant import KIVY_CURRENT_DIR
@@ -15,22 +16,17 @@ from constant.systemconstant import KIVY_CURRENT_DIR
 Builder.load_file(util.findDataFile(KIVY_CURRENT_DIR + 'abuchement.kv'))
 
 
-class AbuchmentScreen(Screen):
+class AbuchmentScreen(BaseScoreListScreen):
     abuchmentRv = ObjectProperty()
     ungetFlg = BooleanProperty(False)
     abu = abuchmentModel()
 
     def __init__(self, comonData: AppCommonData, **kwargs):
-        super(AbuchmentScreen, self).__init__(**kwargs)
+        super(AbuchmentScreen, self).__init__(commonData=comonData, **kwargs)
         self.ids.LevelSpinnerId.values = self.abu.makeLavalNamePulldown()
         self.ids.LevelSpinnerId.text = ""
         self.ids.abuchmentSpinner.values = ABUCHMENT_LIST
         self.ids.abuchmentSpinner.text = ABUCHMENT_LIST[0]
-        self.commonData = comonData
-
-    def resetData(self):
-        self.abuchmentRv.data = []
-        self.ungetFlg = False
 
     def serchMusic(self):
         serchLavelName = self.ids.LevelSpinnerId.text
@@ -39,10 +35,6 @@ class AbuchmentScreen(Screen):
 
     def checkboxCheck(self, checkbox):
         self.ungetFlg = checkbox.active
-
-    def showHighScore(self, chartId):
-        self.commonData.setHistoryData(chartId, "abuchment")
-        self.manager.current = 'details'
 
 
 class AbuchmentData(BoxLayout):
@@ -55,7 +47,7 @@ class AbuchmentData(BoxLayout):
     detailsFlg = BooleanProperty(False)
 
     def showHighScore(self, chartId):
-        self.parent.parent.parent.parent.parent.parent.parent.showHighScore(chartId)
+        self.parent.parent.parent.parent.parent.parent.parent.switchingHighScoreDetails(chartId, "abuchment")
 
 
 if __name__ == '__main__':

@@ -6,7 +6,6 @@ from util import util
 
 
 class HighScoreFormusic(BaseModel):
-
     def getRankHistoryDataForChartId(self, chartId, displayedMode):
         screenRankHistoryList = []
         modeList = dico.DISPLAYED_MODE_DIST[displayedMode].searchedMode
@@ -52,6 +51,7 @@ class HighScoreFormusic(BaseModel):
                     pulldownList.append(modeData.name)
 
         return pulldownList
+
 
 class highScoreData():
     def __init__(self):

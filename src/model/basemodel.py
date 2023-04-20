@@ -6,7 +6,6 @@ from db import ranking as rak
 from util import util
 
 class BaseModel():
-    
     def makeLavalNamePulldown(self):
         pulldownList = [""]
         for levelName in dico.LEVEL_NAME_DIST.values():
@@ -77,3 +76,7 @@ class BaseModel():
 
     def getSinglePlayName(self):
         return dico.MODE_NAME_DIST["1"]
+
+
+if __name__ == '__main__':
+    pass

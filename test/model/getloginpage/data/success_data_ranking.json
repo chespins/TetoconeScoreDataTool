@@ -1,0 +1,14 @@
+{
+    "return_sesson": {
+        "test": 12345
+    },
+    "return_chart": [
+        {
+            "chartId": "test001_01",
+            "musicId": "test001",
+            "levelId": 0,
+            "genreId": "GTEST1",
+            "highScore": 111
+        }
+    ]
+}

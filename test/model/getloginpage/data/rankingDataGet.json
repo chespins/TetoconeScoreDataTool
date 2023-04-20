@@ -1,0 +1,30 @@
+{
+    "session": {
+        "test": 12345
+    },
+    "chart_return": [
+        {
+            "chartId": "test001_01",
+            "musicId": "test001",
+            "levelId": 2,
+            "genreId": "GTEST",
+            "highScore": 123456
+        }
+    ],
+    "chart_error_return": [
+        {
+            "chartId": "test003_01",
+            "musicId": "test003",
+            "levelId": 2,
+            "genreId": "GTEST",
+            "highScore": 123456
+        },
+        {
+            "chartId": "test003_01",
+            "musicId": "test003",
+            "levelId": 21,
+            "genreId": "GTEST",
+            "highScore": 123456
+        }
+    ]
+}

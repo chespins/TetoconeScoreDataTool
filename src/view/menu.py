@@ -10,6 +10,9 @@ from view import degreesList as deg
 from view import characterData as cha
 from view import license as lic
 from view import inputWebPageParams as web
+from view import highScoreSelected as hss
+from view import abuchement as abu
+from view import rankingList as rak
 
 
 Builder.load_file(util.findDataFile(KIVY_CURRENT_DIR + 'menu.kv'))
@@ -45,6 +48,21 @@ class MenuScreen(Screen):
     def switchingWebData(self):
         screenName = 'webData'
         self.manager.add_widget(web.InputWebPageParamsScreen(name=screenName))
+        self.manager.current = screenName
+
+    def switchingHighScoreSelect(self):
+        screenName = 'highScoreSelect'
+        self.manager.add_widget(hss.HighScoreSelectScreen(name=screenName, comonData=self.commonData))
+        self.manager.current = screenName
+
+    def switchingRankingList(self):
+        screenName = 'rankingList'
+        self.manager.add_widget(rak.RankingListScreen(name=screenName, comonData=self.commonData))
+        self.manager.current = screenName
+
+    def switchingAbuchment(self):
+        screenName = 'abuchment'
+        self.manager.add_widget(abu.AbuchmentScreen(name=screenName, comonData=self.commonData))
         self.manager.current = screenName
 
 

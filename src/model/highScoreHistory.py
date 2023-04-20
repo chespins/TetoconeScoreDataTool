@@ -19,3 +19,7 @@ class HighScoreHistory(BaseModel):
             screenHighScore.append(ScoreHash)
 
         return screenHighScore
+
+
+if __name__ == '__main__':
+    pass

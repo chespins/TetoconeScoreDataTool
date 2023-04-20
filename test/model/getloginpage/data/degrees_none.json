@@ -1,0 +1,45 @@
+{
+    "sesson": {
+        "test": 12345
+    },
+    "getDegreesData": [
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": []
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": []
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": []
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": []
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": []
+        },
+        {
+            "responseCode": 200,
+            "responseMessage": "OK",
+            "response": []
+        }
+    ],
+    "db_degrees_param": {
+        "Stage": [],
+        "Partner": [],
+        "Accessory": [],
+        "System": [],
+        "MultiMode": [],
+        "Event": []
+    }
+}
