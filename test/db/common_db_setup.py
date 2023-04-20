@@ -2,6 +2,7 @@
 import sys
 import shutil
 import os
+import json
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..\\..\\src\\'))
 from constant import systemconstant
@@ -21,3 +22,11 @@ def remove_test_db_file():
 def copy_file_db(fileName):
     shutil.copy(fileName, test_file_name)
     return test_file_name
+
+
+def getParamJson(fileName):
+    f = open(os.path.join("test", "db", fileName), 'r', encoding='UTF-8')
+    data = f.read()
+    f.close()
+    return json.loads(data)
+

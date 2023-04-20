@@ -2,8 +2,9 @@
 import sqlite3
 from constant.systemconstant import TETOCONE_DB_NAME
 
-DELETE_SQL = "DELETE FROM score_ranking WHERE chart_id = ?"
-INSERT_SQL = "INSERT INTO score_ranking (chart_id, ranking, get_date) VALUES (?, ?, ?)"
+DELETE_SQL = "DELETE FROM score_ranking WHERE chart_id IN ("
+INSERT_SQL = "INSERT INTO score_ranking (chart_id, ranking, get_date) VALUES "
+INSERT_PARAM_SQL = "(?, ?, ?)"
 SELECT_CHART_SQL = "SELECT chart_id, ranking, get_date FROM score_ranking WHERE chart_id = ?"
 SELECT_LIST_SQL = """
         SELECT ra.chart_id, ra.ranking, ra.get_date, mu.name, con.level_id
@@ -15,17 +16,39 @@ SELECT_LIST_SQL = """
 """
 SELECT_LIST_ORDER_BY = "ORDER BY ra.chart_id"
 
-def updateRanking(chartId, ranking, getDate):
+
+def insertRanking(rankingList):
+    deleteSql = DELETE_SQL
+    insertSql = INSERT_SQL
+    deleteParams = []
+    insertParams = []
+
+    for index, ranking in enumerate(rankingList):
+        deleteParams.append(ranking["chartId"])
+        insertParams.append(ranking["chartId"])
+        insertParams.append(ranking["ranking"])
+        insertParams.append(ranking["getDate"])
+        deleteSql += "?"
+        insertSql += INSERT_PARAM_SQL
+
+        if (index != len(rankingList) - 1):
+            deleteSql += ","
+            insertSql += ","
+        else:
+            deleteSql += ")"
+
     with sqlite3.connect(TETOCONE_DB_NAME) as conn:
         conn.execute('BEGIN')
         try:
-            conn.execute(DELETE_SQL, (chartId, ))
-            conn.execute(INSERT_SQL, (chartId, ranking, getDate, ))
+            conn.execute(deleteSql, deleteParams)
+            conn.execute(insertSql, insertParams)
             conn.commit()
-    
+
         except Exception as e:
             conn.rollback()
             raise e
+        
+    return
 
 
 def selectRankingForChartId(chartId):

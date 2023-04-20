@@ -7,6 +7,7 @@ from kivy.lang import Builder
 
 from model.rankingListGet import RankingListGet as rank
 from variable.setappdata import AppCommonData
+from view.baseScoreListScreen import BaseScoreListScreen
 from util import util
 from constant.systemconstant import KIVY_CURRENT_DIR
 
@@ -14,20 +15,17 @@ from constant.systemconstant import KIVY_CURRENT_DIR
 Builder.load_file(util.findDataFile(KIVY_CURRENT_DIR + 'rankingList.kv'))
 
 
-class RankingListScreen(Screen):
+class RankingListScreen(BaseScoreListScreen):
     rankingListRv = ObjectProperty()
     rankModel = rank()
 
     def __init__(self, comonData: AppCommonData, **kwargs):
-        super(RankingListScreen, self).__init__(**kwargs)
+        super(RankingListScreen, self).__init__(commonData=comonData, **kwargs)
         self.ids.LevelSpinnerId.values = self.rankModel.makeLavalNamePulldown()
         self.ids.LevelSpinnerId.text = ""
         self.ids.genreSpinnerId.values = self.rankModel.makeGenreNamePulldown()
         self.ids.genreSpinnerId.text = ""
         self.commonData = comonData
-
-    def resetData(self):
-        self.rankingListRv.data = []
 
     def serchMusic(self):
         serchLavelName = self.ids.LevelSpinnerId.text
@@ -41,6 +39,9 @@ class rankingData(BoxLayout):
     highScore = StringProperty()
     maxRank = StringProperty()
     ranking = StringProperty()
+
+    def showHighScore(self, chartId):
+        self.parent.parent.parent.parent.parent.parent.parent.switchingHighScoreDetails(chartId, "rankingList")
 
 
 if __name__ == '__main__':

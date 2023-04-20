@@ -1,0 +1,33 @@
+{
+    "one_new": [
+        {
+            "chartId": "test000_00",
+            "ranking": 9012,
+            "getDate": "2023-01-10T20:09:01+00:00"
+        }
+    ],
+    "one_update": [
+        {
+            "chartId": "test001_01",
+            "ranking": 1234,
+            "getDate": "2020-02-10T20:09:01+00:00"
+        }
+    ],
+    "three": [
+        {
+            "chartId": "test000_00",
+            "ranking": 9012,
+            "getDate": "2023-01-10T20:09:01+00:00"
+        },
+        {
+            "chartId": "test001_01",
+            "ranking": 1234,
+            "getDate": "2020-02-10T20:09:01+00:00"
+        },
+        {
+            "chartId": "test101_01",
+            "ranking": 9876,
+            "getDate": "2022-02-10T11:09:01+00:00"
+        }
+    ]
+}

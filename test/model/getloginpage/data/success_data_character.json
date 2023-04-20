@@ -1,0 +1,58 @@
+{
+    "return_sesson": {
+        "test": 12345
+    },
+    "score_return": {
+        "responseCode": 200,
+        "responseMessage": "OK",
+        "response": {
+            "id": 123456789,
+            "cardId": "1234567890123456",
+            "name": "test001",
+            "characters": [
+                {
+                    "id": 12,
+                    "playerId": 1,
+                    "characterId": "CHR_T_01",
+                    "dearness": 101,
+                    "isUsed": true,
+                    "costumeId": "COSTUME_T_01_1001",
+                    "createdAt": "2021-09-12T04:51:57+00:00",
+                    "updatedAt": "2021-10-12T04:51:57+00:00",
+                    "character": {
+                        "id": "CHR_T_001",
+                        "displayName": "TXT_CHR_NAME_T_01",
+                        "defaultCostumeId": "COSTUME_T_01_1001",
+                        "sortIndex": 1,
+                        "collaboration": true,
+                        "label": "テストキャラ1"
+                    },
+                    "accessories": [],
+                    "dearnessRank": 11
+                }
+            ]
+        }
+    },
+    "characters_param": [
+        {
+            "id": 12,
+            "playerId": 1,
+            "characterId": "CHR_T_01",
+            "dearness": 101,
+            "isUsed": true,
+            "costumeId": "COSTUME_T_01_1001",
+            "createdAt": "2021-09-12T04:51:57+00:00",
+            "updatedAt": "2021-10-12T04:51:57+00:00",
+            "character": {
+                "id": "CHR_T_001",
+                "displayName": "TXT_CHR_NAME_T_01",
+                "defaultCostumeId": "COSTUME_T_01_1001",
+                "sortIndex": 1,
+                "collaboration": true,
+                "label": "テストキャラ1"
+            },
+            "accessories": [],
+            "dearnessRank": 11
+        }
+    ]
+}

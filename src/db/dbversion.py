@@ -37,7 +37,16 @@ def dbUpdateFrom05():
     with sqlite3.connect(syco.TETOCONE_DB_NAME) as conn:
         conn.execute('BEGIN')
         conn.executescript(insertDdlSql)
-        conn.execute(UPDATE_SQL, (syco.CURRENT_DB_VERSION, syco.DB_VERSION_05))
+        conn.execute(UPDATE_SQL, (syco.DB_VERSION_08, syco.DB_VERSION_05))
+        conn.commit()
+
+
+def dbUpdateFrom08():
+    insertDdlSql = readFileStr("./ddl/update_09.ddl")
+    with sqlite3.connect(syco.TETOCONE_DB_NAME) as conn:
+        conn.execute('BEGIN')
+        conn.executescript(insertDdlSql)
+        conn.execute(UPDATE_SQL, (syco.DB_VERSION_09, syco.DB_VERSION_08))
         conn.commit()
         
 

@@ -73,3 +73,17 @@ RANK_DIST = {
         "D": apiLankName("D", "D", [1, 0, 1, 0.5]),
         "E": apiLankName("E", "E", [1, 0, 1, 0.5]),
 }
+
+
+DEGREE_CATEGORY_DIST = {
+        "Stage": "楽曲",
+        "Partner": "パートナー",
+        "Accessory": "衣装",
+        "System": "システム",
+        "MultiMode": "マルチ",
+        "Event": "イベント",
+}
+
+
+if __name__ == '__main__':
+    pass

@@ -1,0 +1,71 @@
+{
+    "return_sesson": {
+        "test": 12345
+    },
+    "return_chart": [
+        {
+            "chartId": "test001_01",
+            "musicId": "test001",
+            "levelId": 1,
+            "genreId": "GTEST1",
+            "highScore": 111
+        },
+        {
+            "chartId": "test002_01",
+            "musicId": "test002",
+            "levelId": 2,
+            "genreId": "GTEST2",
+            "highScore": 222
+        },
+        {
+            "chartId": "test003_01",
+            "musicId": "test003",
+            "levelId": 3,
+            "genreId": "GTEST3",
+            "highScore": 333
+        },
+        {
+            "chartId": "test004_01",
+            "musicId": "test004",
+            "levelId": 4,
+            "genreId": "GTEST4",
+            "highScore": 444
+        },
+        {
+            "chartId": "test005_01",
+            "musicId": "test005",
+            "levelId": 5,
+            "genreId": "GTEST5",
+            "highScore": 555
+        }
+    ],
+    "score_return": {
+        "responseCode": 200,
+        "responseMessage": "OK",
+        "response": {
+            "id": 123456789,
+            "cardId": "1234567890123456",
+            "name": "test001",
+            "stages": [
+                {
+                    "test001": "test001"
+                }
+            ],
+            "characters": [
+                {
+                    "testC001": "testC001"
+                }
+            ]
+        }
+    },
+    "characters_param": [
+        {
+            "testC001": "testC001"
+        }
+    ],
+    "stage_data": [
+        {
+            "test001": "test001"
+        }
+    ]
+}

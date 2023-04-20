@@ -19,6 +19,10 @@ class LicenseScreen(Screen):
         self.ids.kivylicense.text = util.readFileStr(LIBRARY_LICENSE_DIR + 'kivy-LICENSE')
         self.ids.requests.text = util.readFileStr(LIBRARY_LICENSE_DIR + 'requests-LICENSE')
 
+    def on_leave(self, *args):
+        self.manager.remove_widget(self)
+        super().on_leave(*args)
+
 
 if __name__ == '__main__':
     pass

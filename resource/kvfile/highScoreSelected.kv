@@ -106,8 +106,7 @@
                     text: '戻る'
                     font_size: 18
                     on_release:
-                        root.resetData() 
-                        root.manager.current = 'menu'
+                        root.switchingMenu()
 
 <SearchHighScore>:
     canvas.before:
@@ -119,7 +118,7 @@
     Button:
         size_hint_x: 0.1
         on_release: 
-            app.showHighScore(root.chartId, "highScoreSelect")
+            root.showHighScore(root.chartId)
         disabled: root.detailsFlg
         text: "詳細"
     Label:

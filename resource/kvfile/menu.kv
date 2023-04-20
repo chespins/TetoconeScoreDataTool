@@ -14,34 +14,49 @@
             size_hint_y: 0.7
             padding: 20, 30, 20, 10
             orientation: 'vertical'
-            Button:
-                id: webData
-                text: "マイページからデータ取得"
-                font_size: 22
-                on_release: 
-                    root.manager.current = 'webData'
+            BoxLayout:
+                Button:
+                    id: webData
+                    text: "マイページからデータ取得"
+                    font_size: 22
+                    on_release: 
+                        root.switchingWebData()
             BoxLayout:
                 Button:
                     text: "ハイスコア確認"
                     font_size: 22
                     on_release: 
-                        root.manager.current = 'highScoreSelect'
+                        root.switchingHighScoreSelect()
                 Button:
+                    id: rankingCheck
                     text: "ランキング確認"
                     font_size: 22
                     on_release: 
-                        root.manager.current = 'rankingList'
+                        root.switchingRankingList()
                 Button:
                     text: "達成状況確認"
                     font_size: 22
                     on_release: 
-                        root.manager.current = 'abuchment'
+                        root.switchingAbuchment()
+            BoxLayout:
+                Button:
+                    id: degreesList
+                    text: "称号確認"
+                    font_size: 22
+                    on_release: 
+                        root.switchingDegreesList()
+                Button:
+                    id: characterData
+                    text: "キャラクター情報確認"
+                    font_size: 22
+                    on_release: 
+                        root.switchingCharacterData()
             BoxLayout:
                 Button:
                     text: "ライセンス"
                     font_size: 22
                     on_release: 
-                        root.manager.current = 'license'
+                        root.switchingLicense()
                 Button:
                     text: "ツール終了"
                     font_size: 22

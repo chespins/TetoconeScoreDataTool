@@ -5,7 +5,6 @@ from model.basemodel import BaseModel
 from util import tetocone_util as teut
 
 class HighScoreSearch(BaseModel):
-
     def searchMusic(self, searchName, searchLavalName, searchGenreName, unplayedFlg):
         searchLevelId = teut.getLevelIdByName(searchLavalName)
         searchGenreId = teut.getGenreIdByName(searchGenreName)
