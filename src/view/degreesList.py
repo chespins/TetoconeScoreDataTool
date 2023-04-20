@@ -49,3 +49,7 @@ class Degrees(BoxLayout):
     categoryName = StringProperty()
     missionLabel = StringProperty()
     getDate = StringProperty()
+
+
+if __name__ == '__main__':
+    pass

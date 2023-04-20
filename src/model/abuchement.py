@@ -48,7 +48,6 @@ class abuchmentModel(BaseModel):
 
         return filteredList
 
-
     def makeAbuchmentData(self, abuchmentList):
         screenDataDist = {}
         for abuchment in abuchmentList:

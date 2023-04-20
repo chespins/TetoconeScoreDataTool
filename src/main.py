@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
-
 from kivy.app import App
 from kivy.core.text import LabelBase
 from kivy.core.text import DEFAULT_FONT
@@ -24,26 +23,19 @@ Config.set('graphics', 'height', '480')
 resource_add_path(util.findDataFile(FONT_DIR))
 LabelBase.register(DEFAULT_FONT, FONT_FILE_NAME)
 
+
 class TetoconeScoreApp(App):
     def build(self):
         self.appCommonData = AppCommonData()
         self.sm = ScreenManager()
-        if self.appCommonData.checkDbresult != 0:
-                self.sm.add_widget(
-                        mkd.makeDbFileScreen(
-                                comonData=self.appCommonData,
-                                name='dbFile'
-                        )
-                )
-        else:
-                self.sm.add_widget(
-                        mu.MenuScreen(
-                                comonData=self.appCommonData,
-                                name='menu'
-                        )
-                )
         
+        if self.appCommonData.checkDbresult != 0:
+            self.sm.add_widget(mkd.makeDbFileScreen(comonData=self.appCommonData,name='dbFile'))
+        else:
+            self.sm.add_widget(mu.MenuScreen(comonData=self.appCommonData,name='menu'))
+
         return self.sm
+
 
 if __name__ == '__main__':
     TetoconeScoreApp().run()

@@ -8,6 +8,7 @@ from constant.distConstant import DEGREE_CATEGORY_DIST
 
 class CharacterInfoModel(BaseModel):
     characterInfoDist = {}
+
     def refreshCharacterData(self):
         characterInfoList = cha.selectCharacter()
 
@@ -75,3 +76,7 @@ class CharacterInfoModel(BaseModel):
                 }
         
         return displayedData
+
+
+if __name__ == '__main__':
+    pass

@@ -26,3 +26,7 @@ class BaseScoreListScreen(Screen):
         screenName = 'details'
         self.manager.add_widget(det.HighScoreDetailsScreen(name=screenName, comonData=self.commonData))
         self.manager.current = screenName
+
+
+if __name__ == '__main__':
+    pass

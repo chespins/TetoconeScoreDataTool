@@ -83,3 +83,7 @@ DEGREE_CATEGORY_DIST = {
         "MultiMode": "マルチ",
         "Event": "イベント",
 }
+
+
+if __name__ == '__main__':
+    pass

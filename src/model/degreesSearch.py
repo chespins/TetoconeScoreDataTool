@@ -45,3 +45,7 @@ class DegreesSearch(BaseModel):
             pulldownList.append(categoryName)
 
         return pulldownList
+
+
+if __name__ == '__main__':
+    pass

@@ -149,13 +149,10 @@ def getLoginRankingData(cardId, password, chartId):
     if len(chartInfoList) != 1:
         return messeges.DATA_IMPORT_DATA_UNMATCH
 
-    chartInfo = chartInfoList[0]
-    chartList = [chartInfo]
-
     try:
         session = myPage.loginMyPage(cardId, password)
         sleep(3)
-        if getScoreRankingData(session, chartList):
+        if getScoreRankingData(session, chartInfoList):
             return messeges.DATA_IMPORT_DATA_UNMATCH
         else:
             return messeges.DATA_INPORT_SUCCESS

@@ -55,3 +55,7 @@ DDL_DIR = "./ddl/"
 FONT_DIR = "./fonts"
 FONT_FILE_NAME = "Corporate-Mincho-ver2.otf"
 KIVY_CURRENT_DIR = "./kvfile/"
+
+
+if __name__ == '__main__':
+    pass
