@@ -131,3 +131,4 @@ dmypy.json
 # local Data File
 tetocone.db
 pytest_data.db
+scoreData_Test.csv
