@@ -27,7 +27,8 @@ SELECT_KEYS_SQL = """
 SELECT_MUSIC_LEVEL_NAME_SQL = """
     SELECT mu.name, ch.level_id, ifnull(sc.mode, 0), ifnull(sc.high_score, 0),
         ch.chart_id, ifnull(sc.full_combo_count, 0), ifnull(sc.perfect_count, 0),
-        ifnull(sc.play_count, 0), ifnull(sc.cleared_count, 0)
+        ifnull(sc.play_count, 0), ifnull(sc.cleared_count, 0), ifnull(sc.max_combo, 0),
+        sc.update_time
     FROM chart_constitution AS ch
         LEFT JOIN high_score AS sc on ch.chart_id = sc.chart_id
         INNER JOIN music AS mu on mu.id = ch.music_id
@@ -135,6 +136,8 @@ def selectHighScore(musicName, levelId=0, searchGenreId=""):
                     "perfectCount": row[6],
                     "playCount": row[7],
                     "clearedCount": row[8],
+                    "maxCombo": row[9],
+                    "updateTime": row[10],
                 })
 
     return highScoreList

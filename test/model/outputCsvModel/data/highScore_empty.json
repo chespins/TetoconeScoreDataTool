@@ -1,0 +1,14 @@
+[
+    {
+        "musicName": "テスト1",
+        "levelId": 1,
+        "mode": 1,
+        "highScore": 0,
+        "chartId": "test003_01",
+        "fullComboCount": 0,
+        "perfectCount": 0,
+        "playCount": 0,
+        "clearedCount": 0,
+        "maxCombo": 0
+    }
+]

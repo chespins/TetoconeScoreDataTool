@@ -30,6 +30,7 @@ class CsvDataHeader():
         self.dataType = dataType
 
     def outputData(self, rowData):
+        columnData = ""
         if self.dataType.rankFlg:
             if self.columnName in rowData:
                 return rowData[self.columnName]["count"]

@@ -2,9 +2,17 @@
 import pytest
 import sys
 import os
+import datetime
+import json
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..\\..\\src\\'))
 from util import util
+
+def readFileStr(filename):
+    f = open(os.path.join("test", "util", "data", filename), 'r', encoding='UTF-8')
+    data = f.read()
+    f.close()
+    return json.loads(data)
 
 
 def test_changeTimeZone1():
@@ -56,6 +64,18 @@ def test_diffDate4():
 
     with pytest.raises(ValueError) as e:
         util.diffDate(input1, input2)
+
+
+@pytest.mark.freeze_time(datetime.datetime(2022, 11, 21, 10, 10, 10, tzinfo=datetime.timezone.utc))
+def test_getDateTimeNow():
+    output = util.getDateTimeNow()
+    assert "2022-11-21T10:10:10+00:00" == output
+
+
+@pytest.mark.freeze_time(datetime.datetime(2022, 11, 21, 10, 10, 10, tzinfo=datetime.timezone.utc))
+def test_getDateTimeNowFileName():
+    output = util.getDateTimeNowFileName()
+    assert "20221121-101010" == output
 
 
 if __name__ == "__main__":

@@ -80,3 +80,9 @@ def test_three_data_marge():
     assert filecmp.cmp(test_file_name, "test/model/makeCsvFile/result/makeScoreCsvFile_three_marge.csv")
 
 
+def test_fileOutput_failed(mocker):
+    mocker.patch("csv.writer", side_effect=PermissionError())
+    highScoreList = []
+    test_file_name = os.path.join(os.getcwd(), "scoreData_Test.csv")
+    message = makeCsvFile.makeScoreCsvFile(highScoreList, test_file_name, True)
+    assert message == "指定したファイル名でCSVファイルの出力に失敗しました。"

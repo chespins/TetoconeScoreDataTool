@@ -90,6 +90,8 @@ def test_selectHighScore_musicName_all():
                     "perfectCount": 6,
                     "playCount": 62,
                     "clearedCount": 63,
+                    "maxCombo": 623,
+                    "updateTime": "2019-06-09T15:00:00+00:00",
                 }]
     assert highscore.selectHighScore("テスト3") == success
 
@@ -108,6 +110,8 @@ def test_selectHighScore_musicName_split():
                     "perfectCount": 6,
                     "playCount": 62,
                     "clearedCount": 63,
+                    "maxCombo": 623,
+                    "updateTime": "2019-06-09T15:00:00+00:00",
                 }]
     assert highscore.selectHighScore("3") == success
 
@@ -126,6 +130,8 @@ def test_selectHighScore_genreId():
                     "perfectCount": 7,
                     "playCount": 72,
                     "clearedCount": 73,
+                    "maxCombo": 723,
+                    "updateTime": "2019-07-09T15:00:00+00:00",
                 }]
     assert highscore.selectHighScore("", searchGenreId="G004") == success
 
@@ -144,6 +150,8 @@ def test_selectHighScore_levelId():
                     "perfectCount": 3,
                     "playCount": 32,
                     "clearedCount": 33,
+                    "maxCombo": 323,
+                    "updateTime": "2019-03-09T15:00:00+00:00",
                 }]
     assert highscore.selectHighScore("", levelId=3) == success
 
@@ -162,6 +170,8 @@ def test_selectHighScore_all_param():
                     "perfectCount": 4,
                     "playCount": 42,
                     "clearedCount": 43,
+                    "maxCombo": 423,
+                    "updateTime": "2019-04-09T15:00:00+00:00",
             },
             {
                     "musicName": "テスト2",
@@ -173,6 +183,8 @@ def test_selectHighScore_all_param():
                     "perfectCount": 5,
                     "playCount": 52,
                     "clearedCount": 53,
+                    "maxCombo": 523,
+                    "updateTime": "2019-05-09T15:00:00+00:00",
             },]
     assert highscore.selectHighScore("テスト", levelId=2, searchGenreId="G002") == success
 
@@ -192,6 +204,8 @@ def test_selectHighScore_param_empty():
                     "perfectCount": 1,
                     "playCount": 12,
                     "clearedCount": 13,
+                    "maxCombo": 123,
+                    "updateTime": "2019-01-09T15:00:00+00:00",
             },
             {
                     "musicName": "テスト1",
@@ -203,6 +217,8 @@ def test_selectHighScore_param_empty():
                     "perfectCount": 2,
                     "playCount": 22,
                     "clearedCount": 23,
+                    "maxCombo": 223,
+                    "updateTime": "2019-02-09T15:00:00+00:00",
             },
             {
                     "musicName": "テスト1",
@@ -214,6 +230,8 @@ def test_selectHighScore_param_empty():
                     "perfectCount": 3,
                     "playCount": 32,
                     "clearedCount": 33,
+                    "maxCombo": 323,
+                    "updateTime": "2019-03-09T15:00:00+00:00",
             },
             {
                     "musicName": "テスト2",
@@ -225,6 +243,8 @@ def test_selectHighScore_param_empty():
                     "perfectCount": 4,
                     "playCount": 42,
                     "clearedCount": 43,
+                    "maxCombo": 423,
+                    "updateTime": "2019-04-09T15:00:00+00:00",
             },
             {
                     "musicName": "テスト2",
@@ -236,6 +256,8 @@ def test_selectHighScore_param_empty():
                     "perfectCount": 5,
                     "playCount": 52,
                     "clearedCount": 53,
+                    "maxCombo": 523,
+                    "updateTime": "2019-05-09T15:00:00+00:00",
             },
             {
                     "musicName": "テスト3",
@@ -247,6 +269,8 @@ def test_selectHighScore_param_empty():
                     "perfectCount": 6,
                     "playCount": 62,
                     "clearedCount": 63,
+                    "maxCombo": 623,
+                    "updateTime": "2019-06-09T15:00:00+00:00",
             },
             {
                     "musicName": "テスト4",
@@ -258,6 +282,8 @@ def test_selectHighScore_param_empty():
                     "perfectCount": 7,
                     "playCount": 72,
                     "clearedCount": 73,
+                    "maxCombo": 723,
+                    "updateTime": "2019-07-09T15:00:00+00:00",
             },
             ]
     assert highscore.selectHighScore("") == success
