@@ -10,6 +10,7 @@ from kivy.clock import Clock
 from util import util
 from constant.systemconstant import KIVY_CURRENT_DIR
 from constant.messeges import TITLE_DIR_SELECT
+import win32timezone
 
 Builder.load_file(util.findDataFile(KIVY_CURRENT_DIR + 'widget\\fileChoosePopUp.kv'))
 
