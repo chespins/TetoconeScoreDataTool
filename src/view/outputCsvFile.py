@@ -15,7 +15,8 @@ Builder.load_file(util.findDataFile(KIVY_CURRENT_DIR + 'outputCsvFile.kv'))
 
 
 class OutPutCsvFile(Screen):
-    initialfileName =  "scoreData_" + util.getDateTimeNowFileName() + ".csv"
+    extension = ".csv"
+    kinds = "scoreData_"
     selectDir = os.getcwd()
     model = OutputCsvModel()
     rankDisplayedFlg = BooleanProperty(False)
@@ -28,7 +29,7 @@ class OutPutCsvFile(Screen):
     def on_pre_enter(self, **kwargs):
         self.selectDir = os.getcwd()
         self.ids.saveFolder.text = self.selectDir
-        self.ids.fileName.text = self.initialfileName
+        self.ids.fileName.text = self.kinds + util.getDateTimeNowFileName() + self.extension
 
     def on_leave(self, **kwargs):
         self.manager.remove_widget(self)
