@@ -3,7 +3,7 @@ from util import util
 
 from constant.distConstant import LEVEL_NAME_DIST
 from constant.distConstant import MODE_NAME_DIST
-from constant.distConstant import RANK_DIST
+from constant.distConstant import GANRU_NAME_DIST
 from util import util
 
 class CsvSourseDataType():
@@ -14,12 +14,13 @@ class CsvSourseDataType():
 
 
 class CsvDataType():
-    def __init__(self, rankFlg: bool, timeFlg: bool, levelFlg: bool, modeFlg: bool, countFlg: bool):
+    def __init__(self, rankFlg: bool, timeFlg: bool, levelFlg: bool, modeFlg: bool, countFlg: bool, gunruFlg: bool):
         self.rankFlg = rankFlg
         self.timeFlg = timeFlg
         self.levelFlg = levelFlg
         self.modeFlg = modeFlg
         self.countFlg = countFlg
+        self.gunruFlg = gunruFlg
 
 
 class CsvDataHeader():
@@ -51,6 +52,10 @@ class CsvDataHeader():
         
                 elif self.dataType.countFlg:
                     return columnData
+                
+                elif self.dataType.gunruFlg:
+                    return GANRU_NAME_DIST[str(columnData)]
+
             except:
                 print("解析エラー")
 

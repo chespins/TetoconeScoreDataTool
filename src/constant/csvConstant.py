@@ -2,12 +2,13 @@
 from  variable import csvdata as da
 
 # dataType
-DATA_TYPE_OUTHER = da.CsvDataType(False, False, False, False, False)
-DATA_TYPE_COUNT = da.CsvDataType(False, False, False, False, True)
-DATA_TYPE_MODE = da.CsvDataType(False, False, False, True, False)
-DATA_TYPE_LEVEL = da.CsvDataType(False, False, True, False, False)
-DATA_TYPE_TIME = da.CsvDataType(False, True, False, False, False)
-DATA_TYPE_RANK = da.CsvDataType(True, False, False, False, False)
+DATA_TYPE_OUTHER = da.CsvDataType(False, False, False, False, False, False)
+DATA_TYPE_GENRU = da.CsvDataType(False, False, False, False, False, True)
+DATA_TYPE_COUNT = da.CsvDataType(False, False, False, False, True, False)
+DATA_TYPE_MODE = da.CsvDataType(False, False, False, True, False, False)
+DATA_TYPE_LEVEL = da.CsvDataType(False, False, True, False, False, False)
+DATA_TYPE_TIME = da.CsvDataType(False, True, False, False, False, False)
+DATA_TYPE_RANK = da.CsvDataType(True, False, False, False, False, False)
 
 # sourceDataName
 SOURCE_CHART = "chart"
@@ -18,6 +19,7 @@ SOURCE_RANK_HISTORY = "rankHistory"
 SCORE_HEADER_MUSIC_NAME = da.CsvDataHeader(SOURCE_HIGH_SCORE, "musicName", "楽曲名", DATA_TYPE_OUTHER)
 SCORE_HEADER_LEVEL_NAME = da.CsvDataHeader(SOURCE_HIGH_SCORE, "levelId", "難易度", DATA_TYPE_LEVEL)
 SCORE_HEADER_PLAY_MODE = da.CsvDataHeader(SOURCE_HIGH_SCORE, "mode", "プレイモード", DATA_TYPE_MODE)
+SCORE_HEADER_GUNRU_NAME = da.CsvDataHeader(SOURCE_HIGH_SCORE, "genreId", "ジャンル", DATA_TYPE_GENRU)
 SCORE_HEADER_HIGH_SCORE = da.CsvDataHeader(SOURCE_HIGH_SCORE, "highScore", "ハイスコア", DATA_TYPE_COUNT)
 SCORE_HEADER_MAX_COMBO = da.CsvDataHeader(SOURCE_HIGH_SCORE, "maxCombo", "最高コンボ", DATA_TYPE_COUNT)
 SCORE_HEADER_PLAY_COUNT = da.CsvDataHeader(SOURCE_HIGH_SCORE, "playCount", "プレイ回数", DATA_TYPE_COUNT)
@@ -46,6 +48,7 @@ CSV_SCORE_INFO_HEADER = [
 
 
 CSV_SCORE_SCORE_HEADER = [
+        SCORE_HEADER_GUNRU_NAME,
         SCORE_HEADER_HIGH_SCORE,
         SCORE_HEADER_MAX_COMBO,
         SCORE_HEADER_PLAY_COUNT,

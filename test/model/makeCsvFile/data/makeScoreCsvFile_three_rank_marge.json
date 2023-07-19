@@ -11,7 +11,8 @@
             "clearedCount": 1,
             "fullComboCount": 2,
             "perfectCount": 2,
-            "updateTime": "2023-01-07T08:22:16+00:00"
+            "updateTime": "2023-01-07T08:22:16+00:00",
+            "genreId": "G004"
         },
         {
             "chartId": "T0003_4",
@@ -24,7 +25,8 @@
             "clearedCount": 9,
             "fullComboCount": 8,
             "perfectCount": 7,
-            "updateTime": "2023-01-07T08:23:16+00:00"
+            "updateTime": "2023-01-07T08:23:16+00:00",
+            "genreId": "G005"
         }
     ],
     "rank": {
