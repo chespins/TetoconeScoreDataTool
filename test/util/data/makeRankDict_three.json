@@ -1,0 +1,126 @@
+{
+    "input": [
+        {
+            "chartId": "T0001_0",
+            "mode": 1,
+            "rank": "B",
+            "count": 3
+        },
+        {
+            "chartId": "T0001_0",
+            "mode": 1,
+            "rank": "S",
+            "count": 1
+        },
+        {
+            "chartId": "T0001_0",
+            "mode": 1,
+            "rank": "AAA",
+            "count": 2
+        },
+        {
+            "chartId": "T0001_0",
+            "mode": 3,
+            "rank": "B",
+            "count": 6
+        },
+        {
+            "chartId": "T0001_0",
+            "mode": 3,
+            "rank": "SS",
+            "count": 3
+        },
+        {
+            "chartId": "T0001_0",
+            "mode": 3,
+            "rank": "AA",
+            "count": 8
+        },
+        {
+            "chartId": "T0003_4",
+            "mode": 5,
+            "rank": "AA",
+            "count": 7
+        },
+        {
+            "chartId": "T0003_4",
+            "mode": 5,
+            "rank": "S",
+            "count": 1
+        }
+    ],
+    "output": {
+        "T0001_0_1": {
+            "B": {
+                "rank": "B",
+                "count": 3
+            },
+            "S": {
+                "rank": "S",
+                "count": 1
+            },
+            "AAA": {
+                "rank": "AAA",
+                "count": 2
+            }
+        },
+        "T0001_0_3": {
+            "B": {
+                "rank": "B",
+                "count": 6
+            },
+            "SS": {
+                "rank": "SS",
+                "count": 3
+            },
+            "AA": {
+                "rank": "AA",
+                "count": 8
+            }
+        },
+        "T0003_4_5": {
+            "AA": {
+                "rank": "AA",
+                "count": 7
+            },
+            "S": {
+                "rank": "S",
+                "count": 1
+            }
+        }
+    },
+    "output_true": {
+        "T0001_0": {
+            "B": {
+                "rank": "B",
+                "count": 9
+            },
+            "S": {
+                "rank": "S",
+                "count": 1
+            },
+            "AAA": {
+                "rank": "AAA",
+                "count": 2
+            },
+            "SS": {
+                "rank": "SS",
+                "count": 3
+            },
+            "AA": {
+                "rank": "AA",
+                "count": 8
+            }
+        },
+        "T0003_4": {
+            "AA": {
+                "rank": "AA",
+                "count": 7
+            },
+            "S": {
+                "rank": "S",
+                "count": 1
+            }
+        }
+    }
+}

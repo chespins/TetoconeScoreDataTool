@@ -41,8 +41,15 @@ def getDateTimeNow():
     utcTime = datetime.datetime.strftime(date, '%Y-%m-%d{0}%H:%M:%S+00:00')
     return utcTime.format("T",)
 
+
 def minDateTime():
     return "2000-01-01T00:00:00+00:00"
+
+
+def getDateTimeNowFileName():
+    date = datetime.datetime.now()
+    fileNameTime = datetime.datetime.strftime(date, '%Y%m%d-%H%M%S')
+    return fileNameTime
 
 
 if __name__ == '__main__':

@@ -4,7 +4,7 @@ from constant.systemconstant import TETOCONE_DB_NAME
 
 
 SELECT_SQL = """
-        SELECT "chart_id","mode","rank","count" FROM "rank_history"
+        SELECT "chart_id","mode","rank","count" FROM "rank_history" ORDER BY "rank", "mode"
 """
 
 SELECT_ID_SQL = """
@@ -17,7 +17,7 @@ ORDER_BY_SQL = """
 """
 
 
-def selectMusic():
+def selectAllRankData():
     chartList = []
     with sqlite3.connect(TETOCONE_DB_NAME) as conn:
         cur = conn.cursor()
