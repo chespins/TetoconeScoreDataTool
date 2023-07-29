@@ -1,0 +1,43 @@
+{
+    "highScore_return": [{
+        "musicName": "テスト楽曲1",
+        "levelId": 2,
+        "mode": 1,
+        "highScore": 1234567,
+        "chartId": "test001_01",
+        "fullComboCount": 1,
+        "perfectCount": 0,
+        "playCount": 1234,
+        "clearedCount": 1,
+        "maxCombo": 123,
+        "updateTime": "2019-02-09T15:00:00+00:00"
+    },
+    {
+        "musicName": "テスト楽曲2",
+        "levelId": 2,
+        "mode": 2,
+        "highScore": 1234566,
+        "chartId": "test001_01",
+        "fullComboCount": 0,
+        "perfectCount": 1,
+        "playCount": 2,
+        "clearedCount": 0,
+        "maxCombo": 223,
+        "updateTime": "2019-01-09T15:00:00+00:00"
+    }],
+    "highScore_success": [
+        {
+            "musicName": "テスト楽曲1",
+            "levelId": 2,
+            "mode": 1,
+            "highScore": 1234567,
+            "chartId": "test001_01",
+            "fullComboCount": 1,
+            "perfectCount": 1,
+            "playCount": 1236,
+            "clearedCount": 1,
+            "maxCombo": 123,
+            "updateTime": "2019-02-09T15:00:00+00:00"
+        }
+    ]
+}

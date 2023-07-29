@@ -1,10 +1,17 @@
 # coding:utf-8
-import pytest
+import json
 import sys
 import os
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..\\..\\src\\'))
 from util import tetocone_util
+
+
+def readFileStr(filename):
+    f = open(os.path.join("test", "util", "data", filename), 'r', encoding='UTF-8')
+    data = f.read()
+    f.close()
+    return json.loads(data)
 
 
 def test_getLevelIdByName_0():
@@ -57,3 +64,27 @@ def test_getGenreIdByName_5():
 
 def test_getGenreIdByName_Empty():
     assert tetocone_util.getGenreIdByName("") == ""
+
+
+def test_makeRankDict_empty():
+    assert tetocone_util.makeRankDict([]) == {}
+
+
+def test_makeRankDict_one():
+    params = readFileStr("makeRankDict_one.json")
+    assert tetocone_util.makeRankDict(params["input"]) == params["output"]
+
+
+def test_makeRankDict_three():
+    params = readFileStr("makeRankDict_three.json")
+    assert tetocone_util.makeRankDict(params["input"]) == params["output"]
+
+
+def test_makeRankDict_three_false():
+    params = readFileStr("makeRankDict_three.json")
+    assert tetocone_util.makeRankDict(params["input"], False) == params["output"]
+
+
+def test_makeRankDict_three_true():
+    params = readFileStr("makeRankDict_three.json")
+    assert tetocone_util.makeRankDict(params["input"], True) == params["output_true"]

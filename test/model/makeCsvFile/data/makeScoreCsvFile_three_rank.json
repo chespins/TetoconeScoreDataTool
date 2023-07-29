@@ -1,0 +1,89 @@
+{
+    "highScoreList": [
+        {
+            "chartId": "T0001_0",
+            "musicName": "楽曲1",
+            "mode": 1,
+            "levelId": 1,
+            "musicId": "T0001",
+            "highScore": 1123456,
+            "maxCombo": 111,
+            "playCount": 3,
+            "clearedCount": 2,
+            "fullComboCount": 1,
+            "perfectCount": 0,
+            "updateTime": "2023-01-07T08:21:16+00:00",
+            "genreId": "G004"
+        },
+        {
+            "chartId": "T0001_0",
+            "musicName": "楽曲1",
+            "mode": 3,
+            "levelId": 4,
+            "musicId": "T0001",
+            "highScore": 2123456,
+            "maxCombo": 222,
+            "playCount": 4,
+            "clearedCount": 1,
+            "fullComboCount": 2,
+            "perfectCount": 2,
+            "updateTime": "2023-01-07T08:22:16+00:00",
+            "genreId": "G004"
+        },
+        {
+            "chartId": "T0003_4",
+            "musicName": "楽曲3",
+            "mode": 5,
+            "levelId": 5,
+            "musicId": "T0003",
+            "highScore": 3123456,
+            "maxCombo": 333,
+            "playCount": 5,
+            "clearedCount": 9,
+            "fullComboCount": 8,
+            "perfectCount": 7,
+            "updateTime": "2023-01-07T08:23:16+00:00",
+            "genreId": "G005"
+        }
+    ],
+    "rank": {
+        "T0001_0_1": {
+            "B": {
+                "rank": "B",
+                "count": 3
+            },
+            "S": {
+                "rank": "S",
+                "count": 1
+            },
+            "AAA": {
+                "rank": "AAA",
+                "count": 2
+            }
+        },
+        "T0001_0_3": {
+            "SS": {
+                "rank": "SS",
+                "count": 5
+            },
+            "S": {
+                "rank": "S",
+                "count": 4
+            }
+        },
+        "T0003_4_5": {
+            "AA": {
+                "rank": "AA",
+                "count": 3
+            },
+            "S": {
+                "rank": "S",
+                "count": 1
+            },
+            "AAA": {
+                "rank": "AAA",
+                "count": 2
+            }
+        }
+    }
+}

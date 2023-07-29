@@ -53,6 +53,12 @@
                         root.switchingCharacterData()
             BoxLayout:
                 Button:
+                    id: csvOutput
+                    text: "ハイスコアCSV出力"
+                    font_size: 22
+                    on_release: 
+                        root.switchingOutputCsvFile()
+                Button:
                     text: "ライセンス"
                     font_size: 22
                     on_release: 

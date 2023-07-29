@@ -1,0 +1,66 @@
+{
+    "highScoreList": [
+        {
+            "chartId": "T0001_0",
+            "musicName": "楽曲1",
+            "levelId": 4,
+            "musicId": "T0001",
+            "highScore": 2123456,
+            "maxCombo": 222,
+            "playCount": 4,
+            "clearedCount": 1,
+            "fullComboCount": 2,
+            "perfectCount": 2,
+            "updateTime": "2023-01-07T08:22:16+00:00",
+            "genreId": "G004"
+        },
+        {
+            "chartId": "T0003_4",
+            "musicName": "楽曲3",
+            "levelId": 5,
+            "musicId": "T0003",
+            "highScore": 3123456,
+            "maxCombo": 333,
+            "playCount": 5,
+            "clearedCount": 9,
+            "fullComboCount": 8,
+            "perfectCount": 7,
+            "updateTime": "2023-01-07T08:23:16+00:00",
+            "genreId": "G005"
+        }
+    ],
+    "rank": {
+        "T0001_0": {
+            "B": {
+                "rank": "B",
+                "count": 3
+            },
+            "S": {
+                "rank": "S",
+                "count": 5
+            },
+            "AAA": {
+                "rank": "AAA",
+                "count": 2
+            },
+            "SS": {
+                "rank": "SS",
+                "count": 5
+            }
+        },
+        "T0003_4": {
+            "AA": {
+                "rank": "AA",
+                "count": 3
+            },
+            "S": {
+                "rank": "S",
+                "count": 1
+            },
+            "AAA": {
+                "rank": "AAA",
+                "count": 2
+            }
+        }
+    }
+}

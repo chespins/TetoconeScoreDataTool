@@ -1,0 +1,19 @@
+{
+    "highScoreList": [
+        {
+            "chartId": "T0001_0",
+            "levelId": 1,
+            "musicName": "楽曲1",
+            "mode": 1,
+            "musicId": "T0001",
+            "highScore": 1123456,
+            "maxCombo": 111,
+            "playCount": 3,
+            "clearedCount": 2,
+            "fullComboCount": 1,
+            "perfectCount": 0,
+            "updateTime": "2023-01-07T08:21:16+00:00",
+            "genreId": "G000"
+        }
+    ]
+}

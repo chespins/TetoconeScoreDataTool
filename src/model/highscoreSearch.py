@@ -18,7 +18,9 @@ class HighScoreSearch(BaseModel):
                 if margedist[chartId]["highScore"] > highScoreData["highScore"]:
                     margedist[chartId]["playCount"] += highScoreData["playCount"]
                     continue
+
                 highScoreData["playCount"] += margedist[chartId]["playCount"]
+            
             margedist[chartId] = highScoreData
 
         screenHighScore = []

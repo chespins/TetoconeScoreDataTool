@@ -22,5 +22,29 @@ def getGenreIdByName(searchGenreName) -> str:
     return searchGenreId
 
 
+def makeRankDict(rankHistoryList, margeFlg=False):
+    rankHistoryDict = {}
+    for rankHistory in rankHistoryList:
+        listKey = rankHistory["chartId"]
+        if not margeFlg:
+            listKey += "_" + str(rankHistory["mode"])
+        
+        chartHistoryDict = {}
+        if listKey in rankHistoryDict:
+            chartHistoryDict = rankHistoryDict[listKey]
+
+        count = rankHistory["count"]
+        if rankHistory["rank"] in chartHistoryDict:
+            count += chartHistoryDict[rankHistory["rank"]]["count"]
+
+        chartHistoryDict[rankHistory["rank"]] = {
+                "rank": rankHistory["rank"],
+                "count": count,
+        }
+        rankHistoryDict[listKey] = chartHistoryDict
+
+    return rankHistoryDict
+
+
 if __name__ == '__main__':
     pass

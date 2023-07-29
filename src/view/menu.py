@@ -13,6 +13,7 @@ from view import inputWebPageParams as web
 from view import highScoreSelected as hss
 from view import abuchement as abu
 from view import rankingList as rak
+from view import outputCsvFile as csv
 
 
 Builder.load_file(util.findDataFile(KIVY_CURRENT_DIR + 'menu.kv'))
@@ -29,6 +30,7 @@ class MenuScreen(Screen):
         degreesDis = not self.commonData.checkDegreesData()
         self.ids.characterData.disabled = degreesDis
         self.ids.degreesList.disabled =  degreesDis
+        self.ids.csvOutput.disabled =  degreesDis
 
     def switchingDegreesList(self):
         screenName = 'degreesList'
@@ -63,6 +65,11 @@ class MenuScreen(Screen):
     def switchingAbuchment(self):
         screenName = 'abuchment'
         self.manager.add_widget(abu.AbuchmentScreen(name=screenName, comonData=self.commonData))
+        self.manager.current = screenName
+
+    def switchingOutputCsvFile(self):
+        screenName = 'csvFile'
+        self.manager.add_widget(csv.OutPutCsvFile(name=screenName, comonData=self.commonData))
         self.manager.current = screenName
 
 

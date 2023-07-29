@@ -61,3 +61,35 @@ def test_rank_three_data():
                     "count": 2
                 }]
     assert rankhistory.selectChartByChartIdMode("test001", {1,2,3,4,5,6}) == success
+
+def test_AllRankData_none():
+    befour_db_name = "test/db/befour_test.db"
+    test_file_name = common_db_setup.copy_file_db(befour_db_name)
+    rankhistory.TETOCONE_DB_NAME = test_file_name
+    success = []
+    assert rankhistory.selectAllRankData() == success
+
+
+def test_AllRankData_three():
+    befour_db_name = "test/db/rankhistory/test001_3_4.db"
+    test_file_name = common_db_setup.copy_file_db(befour_db_name)
+    rankhistory.TETOCONE_DB_NAME = test_file_name
+    success = [{
+                    "chartId": "test001",
+                    "mode": 3,
+                    "rank": "B",
+                    "count": 3
+                },
+                {
+                    "chartId": "test001",
+                    "mode": 3,
+                    "rank": "S",
+                    "count": 1
+                },
+                {
+                    "chartId": "test001",
+                    "mode": 4,
+                    "rank": "S",
+                    "count": 2
+                }]
+    assert rankhistory.selectAllRankData() == success

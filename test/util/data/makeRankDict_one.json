@@ -1,0 +1,38 @@
+{
+    "input": [
+        {
+            "chartId": "T0001_0",
+            "mode": 1,
+            "rank": "B",
+            "count": 3
+        },
+        {
+            "chartId": "T0001_0",
+            "mode": 1,
+            "rank": "S",
+            "count": 1
+        },
+        {
+            "chartId": "T0001_0",
+            "mode": 1,
+            "rank": "AAA",
+            "count": 2
+        }
+    ],
+    "output": {
+        "T0001_0_1": {
+            "B": {
+                "rank": "B",
+                "count": 3
+            },
+            "S": {
+                "rank": "S",
+                "count": 1
+            },
+            "AAA": {
+                "rank": "AAA",
+                "count": 2
+            }
+        }
+    }
+}

@@ -1,0 +1,52 @@
+{
+    "highScore_return": [
+        {
+            "musicName": "テスト3",
+            "levelId": 2,
+            "mode": 1,
+            "highScore": 6234567,
+            "chartId": "test003_01",
+            "fullComboCount": 61,
+            "perfectCount": 6,
+            "playCount": 62,
+            "clearedCount": 63,
+            "maxCombo": 623,
+            "updateTime": "2019-06-09T15:00:00+00:00"
+        },
+        {
+            "musicName": "テスト1",
+            "levelId": 1,
+            "mode": 1,
+            "highScore": 0,
+            "chartId": "test003_00",
+            "fullComboCount": 0,
+            "perfectCount": 0,
+            "playCount": 0,
+            "clearedCount": 0,
+            "maxCombo": 0
+        }
+    ],
+    "highScore_success": [
+        {
+            "musicName": "テスト3",
+            "levelId": 2,
+            "mode": 1,
+            "highScore": 6234567,
+            "chartId": "test003_01",
+            "fullComboCount": 61,
+            "perfectCount": 6,
+            "playCount": 62,
+            "clearedCount": 63,
+            "maxCombo": 623,
+            "updateTime": "2019-06-09T15:00:00+00:00"
+        }
+    ],
+    "rank_db_return": [
+        {
+            "rankHistory": "56789"
+        }
+    ],
+    "rank_dict_return": {
+        "rank_dict": "45678"
+    }
+}
